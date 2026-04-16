@@ -1,5 +1,7 @@
 package com.dataeng.App.services;
 
+import com.dataeng.App.exception.ArticleNotFoundException;
+import com.dataeng.App.exception.AuthorNotFoundException;
 import com.dataeng.App.model.entity.Article;
 import com.dataeng.App.model.entity.User;
 import com.dataeng.App.repository.ArticleRepository;
@@ -30,7 +32,7 @@ public class ArticleService {
     public List<Article> getArticlesByAuthor(Long authorId) {
         Optional<User> author = userRepository.findById(authorId);
         if (author.isEmpty()) {
-            throw new RuntimeException("Author not found with id: " + authorId);
+            throw new AuthorNotFoundException("Author not found with id: " + authorId);
         }
         return articleRepository.findByAuthor(author.get());
     }
@@ -53,12 +55,12 @@ public class ArticleService {
 
     public Article createArticle(Article article) {
         if (article.getAuthor() == null || article.getAuthor().getId() == null) {
-            throw new RuntimeException("Author is required");
+            throw new AuthorNotFoundException("Author is required");
         }
 
         Optional<User> author = userRepository.findById(article.getAuthor().getId());
         if (author.isEmpty()) {
-            throw new RuntimeException("Author not found with id: " + article.getAuthor().getId());
+            throw new AuthorNotFoundException("Author not found with id: " + article.getAuthor().getId());
         }
 
         article.setAuthor(author.get());
@@ -68,7 +70,7 @@ public class ArticleService {
     public Article updateArticle(Long id, Article articleDetails) {
         Optional<Article> existingArticle = articleRepository.findById(id);
         if (existingArticle.isEmpty()) {
-            throw new RuntimeException("Article not found with id: " + id);
+            throw new ArticleNotFoundException("Article not found with id: " + id);
         }
 
         Article article = existingArticle.get();
@@ -76,7 +78,7 @@ public class ArticleService {
         if (articleDetails.getAuthor() != null && articleDetails.getAuthor().getId() != null) {
             Optional<User> author = userRepository.findById(articleDetails.getAuthor().getId());
             if (author.isEmpty()) {
-                throw new RuntimeException("Author not found with id: " + articleDetails.getAuthor().getId());
+                throw new AuthorNotFoundException("Author not found with id: " + articleDetails.getAuthor().getId());
             }
             article.setAuthor(author.get());
         }
@@ -92,7 +94,7 @@ public class ArticleService {
 
     public void deleteArticle(Long id) {
         if (!articleRepository.existsById(id)) {
-            throw new RuntimeException("Article not found with id: " + id);
+            throw new ArticleNotFoundException("Article not found with id: " + id);
         }
         articleRepository.deleteById(id);
     }
@@ -100,7 +102,7 @@ public class ArticleService {
     public List<Article> getArticlesByAuthorAndStatus(Long authorId, Article.Status status) {
         Optional<User> author = userRepository.findById(authorId);
         if (author.isEmpty()) {
-            throw new RuntimeException("Author not found with id: " + authorId);
+            throw new AuthorNotFoundException("Author not found with id: " + authorId);
         }
         return articleRepository.findByAuthorAndStatus(author.get(), status);
     }
@@ -108,7 +110,7 @@ public class ArticleService {
     public long countArticlesByAuthorAndStatus(Long authorId, Article.Status status) {
         Optional<User> author = userRepository.findById(authorId);
         if (author.isEmpty()) {
-            throw new RuntimeException("Author not found with id: " + authorId);
+            throw new AuthorNotFoundException("Author not found with id: " + authorId);
         }
         return articleRepository.countByAuthorAndStatus(author.get(), status);
     }

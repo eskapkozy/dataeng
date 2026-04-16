@@ -1,5 +1,8 @@
 package com.dataeng.App.services;
 
+import com.dataeng.App.exception.ProfileAlreadyExistsException;
+import com.dataeng.App.exception.ProfileNotFoundException;
+import com.dataeng.App.exception.UserNotFoundException;
 import com.dataeng.App.model.entity.Profile;
 import com.dataeng.App.model.entity.User;
 import com.dataeng.App.repository.ProfileRepository;
@@ -45,17 +48,19 @@ public class ProfileService {
 
     public Profile createProfile(Profile profile) {
         if (profile.getUser() == null || profile.getUser().getId() == null) {
-            throw new RuntimeException("User is required");
+            throw new UserNotFoundException("User is required");
         }
 
-        if (profileRepository.existsByUser(profile.getUser())) {
-            throw new RuntimeException("Profile already exists for this user");
-        }
-
+        // 1. D'abord vérifier que l'user existe
         Optional<User> user = userRepository.findById(profile.getUser().getId());
         if (user.isEmpty()) {
-            throw new RuntimeException("User not found with id: " + profile.getUser().getId());
+            throw new UserNotFoundException("User not found with id: " + profile.getUser().getId());
         }
+        if (profileRepository.existsByUser(user.get())) {
+            throw new ProfileAlreadyExistsException("Profile already exists for this user");
+        }
+
+
 
         profile.setUser(user.get());
         return profileRepository.save(profile);
@@ -64,7 +69,7 @@ public class ProfileService {
     public Profile updateProfile(Long id, Profile profileDetails) {
         Optional<Profile> existingProfile = profileRepository.findById(id);
         if (existingProfile.isEmpty()) {
-            throw new RuntimeException("Profile not found with id: " + id);
+            throw new ProfileNotFoundException("Profile not found with id: " + id);
         }
 
         Profile profile = existingProfile.get();
@@ -73,10 +78,10 @@ public class ProfileService {
             if (!profile.getUser().getId().equals(profileDetails.getUser().getId())) {
                 Optional<User> user = userRepository.findById(profileDetails.getUser().getId());
                 if (user.isEmpty()) {
-                    throw new RuntimeException("User not found with id: " + profileDetails.getUser().getId());
+                    throw new UserNotFoundException("User not found with id: " + profileDetails.getUser().getId());
                 }
                 if (profileRepository.existsByUser(user.get())) {
-                    throw new RuntimeException("Profile already exists for this user");
+                    throw new ProfileAlreadyExistsException("Profile already exists for this user");
                 }
                 profile.setUser(user.get());
             }
@@ -94,7 +99,7 @@ public class ProfileService {
 
     public void deleteProfile(Long id) {
         if (!profileRepository.existsById(id)) {
-            throw new RuntimeException("Profile not found with id: " + id);
+            throw new ProfileNotFoundException("Profile not found with id: " + id);
         }
         profileRepository.deleteById(id);
     }
@@ -106,11 +111,11 @@ public class ProfileService {
     public Profile createProfileForUser(Long userId, Profile profile) {
         Optional<User> user = userRepository.findById(userId);
         if (user.isEmpty()) {
-            throw new RuntimeException("User not found with id: " + userId);
+            throw new UserNotFoundException("User not found with id: " + userId);
         }
 
         if (profileRepository.existsByUser(user.get())) {
-            throw new RuntimeException("Profile already exists for this user");
+            throw new ProfileAlreadyExistsException("Profile already exists for this user");
         }
 
         profile.setUser(user.get());

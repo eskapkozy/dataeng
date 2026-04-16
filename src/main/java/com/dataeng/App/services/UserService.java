@@ -1,5 +1,7 @@
 package com.dataeng.App.services;
 
+import com.dataeng.App.exception.UserAlreadyExistsException;
+import com.dataeng.App.exception.UserNotFoundException;
 import com.dataeng.App.model.entity.User;
 import com.dataeng.App.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,10 +38,10 @@ public class UserService {
 
     public User createUser(User user) {
         if (userRepository.existsByUsername(user.getUsername())) {
-            throw new RuntimeException("Username already exists: " + user.getUsername());
+            throw new UserAlreadyExistsException("Username already exists: " + user.getUsername());
         }
         if (userRepository.existsByEmail(user.getEmail())) {
-            throw new RuntimeException("Email already exists: " + user.getEmail());
+            throw new UserAlreadyExistsException("Email already exists: " + user.getEmail());
         }
         return userRepository.save(user);
     }
@@ -47,18 +49,18 @@ public class UserService {
     public User updateUser(Long id, User userDetails) {
         Optional<User> existingUser = userRepository.findById(id);
         if (existingUser.isEmpty()) {
-            throw new RuntimeException("User not found with id: " + id);
+            throw new UserNotFoundException("User not found with id: " + id);
         }
 
         User user = existingUser.get();
         
         if (!user.getUsername().equals(userDetails.getUsername()) && 
             userRepository.existsByUsername(userDetails.getUsername())) {
-            throw new RuntimeException("Username already exists: " + userDetails.getUsername());
+            throw new UserAlreadyExistsException("Username already exists: " + userDetails.getUsername());
         }
         if (!user.getEmail().equals(userDetails.getEmail()) && 
             userRepository.existsByEmail(userDetails.getEmail())) {
-            throw new RuntimeException("Email already exists: " + userDetails.getEmail());
+            throw new UserAlreadyExistsException("Email already exists: " + userDetails.getEmail());
         }
 
         user.setUsername(userDetails.getUsername());
@@ -71,7 +73,7 @@ public class UserService {
 
     public void deleteUser(Long id) {
         if (!userRepository.existsById(id)) {
-            throw new RuntimeException("User not found with id: " + id);
+            throw new UserNotFoundException("User not found with id: " + id);
         }
         userRepository.deleteById(id);
     }
