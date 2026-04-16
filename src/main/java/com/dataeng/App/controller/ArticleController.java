@@ -1,7 +1,7 @@
 package com.dataeng.App.controller;
 
 import com.dataeng.App.model.entity.Article;
-import com.dataeng.App.service.ArticleService;
+import com.dataeng.App.services.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
