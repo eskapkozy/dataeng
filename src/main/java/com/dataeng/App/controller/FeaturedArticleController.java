@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 import java.util.List;
 import java.util.Optional;
@@ -63,7 +64,7 @@ public class FeaturedArticleController {
     }
 
     @PostMapping
-    public ResponseEntity<FeaturedArticle> createFeaturedArticle(@RequestBody FeaturedArticle featuredArticle) {
+    public ResponseEntity<FeaturedArticle> createFeaturedArticle(@Valid @RequestBody FeaturedArticle featuredArticle) {
         try {
             FeaturedArticle savedFeaturedArticle = featuredArticleService.createFeaturedArticle(featuredArticle);
             return ResponseEntity.status(HttpStatus.CREATED).body(savedFeaturedArticle);
@@ -76,7 +77,7 @@ public class FeaturedArticleController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<FeaturedArticle> updateFeaturedArticle(@PathVariable Long id, @RequestBody FeaturedArticle featuredArticleDetails) {
+    public ResponseEntity<FeaturedArticle> updateFeaturedArticle(@PathVariable Long id, @Valid @RequestBody FeaturedArticle featuredArticleDetails) {
         try {
             FeaturedArticle updatedFeaturedArticle = featuredArticleService.updateFeaturedArticle(id, featuredArticleDetails);
             return ResponseEntity.ok(updatedFeaturedArticle);
@@ -107,7 +108,7 @@ public class FeaturedArticleController {
     @PostMapping("/article/{articleId}")
     public ResponseEntity<FeaturedArticle> createFeaturedArticleForArticle(
             @PathVariable Long articleId, 
-            @RequestBody FeaturedArticle featuredArticle) {
+            @Valid @RequestBody FeaturedArticle featuredArticle) {
         try {
             FeaturedArticle savedFeaturedArticle = featuredArticleService.createFeaturedArticleForArticle(articleId, featuredArticle);
             return ResponseEntity.status(HttpStatus.CREATED).body(savedFeaturedArticle);

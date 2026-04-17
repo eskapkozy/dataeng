@@ -2,6 +2,8 @@ package com.dataeng.App.services;
 
 import com.dataeng.App.exception.ArticleNotFoundException;
 import com.dataeng.App.exception.AuthorNotFoundException;
+import com.dataeng.App.exception.DuplicateTitleException;
+import com.dataeng.App.exception.UnauthorizedException;
 import com.dataeng.App.model.entity.Article;
 import com.dataeng.App.model.entity.User;
 import com.dataeng.App.repository.ArticleRepository;
@@ -54,6 +56,7 @@ public class ArticleService {
     }
 
     public Article createArticle(Article article) {
+        // 1. Vérifier que l'auteur existe via userRepository.findById()
         if (article.getAuthor() == null || article.getAuthor().getId() == null) {
             throw new AuthorNotFoundException("Author is required");
         }
@@ -63,6 +66,17 @@ public class ArticleService {
             throw new AuthorNotFoundException("Author not found with id: " + article.getAuthor().getId());
         }
 
+        // 2. Vérifier que l'auteur a le rôle AUTHOR
+        if (author.get().getRole() != User.Role.AUTHOR) {
+            throw new UnauthorizedException("Only users with AUTHOR role can create articles");
+        }
+
+        // 3. Vérifier que le titre n'existe pas déjà pour ce même auteur
+        if (articleRepository.existsByTitleAndAuthor(article.getTitle(), author.get())) {
+            throw new DuplicateTitleException("An article with this title already exists for this author");
+        }
+
+        // 4. Sauvegarder l'article
         article.setAuthor(author.get());
         return articleRepository.save(article);
     }

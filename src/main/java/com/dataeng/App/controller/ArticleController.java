@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 import java.util.List;
 import java.util.Optional;
@@ -65,7 +66,7 @@ public class ArticleController {
     }
 
     @PostMapping
-    public ResponseEntity<Article> createArticle(@RequestBody Article article) {
+    public ResponseEntity<Article> createArticle(@Valid @RequestBody Article article) {
         try {
             Article savedArticle = articleService.createArticle(article);
             return ResponseEntity.status(HttpStatus.CREATED).body(savedArticle);
@@ -78,7 +79,7 @@ public class ArticleController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Article> updateArticle(@PathVariable Long id, @RequestBody Article articleDetails) {
+    public ResponseEntity<Article> updateArticle(@PathVariable Long id, @Valid @RequestBody Article articleDetails) {
         try {
             Article updatedArticle = articleService.updateArticle(id, articleDetails);
             return ResponseEntity.ok(updatedArticle);

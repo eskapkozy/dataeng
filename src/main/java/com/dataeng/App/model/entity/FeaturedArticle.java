@@ -1,6 +1,7 @@
 package com.dataeng.App.model.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,9 +28,13 @@ public class FeaturedArticle {
     private Article article;
     
     @Column(name = "featured_order", nullable = false)
+    @NotNull
+    @Min(1)
+    @Max(100)
     private Integer featuredOrder;
     
     @Column(name = "is_active", nullable = false)
+    @NotNull
     private Boolean isActive = true;
     
     @CreationTimestamp

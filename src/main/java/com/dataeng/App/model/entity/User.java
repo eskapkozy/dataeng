@@ -1,6 +1,7 @@
 package com.dataeng.App.model.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,16 +25,26 @@ public class User {
     private Long id;
     
     @Column(nullable = false, unique = true)
+    @NotNull
+    @Size(min = 3, max = 20)
+    @Pattern(regexp = "^[a-zA-Z0-9_]+$")
     private String username;
     
     @Column(nullable = false, unique = true)
+    @NotNull
+    @Email
+    @Size(max = 100)
     private String email;
     
     @Column(nullable = false)
+    @NotNull
+    @Size(min = 8, max = 128)
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]$")
     private String password;
     
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
+    @NotNull
     private Role role = Role.USER;
     
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

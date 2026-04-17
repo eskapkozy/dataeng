@@ -38,4 +38,7 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     
     @Query("SELECT COUNT(a) FROM Article a WHERE a.author = :author AND a.status = :status")
     long countByAuthorAndStatus(@Param("author") User author, @Param("status") Article.Status status);
+    
+    @Query("SELECT CASE WHEN COUNT(a) > 0 THEN true ELSE false END FROM Article a WHERE a.title = :title AND a.author = :author")
+    boolean existsByTitleAndAuthor(@Param("title") String title, @Param("author") User author);
 }

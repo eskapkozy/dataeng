@@ -1,12 +1,15 @@
 package com.dataeng.App.model.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.validator.constraints.URL;
 
 import java.time.LocalDateTime;
 
@@ -27,21 +30,32 @@ public class Profile {
     private User user;
     
     @Column(length = 1000)
+    @Size(max = 2000)
     private String bio;
     
     @Column(name = "linkedin_url", length = 255)
+    @URL
+    @Size(max = 255)
     private String linkedinUrl;
     
     @Column(name = "twitter_url", length = 255)
+    @URL
+    @Size(max = 255)
     private String twitterUrl;
     
     @Column(name = "github_url", length = 255)
+    @URL
+    @Size(max = 255)
     private String githubUrl;
     
     @Column(name = "website_url", length = 255)
+    @URL
+    @Size(max = 255)
     private String websiteUrl;
     
     @Column(name = "profile_image_url", length = 500)
+    @URL
+    @Size(max = 255)
     private String profileImageUrl;
     
     @CreationTimestamp

@@ -36,4 +36,10 @@ public interface FeaturedArticleRepository extends JpaRepository<FeaturedArticle
     
     @Query("SELECT f FROM FeaturedArticle f WHERE f.featuredOrder = :order AND f.isActive = true")
     Optional<FeaturedArticle> findByFeaturedOrderAndIsActive(@Param("order") Integer order);
+    
+    @Query("SELECT COUNT(f) FROM FeaturedArticle f WHERE f.isActive = true")
+    long countByIsActiveTrue();
+    
+    @Query("SELECT CASE WHEN COUNT(f) > 0 THEN true ELSE false END FROM FeaturedArticle f WHERE f.featuredOrder = :order AND f.isActive = true")
+    boolean existsByFeaturedOrderAndIsActiveTrue(@Param("order") Integer order);
 }

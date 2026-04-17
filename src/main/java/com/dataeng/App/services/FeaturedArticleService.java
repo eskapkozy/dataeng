@@ -3,6 +3,9 @@ package com.dataeng.App.services;
 import com.dataeng.App.exception.ArticleNotFoundException;
 import com.dataeng.App.exception.ArticleAlreadyFeaturedException;
 import com.dataeng.App.exception.FeaturedArticleNotFoundException;
+import com.dataeng.App.exception.InvalidArticleStatusException;
+import com.dataeng.App.exception.FeaturedLimitExceededException;
+import com.dataeng.App.exception.DuplicateFeaturedOrderException;
 import com.dataeng.App.model.entity.FeaturedArticle;
 import com.dataeng.App.model.entity.Article;
 import com.dataeng.App.repository.FeaturedArticleRepository;
@@ -51,6 +54,7 @@ public class FeaturedArticleService {
     }
 
     public FeaturedArticle createFeaturedArticle(FeaturedArticle featuredArticle) {
+        // 1. Vérifier que l'article existe via articleRepository.findById()
         if (featuredArticle.getArticle() == null || featuredArticle.getArticle().getId() == null) {
             throw new ArticleNotFoundException("Article is required");
         }
@@ -60,10 +64,24 @@ public class FeaturedArticleService {
             throw new ArticleNotFoundException("Article not found with id: " + featuredArticle.getArticle().getId());
         }
 
-        if (featuredArticleRepository.existsByArticle(article.get())) {
-            throw new ArticleAlreadyFeaturedException("Article is already featured");
+        // 2. Vérifier que l'article a le statut PUBLISHED
+        if (article.get().getStatus() != Article.Status.PUBLISHED) {
+            throw new InvalidArticleStatusException("Only PUBLISHED articles can be featured");
         }
 
+        // 3. Vérifier que le nombre d'articles featured actifs (isActive == true) ne dépasse pas 10
+        long activeFeaturedCount = featuredArticleRepository.countByIsActiveTrue();
+        if (activeFeaturedCount >= 10) {
+            throw new FeaturedLimitExceededException("Maximum of 10 featured articles allowed");
+        }
+
+        // 4. Vérifier que l'ordre (featuredOrder) n'est pas déjà utilisé parmi les featured actifs
+        if (featuredArticle.getFeaturedOrder() != null && 
+            featuredArticleRepository.existsByFeaturedOrderAndIsActiveTrue(featuredArticle.getFeaturedOrder())) {
+            throw new DuplicateFeaturedOrderException("Featured order " + featuredArticle.getFeaturedOrder() + " is already taken");
+        }
+
+        // 5. Sauvegarder le featured article
         featuredArticle.setArticle(article.get());
         return featuredArticleRepository.save(featuredArticle);
     }

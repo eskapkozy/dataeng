@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 import java.util.List;
 import java.util.Optional;
@@ -57,7 +58,7 @@ public class ProfileController {
     }
 
     @PostMapping
-    public ResponseEntity<Profile> createProfile(@RequestBody Profile profile) {
+    public ResponseEntity<Profile> createProfile(@Valid @RequestBody Profile profile) {
         try {
             Profile savedProfile = profileService.createProfile(profile);
             return ResponseEntity.status(HttpStatus.CREATED).body(savedProfile);
@@ -70,7 +71,7 @@ public class ProfileController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Profile> updateProfile(@PathVariable Long id, @RequestBody Profile profileDetails) {
+    public ResponseEntity<Profile> updateProfile(@PathVariable Long id, @Valid @RequestBody Profile profileDetails) {
         try {
             Profile updatedProfile = profileService.updateProfile(id, profileDetails);
             return ResponseEntity.ok(updatedProfile);
@@ -99,7 +100,7 @@ public class ProfileController {
     }
 
     @PostMapping("/user/{userId}")
-    public ResponseEntity<Profile> createProfileForUser(@PathVariable Long userId, @RequestBody Profile profile) {
+    public ResponseEntity<Profile> createProfileForUser(@PathVariable Long userId, @Valid @RequestBody Profile profile) {
         try {
             Profile savedProfile = profileService.createProfileForUser(userId, profile);
             return ResponseEntity.status(HttpStatus.CREATED).body(savedProfile);

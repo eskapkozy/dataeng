@@ -47,21 +47,23 @@ public class ProfileService {
     }
 
     public Profile createProfile(Profile profile) {
+        // 1. Vérifier que l'user n'est pas null et que son id n'est pas null
         if (profile.getUser() == null || profile.getUser().getId() == null) {
             throw new UserNotFoundException("User is required");
         }
 
-        // 1. D'abord vérifier que l'user existe
+        // 2. Vérifier que l'user existe via userRepository.findById()
         Optional<User> user = userRepository.findById(profile.getUser().getId());
         if (user.isEmpty()) {
             throw new UserNotFoundException("User not found with id: " + profile.getUser().getId());
         }
+
+        // 3. Vérifier qu'aucun profil n'existe déjà pour cet user
         if (profileRepository.existsByUser(user.get())) {
             throw new ProfileAlreadyExistsException("Profile already exists for this user");
         }
 
-
-
+        // 4. Sauvegarder le profil
         profile.setUser(user.get());
         return profileRepository.save(profile);
     }
