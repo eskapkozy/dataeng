@@ -39,7 +39,7 @@ public class User {
     @Column(nullable = false)
     @NotNull
     @Size(min = 8, max = 128)
-    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]$")
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$")
     private String password;
     
     @Enumerated(EnumType.STRING)

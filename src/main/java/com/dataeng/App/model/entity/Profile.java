@@ -30,7 +30,7 @@ public class Profile {
     private User user;
     
     @Column(length = 1000)
-    @Size(max = 2000)
+    @Size(max = 2000, min = 50)
     private String bio;
     
     @Column(name = "linkedin_url", length = 255)
