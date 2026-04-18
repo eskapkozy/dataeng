@@ -1,4 +1,10 @@
-/* Get Started module styles */
+/* Get Started module styles - Data Eng Chart Graphique */
+@import '../../styles/variables.css';
+
+.get-started-page {
+  background: var(--color-cream);
+}
+
 .get-started-page .steps {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -7,107 +13,153 @@
 }
 
 .get-started-page .step-card {
-  background: white;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: var(--color-white);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+  border: var(--border-light);
+  box-shadow: var(--shadow-sm);
   text-align: center;
   position: relative;
+  transition: var(--transition-normal);
+  overflow: hidden;
+}
+
+.get-started-page .step-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient-hero);
+  opacity: 0;
+  transition: var(--transition-normal);
+}
+
+.get-started-page .step-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(66, 103, 255, 0.2);
+}
+
+.get-started-page .step-card:hover::before {
+  opacity: 1;
 }
 
 .get-started-page .step-number {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
-  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-full);
+  background: var(--gradient-primary);
+  color: var(--color-white);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
   font-weight: bold;
-  margin: 0 auto 20px;
+  margin: 0 auto var(--spacing-md);
+  transition: var(--transition-normal);
+}
+
+.get-started-page .step-card:hover .step-number {
+  background: var(--gradient-hero);
+  transform: scale(1.1);
 }
 
 .get-started-page .step-card h3 {
   font-size: 1.3rem;
-  color: #1f2937;
-  margin-bottom: 15px;
+  color: var(--color-black);
+  margin-bottom: var(--spacing-sm);
+  font-weight: 600;
 }
 
 .get-started-page .step-card p {
-  color: #6b7280;
+  color: var(--color-black-light);
   line-height: 1.6;
 }
 
 .get-started-page .cta {
   text-align: center;
-  background: #f8fafc;
+  background: var(--color-white);
   padding: 60px 40px;
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   margin-top: 60px;
+  border: var(--border-light);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.get-started-page .cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-hero);
 }
 
 .get-started-page .cta h2 {
   font-size: 2.5rem;
-  color: #1f2937;
-  margin-bottom: 15px;
+  color: var(--color-black);
+  margin-bottom: var(--spacing-sm);
+  font-weight: 700;
 }
 
 .get-started-page .cta p {
   font-size: 1.2rem;
-  color: #6b7280;
-  margin-bottom: 30px;
+  color: var(--color-black-light);
+  margin-bottom: var(--spacing-lg);
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
+  line-height: 1.6;
 }
 
 .get-started-page .cta-buttons {
   display: flex;
-  gap: 20px;
+  gap: var(--spacing-md);
   justify-content: center;
   flex-wrap: wrap;
 }
 
 .get-started-page .btn-primary {
-  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-  color: white;
+  background: var(--gradient-primary);
+  color: var(--color-white);
   border: none;
-  padding: 10px 24px;
-  border-radius: 8px;
+  padding: 14px 32px;
+  border-radius: var(--radius-sm);
   font-weight: 600;
   cursor: pointer;
   text-decoration: none;
   display: inline-block;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(37, 99, 235, 0.1);
+  transition: var(--transition-normal);
+  box-shadow: var(--shadow-button);
+  font-size: 1.1rem;
 }
 
 .get-started-page .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 12px rgba(37, 99, 235, 0.2);
+  box-shadow: var(--shadow-md);
 }
 
 .get-started-page .btn-secondary {
-  background: #f3f4f6;
-  color: #374151;
-  border: 1px solid #d1d5db;
-  padding: 10px 24px;
-  border-radius: 8px;
+  background: var(--color-white);
+  color: var(--color-black);
+  border: var(--border-light);
+  padding: 14px 32px;
+  border-radius: var(--radius-sm);
   font-weight: 600;
   cursor: pointer;
   text-decoration: none;
   display: inline-block;
-  transition: all 0.3s ease;
+  transition: var(--transition-normal);
+  font-size: 1.1rem;
 }
 
 .get-started-page .btn-secondary:hover {
-  background: #e5e7eb;
-  border-color: #9ca3af;
-}
-
-.get-started-page .btn-large {
-  padding: 14px 32px;
-  font-size: 1.1rem;
+  background: var(--color-cream);
+  border-color: var(--color-blue);
+  color: var(--color-blue);
 }

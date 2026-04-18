@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react'
 
 interface PageColorConfig {
   container: string
@@ -7,8 +6,8 @@ interface PageColorConfig {
 
 const pageColorMap: Record<string, PageColorConfig> = {
   '/': {
-    container: '#3b82f6',
-    linkBg: 'rgba(59, 130, 246, 0.1)'
+    container: '#d4a574',
+    linkBg: 'rgba(212, 165, 116, 0.1)'
   },
   '/story': {
     container: '#10b981',
@@ -33,46 +32,11 @@ const pageColorMap: Record<string, PageColorConfig> = {
 }
 
 export const useNavbarColor = () => {
-  const [navbarColors, setNavbarColors] = useState<PageColorConfig>({
+  const currentPath = window.location.pathname
+  const colors = pageColorMap[currentPath] || {
     container: '#ffffff',
     linkBg: '#f3f4f6'
-  })
-
-  useEffect(() => {
-    const updateNavbarColors = () => {
-      const currentPath = window.location.pathname
-      const colors = pageColorMap[currentPath] || {
-        container: '#ffffff',
-        linkBg: '#f3f4f6'
-      }
-      setNavbarColors(colors)
-    }
-
-    updateNavbarColors()
-    
-    // Listen for route changes
-    window.addEventListener('popstate', updateNavbarColors)
-    
-    // Also listen for pushState/replaceState (for React Router)
-    const originalPushState = history.pushState
-    const originalReplaceState = history.replaceState
-    
-    history.pushState = function(...args) {
-      originalPushState.apply(history, args)
-      setTimeout(updateNavbarColors, 0)
-    }
-    
-    history.replaceState = function(...args) {
-      originalReplaceState.apply(history, args)
-      setTimeout(updateNavbarColors, 0)
-    }
-
-    return () => {
-      window.removeEventListener('popstate', updateNavbarColors)
-      history.pushState = originalPushState
-      history.replaceState = originalReplaceState
-    }
-  }, [])
-
-  return navbarColors
+  }
+  
+  return colors
 }

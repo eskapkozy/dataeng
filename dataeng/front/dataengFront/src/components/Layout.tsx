@@ -15,7 +15,7 @@ const Layout = ({ children }: LayoutProps) => {
       </main>
       <footer className="footer">
         <div className="footer-content">
-          <p>&copy; 2024 Data Community. Tous droits réservés.</p>
+          <p className="brand">&copy; 2024 <span className="blue">Data</span> eng. Tous droits réservés.</p>
           <div className="footer-links">
             <a href="/privacy">Confidentialité</a>
             <a href="/terms">Conditions d'utilisation</a>

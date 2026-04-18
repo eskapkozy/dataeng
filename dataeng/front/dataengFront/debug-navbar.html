@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Navbar Colors</title>
+    <style>
+        body { margin: 0; font-family: Arial, sans-serif; }
+        .test-section {
+            padding: 20px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .color-box {
+            width: 50px;
+            height: 50px;
+            border: 1px solid #333;
+            display: inline-block;
+            margin: 5px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test des couleurs du Navbar</h1>
+    
+    <div class="test-section">
+        <h2>Couleurs attendues par page</h2>
+        <div>
+            <strong>Home (/):</strong> 
+            <div class="color-box" style="background: #667eea;"></div>
+            <span>#667eea (violet)</span>
+        </div>
+        <div>
+            <strong>Story (/story):</strong> 
+            <div class="color-box" style="background: #10b981;"></div>
+            <span>#10b981 (vert)</span>
+        </div>
+        <div>
+            <strong>Members (/members):</strong> 
+            <div class="color-box" style="background: #f97316;"></div>
+            <span>#f97316 (orange)</span>
+        </div>
+        <div>
+            <strong>Write (/write):</strong> 
+            <div class="color-box" style="background: #8b5cf6;"></div>
+            <span>#8b5cf6 (violet foncé)</span>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Instructions pour tester</h2>
+        <ol>
+            <li>Ouvrez <a href="http://localhost:5175" target="_blank">http://localhost:5175</a></li>
+            <li>Ouvrez la console du navigateur (F12)</li>
+            <li>Copiez-collez le contenu du fichier <code>test-navbar-functionality.js</code></li>
+            <li>Exécutez <code>testNavbarColors()</code> pour tester la page actuelle</li>
+            <li>Exécutez <code>testAutomaticNavigation()</code> pour tester toutes les pages</li>
+        </ol>
+    </div>
+
+    <div class="test-section">
+        <h2>Ce qui devrait se passer</h2>
+        <ul>
+            <li>Le navbar devrait avoir la couleur principale de la section hero de chaque page</li>
+            <li>En naviguant vers "/": navbar devient violet (#667eea)</li>
+            <li>En naviguant vers "/story": navbar devient vert (#10b981)</li>
+            <li>En naviguant vers "/members": navbar devient orange (#f97316)</li>
+            <li>En naviguant vers "/write": navbar devient violet foncé (#8b5cf6)</li>
+        </ul>
+    </div>
+
+    <script>
+        // Test rapide des couleurs
+        console.log('🔍 Test de configuration...');
+        
+        // Vérifier si les fichiers sont accessibles
+        fetch('/src/hooks/useNavbarColor.ts')
+            .then(r => console.log('✅ useNavbarColor.ts accessible'))
+            .catch(e => console.error('❌ useNavbarColor.ts non accessible:', e));
+            
+        fetch('/src/components/Navigation.tsx')
+            .then(r => console.log('✅ Navigation.tsx accessible'))
+            .catch(e => console.error('❌ Navigation.tsx non accessible:', e));
+    </script>
+</body>
+</html>

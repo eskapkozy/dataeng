@@ -1,17 +1,66 @@
-/* Home module styles */
+/* Home module styles - Data Eng Chart Graphique */
+:root {
+  --color-black: #1A1A1A;
+  --color-blue: #4267FF;
+  --color-violet: #8A2BE2;
+  --color-cream: #F8F8F8;
+  --color-white: #FFFFFF;
+}
+
+.home-page {
+  background: var(--color-cream);
+  min-height: 100vh;
+}
+
+.main-content:has(.home-page) {
+  padding-top: 0;
+  background: var(--color-cream);
+}
+
 .home-page .hero {
-  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  background: var(--color-black);
   padding: 80px 20px;
   margin: -40px -20px 60px -20px;
-  color: white;
+  color: var(--color-white);
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  text-align: center;
+  position: relative;
+}
+
+.home-page .hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-blue) 0%, var(--color-violet) 100%);
 }
 
 .home-page .hero h1 {
-  color: white;
+  color: var(--color-white);
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.home-page .hero h1 span {
+  color: var(--color-blue);
+}
+
+.home-page .hero h1 .brand-blue {
+  color: var(--color-blue);
 }
 
 .home-page .hero p {
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
 }
 .home-page .features {
   display: grid;
@@ -21,26 +70,75 @@
 }
 
 .home-page .feature-card {
-  background: #ffffff;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: var(--color-white);
+  padding: 40px 30px;
+  border-radius: 16px;
+  border: 1px solid rgba(26, 26, 26, 0.08);
+  box-shadow: 0 4px 20px rgba(26, 26, 26, 0.06);
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.home-page .feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-blue) 0%, var(--color-violet) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .home-page .feature-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 32px rgba(26, 26, 26, 0.12);
+  border-color: rgba(66, 103, 255, 0.2);
+}
+
+.home-page .feature-card:hover::before {
+  opacity: 1;
+}
+
+.home-page .feature-card .icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 24px;
+  background: var(--color-black);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-white);
+  transition: all 0.3s ease;
+}
+
+.home-page .feature-card:hover .icon {
+  background: var(--color-blue);
 }
 
 .home-page .feature-card h3 {
   font-size: 1.5rem;
-  color: #2563eb;
+  color: var(--color-black);
   margin-bottom: 15px;
+  font-weight: 600;
 }
 
 .home-page .feature-card p {
-  color: #6b7280;
+  color: rgba(26, 26, 26, 0.7);
   line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.home-page .feature-card .accent {
+  color: var(--color-blue);
+  font-weight: 600;
+}
+
+.home-page .feature-card .accent-secondary {
+  color: var(--color-violet);
+  font-weight: 500;
 }

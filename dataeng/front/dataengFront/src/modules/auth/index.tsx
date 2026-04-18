@@ -18,7 +18,7 @@ const Auth = () => {
     <div className="page auth-page">
       <section className="auth-container">
         <div className="auth-card">
-          <h1>{isLogin ? 'Se Connecter' : 'S\'inscrire'}</h1>
+          <h1>{isLogin ? 'Se Connecter' : 'S\'inscrire'} à <span className="brand">Data</span><span className="brand" style={{color: 'var(--color-blue)'}}>eng</span></h1>
           <p>
             {isLogin 
               ? 'Connectez-vous pour accéder à votre espace' 

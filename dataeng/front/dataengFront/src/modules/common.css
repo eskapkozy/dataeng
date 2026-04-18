@@ -1,8 +1,11 @@
 /* Styles communs pour tous les modules */
+@import '../styles/variables.css';
+
 .page {
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
+  background: var(--color-cream);
 }
 
 .hero {
@@ -13,17 +16,72 @@
 .hero h1 {
   font-size: 3rem;
   font-weight: bold;
-  color: #1f2937;
+  color: var(--color-black);
   margin-bottom: 20px;
   line-height: 1.2;
 }
 
 .hero p {
   font-size: 1.2rem;
-  color: #6b7280;
+  color: var(--color-black-light);
   max-width: 600px;
   margin: 0 auto;
   line-height: 1.6;
+}
+
+/* Boutons standards */
+.btn-primary {
+  background: var(--gradient-primary);
+  color: var(--color-white);
+  border: none;
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: var(--transition-normal);
+  box-shadow: var(--shadow-button);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+  background: var(--color-white);
+  color: var(--color-black);
+  border: var(--border-light);
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: var(--transition-normal);
+}
+
+.btn-secondary:hover {
+  background: var(--color-cream);
+  border-color: var(--color-blue);
+  color: var(--color-blue);
+}
+
+/* Cartes standards */
+.card {
+  background: var(--color-white);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+  border: var(--border-light);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-normal);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(66, 103, 255, 0.2);
 }
 
 /* Responsive */
