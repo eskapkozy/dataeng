@@ -1,9 +1,9 @@
 .navigation {
-  background: #ffffff;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
   z-index: 1000;
+  transition: background-color 0.3s ease;
 }
 
 .nav-container {
@@ -32,6 +32,14 @@
   display: flex;
   gap: 30px;
   align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 8px 16px;
+  border-radius: 100px;
+  backdrop-filter: blur(10px);
+}
+
+.nav-links[data-dark-bg="true"] {
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .nav-link {
@@ -41,16 +49,31 @@
   padding: 8px 16px;
   border-radius: 8px;
   transition: all 0.3s ease;
+  background: transparent;
+}
+
+.nav-link[data-dark-bg="true"] {
+  color: #ffffff;
 }
 
 .nav-link:hover {
   color: #2563eb;
-  background-color: #f3f4f6;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.nav-link[data-dark-bg="true"]:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.25);
 }
 
 .nav-link.active {
   color: #2563eb;
-  background-color: #eff6ff;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.nav-link[data-dark-bg="true"].active {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.35);
 }
 
 .nav-actions {

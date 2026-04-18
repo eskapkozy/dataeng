@@ -1,4 +1,18 @@
 /* Write module styles */
+.write-page .hero {
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  padding: 80px 20px;
+  margin: -40px -20px 60px -20px;
+  color: white;
+}
+
+.write-page .hero h1 {
+  color: white;
+}
+
+.write-page .hero p {
+  color: rgba(255, 255, 255, 0.9);
+}
 .write-page .editor-container {
   max-width: 800px;
   margin: 0 auto;

@@ -1,4 +1,18 @@
 /* Home module styles */
+.home-page .hero {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  padding: 80px 20px;
+  margin: -40px -20px 60px -20px;
+  color: white;
+}
+
+.home-page .hero h1 {
+  color: white;
+}
+
+.home-page .hero p {
+  color: rgba(255, 255, 255, 0.9);
+}
 .home-page .features {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));

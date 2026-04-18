@@ -1,4 +1,18 @@
 /* Members module styles */
+.members-page .hero {
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  padding: 80px 20px;
+  margin: -40px -20px 60px -20px;
+  color: white;
+}
+
+.members-page .hero h1 {
+  color: white;
+}
+
+.members-page .hero p {
+  color: rgba(255, 255, 255, 0.9);
+}
 .members-page .members-search {
   margin-bottom: 40px;
   background: #f8fafc;

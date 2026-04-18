@@ -1,4 +1,18 @@
 /* Story module styles */
+.story-page .hero {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  padding: 80px 20px;
+  margin: -40px -20px 60px -20px;
+  color: white;
+}
+
+.story-page .hero h1 {
+  color: white;
+}
+
+.story-page .hero p {
+  color: rgba(255, 255, 255, 0.9);
+}
 .story-page .mission, .story-page .vision {
   margin-bottom: 60px;
 }
