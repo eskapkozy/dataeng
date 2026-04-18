@@ -1,0 +1,131 @@
+/* Members module styles */
+.members-page .members-search {
+  margin-bottom: 40px;
+  background: #f8fafc;
+  padding: 30px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.members-page .search-input {
+  width: 100%;
+  padding: 12px 20px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.members-page .search-input:focus {
+  outline: none;
+  border-color: #2563eb;
+}
+
+.members-page .filters {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.members-page .filter-select {
+  padding: 10px 15px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  background: white;
+  font-size: 1rem;
+  min-width: 200px;
+}
+
+.members-page .members-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 30px;
+}
+
+.members-page .member-card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.members-page .member-card:hover {
+  transform: translateY(-3px);
+}
+
+.members-page .member-avatar {
+  margin-bottom: 20px;
+}
+
+.members-page .avatar-placeholder {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.members-page .member-info h3 {
+  font-size: 1.3rem;
+  color: #1f2937;
+  margin-bottom: 5px;
+}
+
+.members-page .member-title {
+  color: #2563eb;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.members-page .member-location {
+  color: #6b7280;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+.members-page .member-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.members-page .skill-tag {
+  background: #eff6ff;
+  color: #2563eb;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.members-page .btn-secondary {
+  background: #f3f4f6;
+  color: #374151;
+  border: 1px solid #d1d5db;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.members-page .btn-secondary:hover {
+  background: #e5e7eb;
+  border-color: #9ca3af;
+}

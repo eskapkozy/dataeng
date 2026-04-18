@@ -1,0 +1,38 @@
+/* Styles communs pour tous les modules */
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #1f2937;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: #6b7280;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+  
+  .page {
+    padding: 30px 15px;
+  }
+}

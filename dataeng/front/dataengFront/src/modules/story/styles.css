@@ -1,0 +1,57 @@
+/* Story module styles */
+.story-page .mission, .story-page .vision {
+  margin-bottom: 60px;
+}
+
+.story-page .mission h2, .story-page .vision h2 {
+  font-size: 2rem;
+  color: #1f2937;
+  margin-bottom: 20px;
+}
+
+.story-page .mission p, .story-page .vision p {
+  font-size: 1.1rem;
+  color: #4b5563;
+  line-height: 1.8;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.story-page .values h2 {
+  font-size: 2rem;
+  color: #1f2937;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.story-page .values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.story-page .value-card {
+  background: #f8fafc;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  border: 2px solid #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+.story-page .value-card:hover {
+  border-color: #2563eb;
+  background: #eff6ff;
+}
+
+.story-page .value-card h3 {
+  font-size: 1.3rem;
+  color: #2563eb;
+  margin-bottom: 15px;
+}
+
+.story-page .value-card p {
+  color: #6b7280;
+  line-height: 1.6;
+}
