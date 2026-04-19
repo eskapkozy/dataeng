@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './styles.css'
 import '../common.css'
 
@@ -295,7 +296,7 @@ const Home = () => {
             
             {/* Buttons */}
             <div className="hero-buttons">
-              <button className="btn-primary">Commencer maintenant</button>
+              <Link to="/get-started" className="btn-primary">Commencer maintenant</Link>
               <button className="btn-secondary">
                 En savoir plus
                 <span className="btn-arrow">→</span>

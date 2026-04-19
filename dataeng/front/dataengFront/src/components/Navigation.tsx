@@ -12,15 +12,14 @@ const Navigation = () => {
     <nav className="navigation" style={{ backgroundColor: container }}>
       <div className="nav-container">
         <div className="nav-brand">
-          <Link to="/" style={{ color: isDarkBg ? '#ffffff' : '#2563eb' }}>Data Community</Link>
+          <Link to="/" style={{ color: isDarkBg ? '#ffffff' : '#2563eb' }}>.Data Eng</Link>
         </div>
         
         <div className="nav-links" data-dark-bg={isDarkBg}>
           <Link to="/" className="nav-link">Home</Link>
           <Link to="/story" className="nav-link">Story</Link>
           <Link to="/members" className="nav-link">Les membres</Link>
-          <Link to="/write" className="nav-link">Écrire</Link>
-          <Link to="/login" className="nav-link">Se connecter</Link>
+          <Link to="/write" className="nav-link">Publier</Link>
         </div>
         
         <div className="nav-actions">
@@ -36,7 +35,7 @@ const Navigation = () => {
               </svg>
             )}
           </button>
-          <Link to="/get-started" className="sign-up-btn">Commencer</Link>
+          <Link to="/login" className="sign-up-btn">Se connecter</Link>
         </div>
       </div>
     </nav>

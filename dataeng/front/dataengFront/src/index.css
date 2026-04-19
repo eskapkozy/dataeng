@@ -16,6 +16,7 @@
   --accent-purple: #7B5CF5;
   --active-green: #3ecf8e;
   --card-bg: #ffffff;
+  --nav-link-color: #FDFCF9;
   
   /* Variables existantes */
   --text: var(--text-primary);
@@ -60,6 +61,7 @@
   --accent-purple: #7B5CF5;
   --active-green: #3ecf8e;
   --card-bg: #0e0e0e;
+  --nav-link-color: #ffffff;
   
   /* Variables existantes en mode dark */
   --text: var(--text-primary);

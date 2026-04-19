@@ -17,6 +17,9 @@
   --color-text-secondary: #6b7280;
   --color-text-muted:     #9ca3af;
   --color-text-accent:    #4F6EF7;
+  
+  /* Navigation */
+  --nav-link-color: #6b7280;
 }
 
 /* --- Display / Titres --- */

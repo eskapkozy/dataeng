@@ -50,12 +50,15 @@
   font-family: var(--font-body);
   font-weight: 400;
   font-size: 14px;
-  color: var(--color-text-secondary);
+  color: var(--nav-link-color, #6b7280);
   text-decoration: none;
   padding: 8px 16px;
   border-radius: 8px;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   background: transparent;
+  position: relative;
+  transform: translateY(0);
+  will-change: transform, background-color, color;
 }
 
 .nav-link[data-dark-bg="true"] {
@@ -63,23 +66,31 @@
 }
 
 .nav-link:hover {
-  color: #2563eb;
-  background: rgba(255, 255, 255, 0.2);
+  color: var(--nav-link-color);
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
 .nav-link[data-dark-bg="true"]:hover {
   color: #ffffff;
   background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
 .nav-link.active {
-  color: #2563eb;
-  background: rgba(255, 255, 255, 0.3);
+  color: var(--nav-link-color);
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .nav-link[data-dark-bg="true"].active {
   color: #ffffff;
   background: rgba(255, 255, 255, 0.35);
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .nav-actions {
@@ -98,13 +109,13 @@
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease;
-  color: var(--color-text-secondary);
+  color: #ffffff;
 }
 
 .theme-toggle:hover {
   border-color: rgba(255, 255, 255, 0.4);
   background: rgba(255, 255, 255, 0.1);
-  color: var(--color-text-primary);
+  color: #ffffff;
 }
 
 .btn-primary {
@@ -152,6 +163,39 @@
 .btn-large {
   padding: 14px 32px;
   font-size: 1.1rem;
+}
+
+.sign-up-btn {
+  background: linear-gradient(135deg, #4F6EF7 0%, #7B5CF5 100%);
+  color: #ffffff;
+  text-decoration: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  font-family: var(--font-body);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  transform: translateY(0);
+  will-change: transform, box-shadow, background;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sign-up-btn:hover {
+  background: linear-gradient(135deg, #4267FF 0%, #9B5CFA 100%);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(79, 110, 247, 0.3);
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.sign-up-btn:active {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 4px 15px rgba(79, 110, 247, 0.2);
 }
 
 @media (max-width: 768px) {
