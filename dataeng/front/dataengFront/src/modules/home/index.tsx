@@ -247,33 +247,7 @@ const Home = () => {
         <div className="bg-orb orb1"></div>
         <div className="bg-orb orb2"></div>
         
-        {/* Navbar */}
-        <nav className="navbar">
-          <div className="nav-logo">
-            <span className="logo-main">Data</span>
-            <span className="logo-sub">.community</span>
-          </div>
-          
-          <div className="nav-links">
-            <a href="#" className="nav-link">Accueil</a>
-            <a href="#" className="nav-link">Articles</a>
-            <a href="#" className="nav-link">Événements</a>
-            <a href="#" className="nav-link">À propos</a>
-          </div>
-          
-          <div className="nav-actions">
-            <button className="theme-toggle" aria-label="Toggle theme">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
-                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2"/>
-              </svg>
-            </button>
-            <div className="nav-cta">
-              <button className="cta-button">Rejoindre</button>
-            </div>
-          </div>
-        </nav>
-        
+                
         {/* Hero Body */}
         <div className="hero-body">
           <div className="hero-content">

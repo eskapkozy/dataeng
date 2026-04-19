@@ -12,18 +12,62 @@ Créer un espace collaboratif où les professionnels de la data peuvent partager
 
 ##  Palette de Couleurs
 
-### Couleurs Principales
-| Couleur | Hex | Usage |
-|---------|-----|-------|
-| **Noir profond** | `#000000` | Fond principal, textes principaux, éléments de contraste |
-| **Bleu data** | `#4F6EF7` | Actions principales, liens, icônes interactives, boutons CTA |
-| **Gris foncé** | `#0a0a0a` | Fond sections sombres, articles wall |
-| **Gris moyen** | `#0e0e0e` | Fond cartes, éléments secondaires |
-| **Gris clair** | `#151515` | Bordures, séparations |
-| **Gris très clair** | `#1e1e1e` | Bordures légères, hover states |
-| **Blanc** | `#FFFFFF` | Textes, icônes, éléments de contraste |
-| **Gris texte** | `#333333` | Textes secondaires, descriptions |
-| **Gris subtil** | `#2a2a2a` | Textes tertiaires, métadonnées |
+### Système de Thème Light/Dark Mode
+
+Le système utilise des variables CSS dynamiques qui s'adaptent automatiquement au thème sélectionné.
+
+#### Variables CSS Globales
+```css
+:root {
+  /* Mode Light */
+  --bg-surface: #FDFCF9;
+  --bg-page: #F5F4F0;
+  --border: #E8E6E0;
+  --text-primary: #1a1a1a;
+  --text-secondary: #888888;
+  --card-bg: #ffffff;
+}
+
+[data-theme="dark"] {
+  /* Mode Dark */
+  --bg-surface: #0e0e0e;
+  --bg-page: #0a0a0a;
+  --border: #151515;
+  --text-primary: #ffffff;
+  --text-secondary: #444444;
+  --card-bg: #0e0e0e;
+}
+```
+
+#### Couleurs Principales (Thème-agnostiques)
+| Variable | Light | Dark | Usage |
+|----------|-------|------|-------|
+| `--bg-surface` | `#FDFCF9` | `#0e0e0e` | Fond surfaces, cartes |
+| `--bg-page` | `#F5F4F0` | `#0a0a0a` | Fond principal des pages |
+| `--border` | `#E8E6E0` | `#151515` | Bordures, séparations |
+| `--text-primary` | `#1a1a1a` | `#ffffff` | Textes principaux, titres |
+| `--text-secondary` | `#888888` | `#444444` | Textes secondaires, descriptions |
+| `--card-bg` | `#ffffff` | `#0e0e0e` | Fond des cartes |
+| `--accent-blue` | `#4F6EF7` | `#4F6EF7` | Actions principales, liens |
+| `--accent-purple` | `#7B5CF5` | `#7B5CF5` | Accents secondaires |
+| `--active-green` | `#3ecf8e` | `#3ecf8e` | États actifs, succès |
+
+### Couleurs Spécifiques au Thème
+| Thème | Couleur | Hex | Usage |
+|-------|---------|-----|-------|
+| **Light** | Noir profond | `#000000` | Éléments de contraste max |
+| **Light** | Gris moyen | `#333333` | Textes secondaires |
+| **Dark** | Gris clair | `#252525` | Hover states |
+| **Dark** | Gris border hover | `#333333` | Bordures au hover |
+
+### Couleurs de Catégories (Thème-agnostiques)
+| Catégorie | Hex | RGBA Background | Usage |
+|----------|-----|----------------|-------|
+| **Data Engineering/Big Data** | `#4F6EF7` | `rgba(79,110,247,0.2)` | Tags, badges, avatars |
+| **Machine Learning** | `#9B5CFA` | `rgba(155,92,250,0.2)` | Tags, badges, avatars |
+| **Data Visualisation** | `#22d3ee` | `rgba(34,211,238,0.2)` | Tags, badges, avatars |
+| **Python** | `#F5A623` | `rgba(245,166,35,0.2)` | Tags, badges, avatars |
+| **Congo Use Case** | `#3ecf8e` | `rgba(62,207,142,0.2)` | Tags, badges, avatars |
 
 ### Couleurs de Catégories (Articles)
 | Catégorie | Hex | RGBA Background | Usage |
@@ -169,8 +213,43 @@ Créer un espace collaboratif où les professionnels de la data peuvent partager
 - **Filter Buttons** : Active state `#4F6EF7` background, white text
 - **Article Cards** : Category-specific glow on hover
 
-### Transitions
-- **Standard** : 0.3s ease
+### Transitions Ultra-Smooth
+
+Le système utilise des transitions optimisées pour une expérience utilisateur exceptionnelle.
+
+#### Variables de Transition
+```css
+:root {
+  --theme-transition-duration: 0.5s;
+  --theme-transition-easing: cubic-bezier(0.4, 0, 0.2, 1);
+}
+```
+
+#### Types de Transitions
+| Type | Durée | Easing | Usage |
+|------|-------|--------|-------|
+| **Thème** | 0.5s | `cubic-bezier(0.4, 0, 0.2, 1)` | Changement light/dark |
+| **Standard** | 0.3s | `cubic-bezier(0.4, 0, 0.2, 1)` | Éléments courants |
+| **Fast** | 0.2s | `cubic-bezier(0.4, 0, 0.2, 1)` | Buttons, links |
+| **Slow** | 0.4s | `cubic-bezier(0.4, 0, 0.2, 1)` | Cards, interactions complexes |
+
+#### Propriétés Animées
+- `background-color`, `color`, `border-color`
+- `text-decoration-color`, `fill`, `stroke`
+- `opacity`, `box-shadow`, `transform`
+
+#### Effet de Fondu Subtil
+```css
+html::before {
+  content: '';
+  position: fixed;
+  opacity: 0.03;
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+```
+
+#### Transitions Spécifiques
+- **Standard** : 0.3s ease (anciennement)
 - **Fast** : 0.2s ease (buttons, links)
 - **Slow** : 0.4s ease (cards, complex interactions)
 

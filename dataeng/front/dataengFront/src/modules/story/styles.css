@@ -1,71 +1,151 @@
-/* Story module styles */
+/* Story module styles - Brand guidelines compliant */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..144,100..1000&family=Martian+Mono:wght@100..900&display=swap');
+@import '../../styles/grids.css';
+
+.story-page {
+  background: var(--bg-page);
+  color: var(--text-primary);
+  font-family: 'DM Sans', sans-serif;
+  transition: background-color var(--theme-transition-duration) var(--theme-transition-easing),
+              color var(--theme-transition-duration) var(--theme-transition-easing);
+}
+
+/* Hero Section */
 .story-page .hero {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  padding: 80px 20px;
-  margin: -40px -20px 60px -20px;
-  color: white;
+  background: linear-gradient(90deg, var(--accent-blue) 0%, var(--text-primary) 100%);
+  padding: var(--spacing-xxxl) var(--spacing-xl) var(--spacing-xxl);
+  margin: calc(var(--spacing-xl) * -1) calc(var(--spacing-xl) * -1) var(--spacing-xxl);
+  color: var(--text-primary);
+  text-align: center;
+  border-radius: 0;
 }
 
 .story-page .hero h1 {
-  color: white;
+  font-family: 'Martian Mono', monospace;
+  font-weight: 800;
+  font-size: clamp(24px, 4vw, 48px);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-md);
+  line-height: 1.2;
 }
 
 .story-page .hero p {
-  color: rgba(255, 255, 255, 0.9);
-}
-.story-page .mission, .story-page .vision {
-  margin-bottom: 60px;
-}
-
-.story-page .mission h2, .story-page .vision h2 {
-  font-size: 2rem;
-  color: #1f2937;
-  margin-bottom: 20px;
-}
-
-.story-page .mission p, .story-page .vision p {
-  font-size: 1.1rem;
-  color: #4b5563;
-  line-height: 1.8;
-  max-width: 800px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: clamp(16px, 2.5vw, 20px);
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 600px;
   margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Mission & Vision Sections */
+.story-page .mission, .story-page .vision {
+  margin-bottom: var(--spacing-xxxl);
   text-align: center;
 }
 
+.story-page .mission h2, .story-page .vision h2 {
+  font-family: 'Martian Mono', monospace;
+  font-weight: 800;
+  font-size: clamp(28px, 4vw, 48px);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-lg);
+}
+
+.story-page .mission p, .story-page .vision p {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: clamp(16px, 2vw, 18px);
+  color: var(--text-secondary);
+  line-height: 1.8;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Values Section - Using Grid System */
+.story-page .values {
+  margin-bottom: var(--spacing-xxxl);
+}
+
 .story-page .values h2 {
-  font-size: 2rem;
-  color: #1f2937;
-  margin-bottom: 40px;
+  font-family: 'Martian Mono', monospace;
+  font-weight: 800;
+  font-size: clamp(28px, 4vw, 48px);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-xxxl);
   text-align: center;
 }
 
 .story-page .values-grid {
+  /* Using the grid system */
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--grid-gap-xs);
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--grid-radius-md);
+  overflow: hidden;
+  max-width: var(--grid-max-width-lg);
+  margin: 0 auto;
+}
+
+.story-page .values-grid > * {
+  background: var(--card-bg);
 }
 
 .story-page .value-card {
-  background: #f8fafc;
-  padding: 30px;
-  border-radius: 12px;
+  /* Using grid card base styles */
+  background: var(--card-bg);
+  border: none;
+  border-radius: 0;
+  padding: var(--spacing-xxl);
+  transition: var(--grid-transition);
+  position: relative;
+  overflow: hidden;
   text-align: center;
-  border: 2px solid #e2e8f0;
-  transition: all 0.3s ease;
+  font-family: 'DM Sans', sans-serif;
 }
 
 .story-page .value-card:hover {
-  border-color: #2563eb;
-  background: #eff6ff;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
 .story-page .value-card h3 {
-  font-size: 1.3rem;
-  color: #2563eb;
-  margin-bottom: 15px;
+  font-family: 'Martian Mono', monospace;
+  font-weight: 700;
+  font-size: clamp(18px, 2.5vw, 22px);
+  color: var(--accent-blue);
+  margin-bottom: var(--spacing-md);
 }
 
 .story-page .value-card p {
-  color: #6b7280;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: clamp(14px, 1.5vw, 16px);
+  color: var(--text-secondary);
   line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .story-page .hero {
+    padding: var(--spacing-xxl) var(--spacing-lg) var(--spacing-xl);
+    margin: calc(var(--spacing-lg) * -1) calc(var(--spacing-lg) * -1) var(--spacing-xl);
+  }
+  
+  .story-page .values-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+    padding: 0 var(--spacing-lg);
+  }
+  
+  .story-page .value-card {
+    padding: var(--spacing-xl);
+  }
+  
+  .story-page .mission, .story-page .vision, .story-page .values {
+    margin-bottom: var(--spacing-xxl);
+  }
 }

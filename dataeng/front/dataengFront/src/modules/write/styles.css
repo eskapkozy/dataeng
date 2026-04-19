@@ -1,17 +1,37 @@
-/* Write module styles */
+/* Write module styles - Using Grid System */
+@import '../../styles/grids.css';
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..144,100..1000&family=Martian+Mono:wght@100..900&display=swap');
+.write-page {
+  background: var(--bg-page);
+  color: var(--text-primary);
+  font-family: 'DM Sans', sans-serif;
+  transition: background-color var(--theme-transition-duration) var(--theme-transition-easing),
+              color var(--theme-transition-duration) var(--theme-transition-easing);
+}
+
 .write-page .hero {
-  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
-  padding: 80px 20px;
-  margin: -40px -20px 60px -20px;
-  color: white;
+  background: linear-gradient(90deg, var(--accent-purple) 0%, var(--text-primary) 100%);
+  padding: var(--spacing-xxxl) var(--spacing-xl) var(--spacing-xxl);
+  margin: calc(var(--spacing-xl) * -1) calc(var(--spacing-xl) * -1) var(--spacing-xxl);
+  color: var(--text-primary);
+  text-align: center;
 }
 
 .write-page .hero h1 {
-  color: white;
+  font-family: 'Martian Mono', monospace;
+  font-weight: 800;
+  font-size: clamp(24px, 4vw, 48px);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-md);
 }
 
 .write-page .hero p {
-  color: rgba(255, 255, 255, 0.9);
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(16px, 2.5vw, 20px);
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
 }
 .write-page .editor-container {
   max-width: 800px;
@@ -19,10 +39,13 @@
 }
 
 .write-page .article-form {
-  background: white;
-  padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: var(--card-bg);
+  padding: var(--spacing-xxxl);
+  border-radius: var(--grid-radius-md);
+  border: 1px solid var(--border);
+  transition: var(--grid-transition);
+  max-width: var(--grid-max-width-lg);
+  margin: 0 auto;
 }
 
 .write-page .form-group {
@@ -31,24 +54,29 @@
 
 .write-page .form-group label {
   display: block;
-  font-weight: 600;
-  color: #374151;
-  margin-bottom: 8px;
+  font-family: 'Martian Mono', monospace;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-sm);
 }
 
 .write-page .form-input, .write-page .form-select, .write-page .form-textarea {
   width: 100%;
-  padding: 12px 16px;
-  border: 2px solid #e2e8f0;
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: border-color 0.3s ease;
-  font-family: inherit;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border: 1px solid var(--border);
+  border-radius: var(--grid-radius-sm);
+  font-size: 16px;
+  transition: var(--grid-transition);
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg-surface);
+  color: var(--text-primary);
 }
 
 .write-page .form-input:focus, .write-page .form-select:focus, .write-page .form-textarea:focus {
   outline: none;
-  border-color: #2563eb;
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 3px rgba(79, 110, 247, 0.1);
 }
 
 .write-page .form-textarea {
@@ -58,8 +86,8 @@
 
 .write-page .form-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-lg);
 }
 
 .write-page .form-actions {
@@ -70,38 +98,42 @@
 }
 
 .write-page .btn-primary {
-  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-  color: white;
+  background: var(--accent-blue);
+  color: var(--text-primary);
   border: none;
-  padding: 10px 24px;
-  border-radius: 8px;
-  font-weight: 600;
+  padding: var(--spacing-md) var(--spacing-xl);
+  border-radius: var(--grid-radius-sm);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
   cursor: pointer;
   text-decoration: none;
   display: inline-block;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(37, 99, 235, 0.1);
+  transition: var(--grid-transition);
+  font-size: 14px;
 }
 
 .write-page .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 12px rgba(37, 99, 235, 0.2);
+  opacity: 0.85;
 }
 
 .write-page .btn-secondary {
-  background: #f3f4f6;
-  color: #374151;
-  border: 1px solid #d1d5db;
-  padding: 10px 24px;
-  border-radius: 8px;
-  font-weight: 600;
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  padding: var(--spacing-md) var(--spacing-xl);
+  border-radius: var(--grid-radius-sm);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
   cursor: pointer;
   text-decoration: none;
   display: inline-block;
-  transition: all 0.3s ease;
+  transition: var(--grid-transition);
+  font-size: 14px;
 }
 
 .write-page .btn-secondary:hover {
-  background: #e5e7eb;
-  border-color: #9ca3af;
+  background: var(--bg-surface);
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
 }

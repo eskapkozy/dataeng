@@ -1,107 +1,26 @@
-.navigation {
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  transition: background-color 0.3s ease;
-}
-
-.nav-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
+/* Navigation styles - inspiré de la page home avec support dark/light */
+.navbar {
+  padding: 20px 48px;
+  border-bottom: 1px solid var(--border);
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: center;
-  height: 70px;
-}
-
-.nav-brand a {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 1.5rem;
-  color: var(--color-brand-blue);
-  text-decoration: none;
-  transition: color 0.3s ease;
-  letter-spacing: -0.03em;
-}
-
-.nav-brand a:hover {
-  color: #1d4ed8;
-}
-
-.nav-links {
-  display: flex;
-  gap: 30px;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 8px 16px;
-  border-radius: 100px;
-  backdrop-filter: blur(10px);
-}
-
-.nav-links[data-dark-bg="true"] {
-  background: rgba(255, 255, 255, 0.15);
-}
-
-.nav-link {
-  font-family: var(--font-body);
-  font-weight: 400;
-  font-size: 14px;
-  color: var(--nav-link-color, #6b7280);
-  text-decoration: none;
-  padding: 8px 16px;
-  border-radius: 8px;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  background: transparent;
-  position: relative;
-  transform: translateY(0);
-  will-change: transform, background-color, color;
-}
-
-.nav-link[data-dark-bg="true"] {
-  color: #ffffff;
-}
-
-.nav-link:hover {
-  color: var(--nav-link-color);
-  background: rgba(255, 255, 255, 0.15);
-  transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-}
-
-.nav-link[data-dark-bg="true"]:hover {
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.25);
-  transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-}
-
-.nav-link.active {
-  color: var(--nav-link-color);
-  background: rgba(255, 255, 255, 0.25);
-  transform: translateY(-1px) scale(1.02);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.nav-link[data-dark-bg="true"].active {
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.35);
-  transform: translateY(-1px) scale(1.02);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--bg-page);
+  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
 }
 
 .theme-toggle {
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 8px;
   cursor: pointer;
@@ -109,109 +28,81 @@
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease;
-  color: #ffffff;
+  color: var(--text-primary);
 }
 
 .theme-toggle:hover {
-  border-color: rgba(255, 255, 255, 0.4);
-  background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
+  border-color: var(--text-primary);
+  background: var(--bg-surface);
 }
 
-.btn-primary {
-  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-  color: white;
-  border: none;
-  padding: 10px 24px;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-block;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(37, 99, 235, 0.1);
-}
-
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 12px rgba(37, 99, 235, 0.2);
-}
-
-.btn-secondary {
-  background: #f3f4f6;
-  color: #374151;
-  border: 1px solid #d1d5db;
-  padding: 10px 24px;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-block;
-  transition: all 0.3s ease;
-}
-
-.btn-secondary:hover {
-  background: #e5e7eb;
-  border-color: #9ca3af;
-}
-
-.btn-full {
-  width: 100%;
-  justify-content: center;
-}
-
-.btn-large {
-  padding: 14px 32px;
-  font-size: 1.1rem;
-}
-
-.sign-up-btn {
-  background: linear-gradient(135deg, #4F6EF7 0%, #7B5CF5 100%);
-  color: #ffffff;
-  text-decoration: none;
-  padding: 10px 24px;
-  border-radius: 8px;
-  font-weight: 600;
+.nav-logo {
+  font-family: 'Martian Mono', monospace;
+  font-weight: 800;
   font-size: 14px;
-  font-family: var(--font-body);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  transform: translateY(0);
-  will-change: transform, box-shadow, background;
-  border: none;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  display: flex;
+  align-items: baseline;
 }
 
-.sign-up-btn:hover {
-  background: linear-gradient(135deg, #4267FF 0%, #9B5CFA 100%);
-  transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 8px 25px rgba(79, 110, 247, 0.3);
-  color: #ffffff;
+.logo-main {
+  color: var(--text-primary);
+}
+
+.logo-sub {
+  color: var(--accent-blue);
+  margin-left: 2px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+}
+
+.nav-link {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--text-secondary);
   text-decoration: none;
+  transition: color 0.2s ease;
 }
 
-.sign-up-btn:active {
-  transform: translateY(-1px) scale(1.02);
-  box-shadow: 0 4px 15px rgba(79, 110, 247, 0.2);
+.nav-link:hover {
+  color: var(--text-primary);
 }
 
+.nav-cta .cta-button {
+  background: var(--accent-blue);
+  color: var(--text-primary);
+  border: none;
+  border-radius: 7px;
+  padding: 8px 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.nav-cta .cta-button:hover {
+  opacity: 0.85;
+}
+
+/* Responsive design */
 @media (max-width: 768px) {
-  .nav-container {
-    flex-direction: column;
-    height: auto;
+  .navbar {
     padding: 15px 20px;
   }
   
   .nav-links {
-    gap: 15px;
-    margin: 10px 0;
+    gap: 20px;
   }
   
   .nav-link {
-    padding: 6px 12px;
-    font-size: 0.9rem;
+    font-size: 12px;
+  }
+  
+  .nav-logo {
+    font-size: 12px;
   }
 }

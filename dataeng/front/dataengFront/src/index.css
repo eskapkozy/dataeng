@@ -18,6 +18,32 @@
   --card-bg: #ffffff;
   --nav-link-color: #FDFCF9;
   
+  /* Animation de transition de thème */
+  --theme-transition-duration: 0.5s;
+  --theme-transition-easing: cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Espacements selon brand guidelines */
+  --spacing-xs: 6px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 40px;
+  --spacing-xxl: 56px;
+  --spacing-xxxl: 80px;
+  
+  /* Rayons selon brand guidelines */
+  --radius-xs: 4px;
+  --radius-sm: 7px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 24px;
+  --radius-full: 50%;
+  
+  /* Transitions selon brand guidelines */
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  
   /* Variables existantes */
   --text: var(--text-primary);
   --text-h: var(--text-primary);
@@ -80,6 +106,38 @@
 /* Le @media (prefers-color-scheme: dark) a été supprimé pour éviter les conflits
    avec notre système de thème basé sur [data-theme] */
 
+/* Overlay de transition pour effet de fondu naturel */
+* {
+  transition-property: background-color, color, border-color, text-decoration-color, fill, stroke, box-shadow;
+  transition-timing-function: var(--theme-transition-easing);
+  transition-duration: var(--theme-transition-duration);
+}
+
+/* Éléments qui ne doivent pas avoir de transition */
+*:not(:defined):not(:root):not(html):not(body):not(.no-transition) {
+  transition: none !important;
+}
+
+/* Effet de fondu subtil pendant la transition */
+html::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity var(--theme-transition-duration) var(--theme-transition-easing);
+}
+
+html[data-theme="dark"]::before,
+html[data-theme="light"]::before {
+  opacity: 0.03;
+}
+
 #root {
   width: 100%;
   margin: 0;
@@ -89,10 +147,12 @@
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {
   margin: 0;
+  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 h1,
@@ -100,6 +160,7 @@ h2 {
   font-family: var(--heading);
   font-weight: 500;
   color: var(--text-h);
+  transition: color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 h1 {
@@ -130,6 +191,7 @@ code,
   display: inline-flex;
   border-radius: 4px;
   color: var(--text-h);
+  transition: color 0.5s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 code {
