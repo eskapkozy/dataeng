@@ -10,8 +10,8 @@
 
 .main-content {
   flex: 1;
-  padding-top: 70px;
   background: var(--color-cream);
+  padding: 0;
 }
 
 .footer {

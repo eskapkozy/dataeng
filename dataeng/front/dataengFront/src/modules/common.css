@@ -2,9 +2,9 @@
 @import '../styles/variables.css';
 
 .page {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px 20px;
+  max-width: none;
+  margin: 0;
+  padding: 0;
   background: var(--color-cream);
 }
 

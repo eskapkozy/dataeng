@@ -22,7 +22,7 @@ const Navigation = () => {
         </div>
         
         <div className="nav-actions">
-          <Link to="/get-started" className="btn-primary">Commencer</Link>
+          <Link to="/get-started" className="sign-up-btn">Commencer</Link>
         </div>
       </div>
     </nav>

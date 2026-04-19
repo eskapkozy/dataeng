@@ -1,0 +1,131 @@
+/* DataEng Design System - Typography */
+
+/* Variables CSS */
+:root {
+  /* Typographie */
+  --font-display: 'Martian Mono', monospace;
+  --font-body:    'DM Sans', sans-serif;
+  --font-mono:    'Martian Mono', monospace;
+
+  /* Couleurs marque */
+  --color-brand-black:  #1a1a1a;
+  --color-brand-blue:   #4F6EF7;
+  --color-brand-purple: #9B5CFA;
+
+  /* Texte */
+  --color-text-primary:   #1a1a1a;
+  --color-text-secondary: #6b7280;
+  --color-text-muted:     #9ca3af;
+  --color-text-accent:    #4F6EF7;
+}
+
+/* --- Display / Titres --- */
+h1, .h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(28px, 4vw, 48px);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--color-text-primary);
+}
+
+h2, .h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(20px, 3vw, 32px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+}
+
+h3, .h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--color-text-primary);
+}
+
+h4, .h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--color-text-primary);
+}
+
+/* --- Corps de texte --- */
+body, p, .body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--color-text-primary);
+}
+
+.body-sm {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+}
+
+/* --- Labels & badges --- */
+.label {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.caption {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+/* --- Code --- */
+code, .mono {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--color-brand-blue);
+  background: rgba(79, 110, 247, 0.08);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+/* --- Accents dans les titres --- */
+em.accent {
+  font-style: normal;
+  color: var(--color-brand-blue);
+}
+
+/* --- Utilitaires --- */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.text-brand-blue {
+  color: var(--color-brand-blue);
+}
+
+.text-brand-black {
+  color: var(--color-brand-black);
+}
+
+.text-brand-purple {
+  color: var(--color-brand-purple);
+}
