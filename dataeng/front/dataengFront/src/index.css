@@ -6,12 +6,24 @@
 @import './styles/typography.css';
 
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
+  /* Variables light mode par défaut */
+  --bg-surface: #FDFCF9;
+  --bg-page: #F5F4F0;
+  --border: #E8E6E0;
+  --text-primary: #1a1a1a;
+  --text-secondary: #888888;
+  --accent-blue: #4F6EF7;
+  --accent-purple: #7B5CF5;
+  --active-green: #3ecf8e;
+  --card-bg: #ffffff;
+  
+  /* Variables existantes */
+  --text: var(--text-primary);
+  --text-h: var(--text-primary);
+  --bg: var(--bg-page);
+  --border: var(--border);
+  --code-bg: var(--bg-surface);
+  --accent: var(--accent-purple);
   --accent-bg: rgba(170, 59, 255, 0.1);
   --accent-border: rgba(170, 59, 255, 0.5);
   --social-bg: rgba(244, 243, 236, 0.5);
@@ -37,25 +49,34 @@
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
+[data-theme="dark"] {
+  /* Variables dark mode */
+  --bg-surface: #0e0e0e;
+  --bg-page: #0a0a0a;
+  --border: #151515;
+  --text-primary: #ffffff;
+  --text-secondary: #444444;
+  --accent-blue: #4F6EF7;
+  --accent-purple: #7B5CF5;
+  --active-green: #3ecf8e;
+  --card-bg: #0e0e0e;
+  
+  /* Variables existantes en mode dark */
+  --text: var(--text-primary);
+  --text-h: var(--text-primary);
+  --bg: var(--bg-page);
+  --border: var(--border);
+  --code-bg: #1f2028;
+  --accent: #c084fc;
+  --accent-bg: rgba(192, 132, 252, 0.15);
+  --accent-border: rgba(192, 132, 252, 0.5);
+  --social-bg: rgba(47, 48, 58, 0.5);
+  --shadow:
+    rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
 }
+
+/* Le @media (prefers-color-scheme: dark) a été supprimé pour éviter les conflits
+   avec notre système de thème basé sur [data-theme] */
 
 #root {
   width: 100%;

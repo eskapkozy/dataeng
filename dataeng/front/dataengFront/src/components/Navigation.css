@@ -85,6 +85,26 @@
 .nav-actions {
   display: flex;
   align-items: center;
+  gap: 12px;
+}
+
+.theme-toggle {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  color: var(--color-text-secondary);
+}
+
+.theme-toggle:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-text-primary);
 }
 
 .btn-primary {
