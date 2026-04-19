@@ -533,6 +533,519 @@
   100% { transform: translateX(-50%); }
 }
 
+/* Articles Wall Section */
+.home-page .articles-wall {
+  background: #0a0a0a;
+  padding: 80px 40px 80px;
+  position: relative;
+  overflow: hidden;
+  margin-top: 40px;
+}
+
+.home-page .articles-bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(79,110,247,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(79,110,247,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+
+/* Section Header */
+.home-page .articles-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.home-page .header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.home-page .header-icon {
+  width: 28px;
+  height: 28px;
+  border: 1px solid #1e1e1e;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+}
+
+.home-page .header-title {
+  font-family: 'Martian Mono', monospace;
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: -0.03em;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+.home-page .header-right .view-all-link {
+  color: #4F6EF7;
+  font-size: 13px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: gap 0.2s ease;
+}
+
+.home-page .header-right .view-all-link:hover {
+  gap: 9px;
+}
+
+.home-page .header-subtitle {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: #333;
+  margin: 0 0 24px 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Filter Bar */
+.home-page .filter-bar {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+  position: relative;
+  z-index: 1;
+}
+
+.home-page .filter-btn {
+  border-radius: 100px;
+  border: 1px solid #1e1e1e;
+  background: transparent;
+  color: #444;
+  font-size: 12px;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.home-page .filter-btn:hover {
+  border-color: #333;
+  color: #888;
+}
+
+.home-page .filter-btn.active {
+  background: #4F6EF7;
+  border-color: #4F6EF7;
+  color: #fff;
+}
+
+/* Articles Grid */
+.home-page .articles-grid {
+  display: grid;
+  grid-template-columns: 1.9fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 2px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Hero Card */
+.home-page .hero-card {
+  grid-row: 1 / 3;
+  border-radius: 12px 0 0 12px;
+  padding: 28px;
+  background: #0e0e0e;
+  border: 1px solid #151515;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.home-page .hero-card:hover {
+  border-color: #252525;
+}
+
+.home-page .hero-card .article-content {
+  position: relative;
+  z-index: 2;
+}
+
+.home-page .trending-badge {
+  display: inline-flex;
+  align-items: center;
+  background: #111;
+  border: 1px solid #1e1e1e;
+  border-radius: 100px;
+  padding: 4px 10px 4px 7px;
+  margin-bottom: 12px;
+}
+
+.home-page .badge-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #F5A623;
+  margin-right: 6px;
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+.home-page .badge-text {
+  font-family: 'Martian Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: #F5A623;
+}
+
+.home-page .category-tag {
+  font-family: 'Martian Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #4F6EF7;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.home-page .article-title {
+  font-family: 'Martian Mono', monospace;
+  font-weight: 800;
+  font-size: clamp(18px, 2.5vw, 26px);
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  color: #FFFFFF;
+  margin: 0 0 12px 0;
+}
+
+.home-page .article-description {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: #2a2a2a;
+  line-height: 1.6;
+  max-width: 320px;
+  margin: 0 0 16px 0;
+}
+
+.home-page .article-author {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.home-page .author-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Martian Mono', monospace;
+  font-weight: 700;
+  font-size: 9px;
+}
+
+.home-page .author-info .author-name {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  color: #555;
+  margin: 0;
+}
+
+.home-page .author-info .author-meta {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  color: #2a2a2a;
+  margin: 0;
+}
+
+.home-page .article-stats {
+  display: flex;
+  gap: 16px;
+  border-top: 1px solid #151515;
+  padding-top: 14px;
+  margin-bottom: 16px;
+}
+
+.home-page .stat-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.home-page .stat-item svg {
+  opacity: 0.4;
+  color: #FFFFFF;
+}
+
+.home-page .stat-item span {
+  font-size: 11px;
+  color: #2a2a2a;
+}
+
+.home-page .read-more-link {
+  position: absolute;
+  bottom: 22px;
+  right: 22px;
+  color: #4F6EF7;
+  font-size: 12px;
+  text-decoration: none;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: all 0.2s ease;
+}
+
+.home-page .hero-card:hover .read-more-link {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Decorative Circles */
+.home-page .decorative-circles {
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 240px;
+  height: 240px;
+  opacity: 0.06;
+}
+
+.home-page .circle {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid #4F6EF7;
+}
+
+.home-page .circle.outer {
+  width: 100%;
+  height: 100%;
+  animation: spin 20s linear infinite;
+}
+
+.home-page .circle.middle {
+  inset: 20px;
+}
+
+.home-page .circle.inner {
+  inset: 50px;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Secondary Cards */
+.home-page .secondary-card {
+  padding: 22px;
+  background: #0e0e0e;
+  border: 1px solid #151515;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.home-page .secondary-card:hover {
+  border-color: #252525;
+}
+
+.home-page .secondary-card:nth-child(2) {
+  border-radius: 0 12px 0 0;
+}
+
+.home-page .secondary-card:nth-child(3) {
+  border-radius: 0;
+}
+
+.home-page .secondary-card:nth-child(4) {
+  border-radius: 0;
+}
+
+.home-page .secondary-card:nth-child(5) {
+  border-radius: 0;
+}
+
+.home-page .last-card {
+  border-radius: 0 0 12px 0;
+}
+
+.home-page .category-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.home-page .bookmark-icon {
+  width: 28px;
+  height: 28px;
+  border: 1px solid #1e1e1e;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.home-page .bookmark-icon:hover {
+  border-color: #333;
+}
+
+.home-page .secondary-card .article-title {
+  font-family: 'Martian Mono', monospace;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  color: #FFFFFF;
+  margin: 0 0 8px 0;
+}
+
+.home-page .secondary-card .article-description {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  color: #333;
+  line-height: 1.6;
+  margin: 0 0 12px 0;
+}
+
+.home-page .secondary-card .article-stats {
+  border-top: 1px solid #151515;
+  padding-top: 12px;
+  gap: 12px;
+}
+
+.home-page .secondary-card .stat-item svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* Category Colors */
+.home-page .article-card[data-category="data-engineering"] .category-tag,
+.home-page .article-card[data-category="big-data"] .category-tag {
+  color: #4F6EF7;
+}
+
+.home-page .article-card[data-category="machine-learning"] .category-tag {
+  color: #9B5CFA;
+}
+
+.home-page .article-card[data-category="visualisation"] .category-tag {
+  color: #22d3ee;
+}
+
+.home-page .article-card[data-category="python"] .category-tag {
+  color: #F5A623;
+}
+
+.home-page .article-card[data-category="congo-use-case"] .category-tag {
+  color: #3ecf8e;
+}
+
+/* Glow Effects */
+.home-page .card-glow {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.home-page .hero-card .card-glow {
+  background: radial-gradient(ellipse at 30% 50%, rgba(79,110,247,0.07), transparent 70%);
+}
+
+.home-page .article-card[data-category="data-engineering"] .card-glow,
+.home-page .article-card[data-category="big-data"] .card-glow {
+  background: radial-gradient(ellipse at 50% 0%, rgba(79,110,247,0.08), transparent 70%);
+}
+
+.home-page .article-card[data-category="machine-learning"] .card-glow {
+  background: radial-gradient(ellipse at 50% 0%, rgba(155,92,250,0.08), transparent 70%);
+}
+
+.home-page .article-card[data-category="visualisation"] .card-glow {
+  background: radial-gradient(ellipse at 50% 0%, rgba(34,211,238,0.08), transparent 70%);
+}
+
+.home-page .article-card[data-category="python"] .card-glow {
+  background: radial-gradient(ellipse at 50% 0%, rgba(245,166,35,0.08), transparent 70%);
+}
+
+.home-page .article-card[data-category="congo-use-case"] .card-glow {
+  background: radial-gradient(ellipse at 50% 0%, rgba(62,207,142,0.08), transparent 70%);
+}
+
+.home-page .article-card:hover .card-glow {
+  opacity: 1;
+}
+
+/* CTA Bar */
+.home-page .cta-bar {
+  margin-top: 2px;
+  background: #0e0e0e;
+  border: 1px solid #151515;
+  border-radius: 0 0 12px 12px;
+  padding: 18px 28px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.home-page .cta-icon {
+  width: 36px;
+  height: 36px;
+  background: rgba(79,110,247,0.1);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4F6EF7;
+}
+
+.home-page .cta-content {
+  flex: 1;
+}
+
+.home-page .cta-title {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  color: #FFFFFF;
+  margin: 0 0 2px 0;
+}
+
+.home-page .cta-subtitle {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  color: #333;
+  margin: 0;
+}
+
+.home-page .cta-button {
+  margin-left: auto;
+  background: #4F6EF7;
+  border-radius: 7px;
+  padding: 9px 18px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #FFFFFF;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.home-page .cta-button:hover {
+  opacity: 0.85;
+}
+
 /* Cascade Animations */
 @keyframes fadein {
   from { opacity: 0; }

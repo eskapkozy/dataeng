@@ -202,6 +202,41 @@ const Home = () => {
     }
   }, []);
 
+  // Filter functionality for articles
+  React.useEffect(() => {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const articles = document.querySelectorAll('.article-card');
+    
+    const handleFilterClick = (button: HTMLElement) => {
+      const category = (button as HTMLElement).dataset.category;
+      
+      // Remove active class from all buttons
+      filterButtons.forEach(btn => (btn as HTMLElement).classList.remove('active'));
+      // Add active class to clicked button
+      button.classList.add('active');
+      
+      // Filter articles
+      articles.forEach(article => {
+        const articleElement = article as HTMLElement;
+        if (category === 'all' || articleElement.dataset.category === category) {
+          articleElement.style.display = 'block';
+        } else {
+          articleElement.style.display = 'none';
+        }
+      });
+    };
+    
+    filterButtons.forEach(button => {
+      (button as HTMLElement).addEventListener('click', () => handleFilterClick(button as HTMLElement));
+    });
+    
+    return () => {
+      filterButtons.forEach(button => {
+        (button as HTMLElement).removeEventListener('click', () => handleFilterClick(button as HTMLElement));
+      });
+    };
+  }, []);
+
   return (
     <div className="page home-page">
       <section className="hero-full">
@@ -290,6 +325,375 @@ const Home = () => {
           <div className="ticker-content" id="ticker-content"></div>
         </div>
       </section>
+
+      {/* Articles Wall Section */}
+      <section className="articles-wall">
+        {/* Background Grid */}
+        <div className="articles-bg-grid"></div>
+        
+        {/* Section Header */}
+        <div className="articles-header">
+          <div className="header-left">
+            <div className="header-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                <rect x="3" y="3" width="7" height="7" stroke="currentColor" stroke-width="1"/>
+                <rect x="14" y="3" width="7" height="7" stroke="currentColor" stroke-width="1"/>
+                <rect x="3" y="14" width="7" height="7" stroke="currentColor" stroke-width="1"/>
+                <rect x="14" y="14" width="7" height="7" stroke="currentColor" stroke-width="1"/>
+              </svg>
+            </div>
+            <h2 className="header-title">Mur des articles</h2>
+          </div>
+          <div className="header-right">
+            <a href="#" className="view-all-link">
+              <span>Voir tous les articles</span>
+              <span className="arrow">→</span>
+            </a>
+          </div>
+        </div>
+        
+        <p className="header-subtitle">Découvrez les derniers articles de notre communauté data</p>
+        
+        {/* Filter Bar */}
+        <div className="filter-bar">
+          <button className="filter-btn active" data-category="all">Tous</button>
+          <button className="filter-btn" data-category="data-engineering">Data Engineering</button>
+          <button className="filter-btn" data-category="machine-learning">Machine Learning</button>
+          <button className="filter-btn" data-category="python">Python</button>
+          <button className="filter-btn" data-category="big-data">Big Data</button>
+          <button className="filter-btn" data-category="visualisation">Visualisation</button>
+          <button className="filter-btn" data-category="congo-use-case">Congo Use Case</button>
+        </div>
+        
+        {/* Articles Grid */}
+        <div className="articles-grid">
+          {/* Hero Card */}
+          <article className="article-card hero-card" data-category="data-engineering">
+            <div className="article-content">
+              <div className="trending-badge">
+                <div className="badge-dot"></div>
+                <span className="badge-text">TRENDING</span>
+              </div>
+              
+              <div className="category-tag">Data Engineering</div>
+              
+              <h3 className="article-title">Construire un pipeline ETL robuste avec Airflow & Docker</h3>
+              
+              <p className="article-description">
+                Découvrez comment architecturer une solution ETL complète et scalable en utilisant Apache Airflow orchestré avec Docker pour vos projets data.
+              </p>
+              
+              <div className="article-author">
+                <div className="author-avatar" style={{background: 'rgba(79,110,247,0.2)', color: '#4F6EF7'}}>JM</div>
+                <div className="author-info">
+                  <div className="author-name">Junior M.</div>
+                  <div className="author-meta">il y a 2 jours</div>
+                </div>
+              </div>
+              
+              <div className="article-stats">
+                <div className="stat-item">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="2" fill="none"/>
+                    <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                  </svg>
+                  <span>1.2K</span>
+                </div>
+                <div className="stat-item">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" stroke="currentColor" stroke-width="2" fill="none"/>
+                  </svg>
+                  <span>24</span>
+                </div>
+                <div className="stat-item">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2" fill="none"/>
+                  </svg>
+                  <span>120</span>
+                </div>
+              </div>
+              
+              <a href="#" className="read-more-link">Lire l'article →</a>
+            </div>
+            
+            {/* Decorative Circles */}
+            <div className="decorative-circles">
+              <div className="circle outer"></div>
+              <div className="circle middle"></div>
+              <div className="circle inner"></div>
+            </div>
+            
+            {/* Glow Effect */}
+            <div className="card-glow"></div>
+          </article>
+          
+          {/* Secondary Cards */}
+          <article className="article-card secondary-card" data-category="machine-learning">
+            <div className="article-content">
+              <div className="category-row">
+                <div className="category-tag">Machine Learning</div>
+                <div className="bookmark-icon">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="1" fill="none"/>
+                  </svg>
+                </div>
+              </div>
+              
+              <h3 className="article-title">Prédire la demande énergétique en RDC avec Python</h3>
+              
+              <p className="article-description">
+                Modélisation et prédiction des besoins énergétiques en utilisant les algorithmes de machine learning.
+              </p>
+              
+              <div className="article-author">
+                <div className="author-avatar" style={{background: 'rgba(123,92,245,0.2)', color: '#7B5CF5'}}>GK</div>
+                <div className="author-info">
+                  <div className="author-name">Grâce K.</div>
+                  <div className="author-meta">il y a 3 jours</div>
+                </div>
+              </div>
+              
+              <div className="article-stats">
+                <div className="stat-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="2" fill="none"/>
+                    <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                  </svg>
+                  <span>856</span>
+                </div>
+                <div className="stat-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" stroke="currentColor" stroke-width="2" fill="none"/>
+                  </svg>
+                  <span>18</span>
+                </div>
+                <div className="stat-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2" fill="none"/>
+                  </svg>
+                  <span>89</span>
+                </div>
+              </div>
+            </div>
+            <div className="card-glow"></div>
+          </article>
+          
+          <article className="article-card secondary-card" data-category="visualisation">
+            <div className="article-content">
+              <div className="category-row">
+                <div className="category-tag">Data Visualisation</div>
+                <div className="bookmark-icon">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="1" fill="none"/>
+                  </svg>
+                </div>
+              </div>
+              
+              <h3 className="article-title">Créer des dashboards interactifs avec Plotly & Dash</h3>
+              
+              <p className="article-description">
+                Guide complet pour créer des visualisations de données interactives et dynamiques.
+              </p>
+              
+              <div className="article-author">
+                <div className="author-avatar" style={{background: 'rgba(34,211,238,0.2)', color: '#22d3ee'}}>KL</div>
+                <div className="author-info">
+                  <div className="author-name">Kevin L.</div>
+                  <div className="author-meta">il y a 4 jours</div>
+                </div>
+              </div>
+              
+              <div className="article-stats">
+                <div className="stat-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="2" fill="none"/>
+                    <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                  </svg>
+                  <span>642</span>
+                </div>
+                <div className="stat-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" stroke="currentColor" stroke-width="2" fill="none"/>
+                  </svg>
+                  <span>12</span>
+                </div>
+                <div className="stat-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2" fill="none"/>
+                  </svg>
+                  <span>71</span>
+                </div>
+              </div>
+            </div>
+            <div className="card-glow"></div>
+          </article>
+          
+          <article className="article-card secondary-card" data-category="python">
+            <div className="article-content">
+              <div className="category-row">
+                <div className="category-tag">Python</div>
+                <div className="bookmark-icon">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="1" fill="none"/>
+                  </svg>
+                </div>
+              </div>
+              
+              <h3 className="article-title">10 astuces Python que tout data analyste devrait connaître</h3>
+              
+              <p className="article-description">
+                Techniques avancées Python pour optimiser votre workflow d'analyse de données.
+              </p>
+              
+              <div className="article-author">
+                <div className="author-avatar" style={{background: 'rgba(245,166,35,0.2)', color: '#F5A623'}}>CB</div>
+                <div className="author-info">
+                  <div className="author-name">Chancelvie B.</div>
+                  <div className="author-meta">il y a 5 jours</div>
+                </div>
+              </div>
+              
+              <div className="article-stats">
+                <div className="stat-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="2" fill="none"/>
+                    <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                  </svg>
+                  <span>512</span>
+                </div>
+                <div className="stat-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" stroke="currentColor" stroke-width="2" fill="none"/>
+                  </svg>
+                  <span>10</span>
+                </div>
+                <div className="stat-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2" fill="none"/>
+                  </svg>
+                  <span>65</span>
+                </div>
+              </div>
+            </div>
+            <div className="card-glow"></div>
+          </article>
+          
+          <article className="article-card secondary-card" data-category="big-data">
+            <div className="article-content">
+              <div className="category-row">
+                <div className="category-tag">Big Data</div>
+                <div className="bookmark-icon">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="1" fill="none"/>
+                  </svg>
+                </div>
+              </div>
+              
+              <h3 className="article-title">Introduction à Apache Spark pour les débutants</h3>
+              
+              <p className="article-description">
+                Guide complet pour démarrer avec Apache Spark et le traitement distribué des données.
+              </p>
+              
+              <div className="article-author">
+                <div className="author-avatar" style={{background: 'rgba(79,110,247,0.2)', color: '#4F6EF7'}}>LP</div>
+                <div className="author-info">
+                  <div className="author-name">Landry P.</div>
+                  <div className="author-meta">il y a 1 semaine</div>
+                </div>
+              </div>
+              
+              <div className="article-stats">
+                <div className="stat-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="2" fill="none"/>
+                    <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                  </svg>
+                  <span>430</span>
+                </div>
+                <div className="stat-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" stroke="currentColor" stroke-width="2" fill="none"/>
+                  </svg>
+                  <span>8</span>
+                </div>
+                <div className="stat-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2" fill="none"/>
+                  </svg>
+                  <span>54</span>
+                </div>
+              </div>
+            </div>
+            <div className="card-glow"></div>
+          </article>
+          
+          <article className="article-card secondary-card last-card" data-category="congo-use-case">
+            <div className="article-content">
+              <div className="category-row">
+                <div className="category-tag">Congo Use Case</div>
+                <div className="bookmark-icon">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="1" fill="none"/>
+                  </svg>
+                </div>
+              </div>
+              
+              <h3 className="article-title">Analyse des données de santé publique en RDC</h3>
+              
+              <p className="article-description">
+                Étude de cas sur l'analyse des données de santé pour améliorer les politiques publiques.
+              </p>
+              
+              <div className="article-author">
+                <div className="author-avatar" style={{background: 'rgba(62,207,142,0.2)', color: '#3ecf8e'}}>OT</div>
+                <div className="author-info">
+                  <div className="author-name">Ornella T.</div>
+                  <div className="author-meta">il y a 1 semaine</div>
+                </div>
+              </div>
+              
+              <div className="article-stats">
+                <div className="stat-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="2" fill="none"/>
+                    <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                  </svg>
+                  <span>390</span>
+                </div>
+                <div className="stat-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" stroke="currentColor" stroke-width="2" fill="none"/>
+                  </svg>
+                  <span>6</span>
+                </div>
+                <div className="stat-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2" fill="none"/>
+                  </svg>
+                  <span>42</span>
+                </div>
+              </div>
+            </div>
+            <div className="card-glow"></div>
+          </article>
+        </div>
+        
+        {/* CTA Bar */}
+        <div className="cta-bar">
+          <div className="cta-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+              <line x1="12" y1="5" x2="12" y2="19" stroke="currentColor" stroke-width="2"/>
+              <line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <div className="cta-content">
+            <h4 className="cta-title">Contribuez à notre base de connaissances</h4>
+            <p className="cta-subtitle">Partagez votre expertise avec la communauté data</p>
+          </div>
+          <button className="cta-button">Rédiger un article</button>
+        </div>
+      </section>
       
       <section className="main-container">
         <div className="hero-content">
@@ -333,136 +737,7 @@ const Home = () => {
             </div>
           </div>
           
-          {/* Second div - Group of 4 colored card buttons */}
-          <div className="content-div">
-            <div className="content-item purple-card card-hover">
-              <div className="card-number">01</div>
-              <div className="card-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <circle cx="8.5" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="m20 8-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="m20 14-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-              <div className="card-illustration">
-                <svg width="120" height="120" viewBox="0 0 200 200" fill="none">
-                  <circle cx="100" cy="100" r="80" stroke="currentColor" stroke-width="2" opacity="0.3"/>
-                  <circle cx="100" cy="100" r="60" stroke="currentColor" stroke-width="2" opacity="0.5"/>
-                  <circle cx="100" cy="100" r="40" stroke="currentColor" stroke-width="2" opacity="0.7"/>
-                  <circle cx="100" cy="100" r="20" fill="currentColor" opacity="0.9"/>
-                  <path d="M100 60 L100 140 M60 100 L140 100" stroke="currentColor" stroke-width="3" opacity="0.8"/>
-                  <circle cx="60" cy="60" r="8" fill="currentColor" opacity="0.6"/>
-                  <circle cx="140" cy="60" r="8" fill="currentColor" opacity="0.6"/>
-                  <circle cx="60" cy="140" r="8" fill="currentColor" opacity="0.6"/>
-                  <circle cx="140" cy="140" r="8" fill="currentColor" opacity="0.6"/>
-                </svg>
-              </div>
-              <div className="card-overlay">
-                <div className="overlay-button">
-                  Rejoindre le réseau
-                </div>
-              </div>
-            </div>
-            
-            <div className="content-item orange-card card-hover">
-              <div className="card-number">02</div>
-              <div className="card-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <polyline points="14,2 14,8 20,8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <line x1="16" y1="13" x2="8" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <line x1="16" y1="17" x2="8" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <polyline points="10,9 9,9 8,9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-              <div className="card-illustration">
-                <svg width="120" height="120" viewBox="0 0 200 200" fill="none">
-                  <rect x="40" y="30" width="120" height="140" rx="8" stroke="currentColor" stroke-width="2" opacity="0.3"/>
-                  <rect x="50" y="40" width="100" height="120" rx="4" stroke="currentColor" stroke-width="2" opacity="0.5"/>
-                  <line x1="60" y1="60" x2="140" y2="60" stroke="currentColor" stroke-width="2" opacity="0.7"/>
-                  <line x1="60" y1="80" x2="140" y2="80" stroke="currentColor" stroke-width="2" opacity="0.7"/>
-                  <line x1="60" y1="100" x2="120" y2="100" stroke="currentColor" stroke-width="2" opacity="0.7"/>
-                  <line x1="60" y1="120" x2="130" y2="120" stroke="currentColor" stroke-width="2" opacity="0.7"/>
-                  <line x1="60" y1="140" x2="110" y2="140" stroke="currentColor" stroke-width="2" opacity="0.7"/>
-                  <circle cx="150" cy="50" r="15" fill="currentColor" opacity="0.8"/>
-                  <path d="M150 45 L155 50 L150 55" stroke="white" stroke-width="2" fill="none"/>
-                </svg>
-              </div>
-              <div className="card-overlay">
-                <div className="overlay-button">
-                  Découvrir les articles
-                </div>
-              </div>
-            </div>
-            
-            <div className="content-item green-card card-hover">
-              <div className="card-number">03</div>
-              <div className="card-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-              <div className="card-illustration">
-                <svg width="120" height="120" viewBox="0 0 200 200" fill="none">
-                  <rect x="30" y="50" width="140" height="100" rx="8" stroke="currentColor" stroke-width="2" opacity="0.3"/>
-                  <rect x="40" y="60" width="120" height="80" rx="4" stroke="currentColor" stroke-width="2" opacity="0.5"/>
-                  <rect x="50" y="70" width="100" height="60" rx="2" stroke="currentColor" stroke-width="2" opacity="0.7"/>
-                  <line x1="60" y1="80" x2="140" y2="80" stroke="currentColor" stroke-width="2" opacity="0.8"/>
-                  <line x1="60" y1="90" x2="130" y2="90" stroke="currentColor" stroke-width="2" opacity="0.8"/>
-                  <line x1="60" y1="100" x2="120" y2="100" stroke="currentColor" stroke-width="2" opacity="0.8"/>
-                  <line x1="60" y1="110" x2="110" y2="110" stroke="currentColor" stroke-width="2" opacity="0.8"/>
-                  <line x1="60" y1="120" x2="100" y2="120" stroke="currentColor" stroke-width="2" opacity="0.8"/>
-                  <circle cx="100" cy="40" r="12" fill="currentColor" opacity="0.9"/>
-                  <circle cx="130" cy="40" r="12" fill="currentColor" opacity="0.9"/>
-                  <circle cx="70" cy="40" r="12" fill="currentColor" opacity="0.9"/>
-                </svg>
-              </div>
-              <div className="card-overlay">
-                <div className="overlay-button">
-                  Voir les événements
-                </div>
-              </div>
-            </div>
-            
-            <div className="content-item grey-card card-hover">
-              <div className="card-number">04</div>
-              <div className="card-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-              <div className="card-illustration">
-                <svg width="120" height="120" viewBox="0 0 200 200" fill="none">
-                  <circle cx="100" cy="80" r="40" stroke="currentColor" stroke-width="2" opacity="0.3"/>
-                  <circle cx="70" cy="120" r="30" stroke="currentColor" stroke-width="2" opacity="0.4"/>
-                  <circle cx="130" cy="120" r="30" stroke="currentColor" stroke-width="2" opacity="0.4"/>
-                  <circle cx="100" cy="80" r="20" fill="currentColor" opacity="0.8"/>
-                  <circle cx="70" cy="120" r="15" fill="currentColor" opacity="0.7"/>
-                  <circle cx="130" cy="120" r="15" fill="currentColor" opacity="0.7"/>
-                  <path d="M100 80 L70 120 M100 80 L130 120" stroke="currentColor" stroke-width="2" opacity="0.6"/>
-                  <circle cx="100" cy="80" r="8" fill="white" opacity="0.9"/>
-                  <circle cx="70" cy="120" r="6" fill="white" opacity="0.8"/>
-                  <circle cx="130" cy="120" r="6" fill="white" opacity="0.8"/>
-                  <circle cx="50" cy="60" r="8" fill="currentColor" opacity="0.5"/>
-                  <circle cx="150" cy="60" r="8" fill="currentColor" opacity="0.5"/>
-                  <circle cx="50" cy="140" r="8" fill="currentColor" opacity="0.5"/>
-                  <circle cx="150" cy="140" r="8" fill="currentColor" opacity="0.5"/>
-                </svg>
-              </div>
-              <div className="card-overlay">
-                <div className="overlay-button">
-                  S'inscrire au club
-                </div>
-              </div>
-            </div>
-          </div>
+          
         </div>
       </section>
 
@@ -675,6 +950,375 @@ const Home = () => {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Articles Wall Section */}
+      <section className="articles-wall">
+        {/* Background Grid */}
+        <div className="articles-bg-grid"></div>
+        
+        {/* Section Header */}
+        <div className="articles-header">
+          <div className="header-left">
+            <div className="header-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                <rect x="3" y="3" width="7" height="7" stroke="currentColor" stroke-width="1"/>
+                <rect x="14" y="3" width="7" height="7" stroke="currentColor" stroke-width="1"/>
+                <rect x="3" y="14" width="7" height="7" stroke="currentColor" stroke-width="1"/>
+                <rect x="14" y="14" width="7" height="7" stroke="currentColor" stroke-width="1"/>
+              </svg>
+            </div>
+            <h2 className="header-title">Mur des articles</h2>
+          </div>
+          <div className="header-right">
+            <a href="#" className="view-all-link">
+              <span>Voir tous les articles</span>
+              <span className="arrow">→</span>
+            </a>
+          </div>
+        </div>
+        
+        <p className="header-subtitle">Découvrez les derniers articles de notre communauté data</p>
+        
+        {/* Filter Bar */}
+        <div className="filter-bar">
+          <button className="filter-btn active" data-category="all">Tous</button>
+          <button className="filter-btn" data-category="data-engineering">Data Engineering</button>
+          <button className="filter-btn" data-category="machine-learning">Machine Learning</button>
+          <button className="filter-btn" data-category="python">Python</button>
+          <button className="filter-btn" data-category="big-data">Big Data</button>
+          <button className="filter-btn" data-category="visualisation">Visualisation</button>
+          <button className="filter-btn" data-category="congo-use-case">Congo Use Case</button>
+        </div>
+        
+        {/* Articles Grid */}
+        <div className="articles-grid">
+          {/* Hero Card */}
+          <article className="article-card hero-card" data-category="data-engineering">
+            <div className="article-content">
+              <div className="trending-badge">
+                <div className="badge-dot"></div>
+                <span className="badge-text">TRENDING</span>
+              </div>
+              
+              <div className="category-tag">Data Engineering</div>
+              
+              <h3 className="article-title">Construire un pipeline ETL robuste avec Airflow & Docker</h3>
+              
+              <p className="article-description">
+                Découvrez comment architecturer une solution ETL complète et scalable en utilisant Apache Airflow orchestré avec Docker pour vos projets data.
+              </p>
+              
+              <div className="article-author">
+                <div className="author-avatar" style={{background: 'rgba(79,110,247,0.2)', color: '#4F6EF7'}}>JM</div>
+                <div className="author-info">
+                  <div className="author-name">Junior M.</div>
+                  <div className="author-meta">il y a 2 jours</div>
+                </div>
+              </div>
+              
+              <div className="article-stats">
+                <div className="stat-item">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="2" fill="none"/>
+                    <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                  </svg>
+                  <span>1.2K</span>
+                </div>
+                <div className="stat-item">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" stroke="currentColor" stroke-width="2" fill="none"/>
+                  </svg>
+                  <span>24</span>
+                </div>
+                <div className="stat-item">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2" fill="none"/>
+                  </svg>
+                  <span>120</span>
+                </div>
+              </div>
+              
+              <a href="#" className="read-more-link">Lire l'article →</a>
+            </div>
+            
+            {/* Decorative Circles */}
+            <div className="decorative-circles">
+              <div className="circle outer"></div>
+              <div className="circle middle"></div>
+              <div className="circle inner"></div>
+            </div>
+            
+            {/* Glow Effect */}
+            <div className="card-glow"></div>
+          </article>
+          
+          {/* Secondary Cards */}
+          <article className="article-card secondary-card" data-category="machine-learning">
+            <div className="article-content">
+              <div className="category-row">
+                <div className="category-tag">Machine Learning</div>
+                <div className="bookmark-icon">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="1" fill="none"/>
+                  </svg>
+                </div>
+              </div>
+              
+              <h3 className="article-title">Prédire la demande énergétique en RDC avec Python</h3>
+              
+              <p className="article-description">
+                Modélisation et prédiction des besoins énergétiques en utilisant les algorithmes de machine learning.
+              </p>
+              
+              <div className="article-author">
+                <div className="author-avatar" style={{background: 'rgba(123,92,245,0.2)', color: '#7B5CF5'}}>GK</div>
+                <div className="author-info">
+                  <div className="author-name">Grâce K.</div>
+                  <div className="author-meta">il y a 3 jours</div>
+                </div>
+              </div>
+              
+              <div className="article-stats">
+                <div className="stat-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="2" fill="none"/>
+                    <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                  </svg>
+                  <span>856</span>
+                </div>
+                <div className="stat-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" stroke="currentColor" stroke-width="2" fill="none"/>
+                  </svg>
+                  <span>18</span>
+                </div>
+                <div className="stat-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2" fill="none"/>
+                  </svg>
+                  <span>89</span>
+                </div>
+              </div>
+            </div>
+            <div className="card-glow"></div>
+          </article>
+          
+          <article className="article-card secondary-card" data-category="visualisation">
+            <div className="article-content">
+              <div className="category-row">
+                <div className="category-tag">Data Visualisation</div>
+                <div className="bookmark-icon">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="1" fill="none"/>
+                  </svg>
+                </div>
+              </div>
+              
+              <h3 className="article-title">Créer des dashboards interactifs avec Plotly & Dash</h3>
+              
+              <p className="article-description">
+                Guide complet pour créer des visualisations de données interactives et dynamiques.
+              </p>
+              
+              <div className="article-author">
+                <div className="author-avatar" style={{background: 'rgba(34,211,238,0.2)', color: '#22d3ee'}}>KL</div>
+                <div className="author-info">
+                  <div className="author-name">Kevin L.</div>
+                  <div className="author-meta">il y a 4 jours</div>
+                </div>
+              </div>
+              
+              <div className="article-stats">
+                <div className="stat-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="2" fill="none"/>
+                    <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                  </svg>
+                  <span>642</span>
+                </div>
+                <div className="stat-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" stroke="currentColor" stroke-width="2" fill="none"/>
+                  </svg>
+                  <span>12</span>
+                </div>
+                <div className="stat-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2" fill="none"/>
+                  </svg>
+                  <span>71</span>
+                </div>
+              </div>
+            </div>
+            <div className="card-glow"></div>
+          </article>
+          
+          <article className="article-card secondary-card" data-category="python">
+            <div className="article-content">
+              <div className="category-row">
+                <div className="category-tag">Python</div>
+                <div className="bookmark-icon">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="1" fill="none"/>
+                  </svg>
+                </div>
+              </div>
+              
+              <h3 className="article-title">10 astuces Python que tout data analyste devrait connaître</h3>
+              
+              <p className="article-description">
+                Techniques avancées Python pour optimiser votre workflow d'analyse de données.
+              </p>
+              
+              <div className="article-author">
+                <div className="author-avatar" style={{background: 'rgba(245,166,35,0.2)', color: '#F5A623'}}>CB</div>
+                <div className="author-info">
+                  <div className="author-name">Chancelvie B.</div>
+                  <div className="author-meta">il y a 5 jours</div>
+                </div>
+              </div>
+              
+              <div className="article-stats">
+                <div className="stat-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="2" fill="none"/>
+                    <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                  </svg>
+                  <span>512</span>
+                </div>
+                <div className="stat-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" stroke="currentColor" stroke-width="2" fill="none"/>
+                  </svg>
+                  <span>10</span>
+                </div>
+                <div className="stat-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2" fill="none"/>
+                  </svg>
+                  <span>65</span>
+                </div>
+              </div>
+            </div>
+            <div className="card-glow"></div>
+          </article>
+          
+          <article className="article-card secondary-card" data-category="big-data">
+            <div className="article-content">
+              <div className="category-row">
+                <div className="category-tag">Big Data</div>
+                <div className="bookmark-icon">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="1" fill="none"/>
+                  </svg>
+                </div>
+              </div>
+              
+              <h3 className="article-title">Introduction à Apache Spark pour les débutants</h3>
+              
+              <p className="article-description">
+                Guide complet pour démarrer avec Apache Spark et le traitement distribué des données.
+              </p>
+              
+              <div className="article-author">
+                <div className="author-avatar" style={{background: 'rgba(79,110,247,0.2)', color: '#4F6EF7'}}>LP</div>
+                <div className="author-info">
+                  <div className="author-name">Landry P.</div>
+                  <div className="author-meta">il y a 1 semaine</div>
+                </div>
+              </div>
+              
+              <div className="article-stats">
+                <div className="stat-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="2" fill="none"/>
+                    <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                  </svg>
+                  <span>430</span>
+                </div>
+                <div className="stat-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" stroke="currentColor" stroke-width="2" fill="none"/>
+                  </svg>
+                  <span>8</span>
+                </div>
+                <div className="stat-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2" fill="none"/>
+                  </svg>
+                  <span>54</span>
+                </div>
+              </div>
+            </div>
+            <div className="card-glow"></div>
+          </article>
+          
+          <article className="article-card secondary-card last-card" data-category="congo-use-case">
+            <div className="article-content">
+              <div className="category-row">
+                <div className="category-tag">Congo Use Case</div>
+                <div className="bookmark-icon">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="1" fill="none"/>
+                  </svg>
+                </div>
+              </div>
+              
+              <h3 className="article-title">Analyse des données de santé publique en RDC</h3>
+              
+              <p className="article-description">
+                Étude de cas sur l'analyse des données de santé pour améliorer les politiques publiques.
+              </p>
+              
+              <div className="article-author">
+                <div className="author-avatar" style={{background: 'rgba(62,207,142,0.2)', color: '#3ecf8e'}}>OT</div>
+                <div className="author-info">
+                  <div className="author-name">Ornella T.</div>
+                  <div className="author-meta">il y a 1 semaine</div>
+                </div>
+              </div>
+              
+              <div className="article-stats">
+                <div className="stat-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="2" fill="none"/>
+                    <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                  </svg>
+                  <span>390</span>
+                </div>
+                <div className="stat-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" stroke="currentColor" stroke-width="2" fill="none"/>
+                  </svg>
+                  <span>6</span>
+                </div>
+                <div className="stat-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2" fill="none"/>
+                  </svg>
+                  <span>42</span>
+                </div>
+              </div>
+            </div>
+            <div className="card-glow"></div>
+          </article>
+        </div>
+        
+        {/* CTA Bar */}
+        <div className="cta-bar">
+          <div className="cta-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+              <line x1="12" y1="5" x2="12" y2="19" stroke="currentColor" stroke-width="2"/>
+              <line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <div className="cta-content">
+            <h4 className="cta-title">Contribuez à notre base de connaissances</h4>
+            <p className="cta-subtitle">Partagez votre expertise avec la communauté data</p>
+          </div>
+          <button className="cta-button">Rédiger un article</button>
         </div>
       </section>
     </div>
