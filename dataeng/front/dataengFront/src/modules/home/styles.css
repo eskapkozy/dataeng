@@ -69,7 +69,7 @@
   font-size: 0.85rem;
   line-height: 1.4;
   margin: 0 0 15px 0;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-secondary);
   text-align: left;
 }
 
@@ -365,7 +365,7 @@
   font-size: clamp(28px, 5vw, 56px);
   letter-spacing: -0.035em;
   line-height: 1.03;
-  color: #FFFFFF;
+  color: var(--text-primary);
   margin: 0;
 }
 
@@ -419,8 +419,8 @@
 }
 
 .home-page .btn-primary {
-  background: #4F6EF7;
-  color: #FFFFFF;
+  background: var(--accent-blue);
+  color: var(--text-primary);
   border: none;
   border-radius: 8px;
   padding: 13px 28px;
@@ -452,7 +452,7 @@
 }
 
 .home-page .btn-secondary:hover {
-  color: #FFFFFF;
+  color: var(--text-primary);
 }
 
 .home-page .btn-arrow {
@@ -492,7 +492,7 @@
   font-weight: 800;
   font-size: 22px;
   letter-spacing: -0.03em;
-  color: #FFFFFF;
+  color: var(--text-primary);
   margin-bottom: 4px;
 }
 
@@ -915,7 +915,7 @@
   font-size: 14px;
   letter-spacing: -0.025em;
   line-height: 1.1;
-  color: #FFFFFF;
+  color: var(--text-primary);
   margin: 0 0 8px 0;
 }
 
@@ -1025,13 +1025,10 @@
 
 .home-page .cta-content {
   flex: 1;
-}
-
-.home-page .cta-title {
   font-family: 'DM Sans', sans-serif;
   font-weight: 500;
   font-size: 13px;
-  color: #FFFFFF;
+  color: var(--text-primary);
   margin: 0 0 2px 0;
 }
 
@@ -1044,12 +1041,12 @@
 
 .home-page .cta-button {
   margin-left: auto;
-  background: #4F6EF7;
+  background: var(--accent-blue);
   border-radius: 7px;
   padding: 9px 18px;
   font-size: 12px;
   font-weight: 600;
-  color: #FFFFFF;
+  color: var(--text-primary);
   border: none;
   cursor: pointer;
   transition: opacity 0.2s ease;
@@ -1097,7 +1094,7 @@
 }
 
 .home-page .section-subtitle {
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-secondary);
   font-size: 1.1rem;
   line-height: 1.6;
   max-width: 600px;
@@ -1133,7 +1130,7 @@
   left: 0;
   right: 0;
   height: 2px;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--border);
   transform-origin: left;
   transform: scaleX(0);
   transition: transform 0.3s ease;
@@ -1159,7 +1156,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--card-bg);
   transition: all 0.4s ease;
 }
 
@@ -1190,7 +1187,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--card-bg);
   padding: 8px 16px;
   border-radius: 20px;
   margin-top: auto;
@@ -1208,7 +1205,7 @@
 .home-page .badge-text {
   font-size: 0.85rem;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--text-primary);
   transition: all 0.4s ease;
 }
 
@@ -1334,7 +1331,7 @@
   align-items: center;
   gap: 8px;
   text-decoration: none;
-  color: #FFFFFF;
+  color: var(--text-primary);
   font-size: 0.75rem;
   transition: opacity 0.3s ease;
   text-align: left;
@@ -1349,7 +1346,7 @@
 }
 
 .home-page .view-count {
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--text-secondary);
   font-size: 0.7rem;
 }
 
@@ -1457,12 +1454,12 @@
 }
 
 .home-page .click-indicator {
-  color: var(--color-white);
+  color: var(--text-primary);
   font-size: 1rem;
   font-weight: 600;
   text-align: center;
   padding: 12px 24px;
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--card-bg);
   border-radius: 8px;
   backdrop-filter: blur(10px);
   transform: translateY(10px);
@@ -1553,21 +1550,21 @@
 }
 
 .home-page .solvd-digest .card-content h3 {
-  color: var(--color-white);
+  color: var(--text-primary);
   font-size: 1.8rem;
   font-weight: 700;
   margin: 0 0 8px 0;
 }
 
 .home-page .solvd-digest .card-content .date {
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-secondary);
   font-size: 1rem;
   margin: 0 0 12px 0;
   font-weight: 500;
 }
 
 .home-page .solvd-digest .card-content .description {
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--text-primary);
   font-size: 1rem;
   margin: 0;
   line-height: 1.5;
@@ -1777,14 +1774,14 @@
 
 /* Technologies We Use Section */
 .home-page .techno-weUse {
-  background: #000000;
+  background: var(--bg-page);
   padding: 80px 70px;
   overflow: hidden;
   position: relative;
 }
 
 .home-page .techno-title {
-  color: #FFFFFF;
+  color: var(--text-primary);
   font-size: 2.5rem;
   font-weight: 700;
   text-align: center;
@@ -1967,13 +1964,13 @@
 
 /* Testimonials Section */
 .home-page .testimonials {
-  background: #000000;
+  background: var(--bg-page);
   padding: 80px 70px;
   position: relative;
 }
 
 .home-page .testimonials-title {
-  color: #FFFFFF;
+  color: var(--text-primary);
   font-size: 2.5rem;
   font-weight: 700;
   text-align: center;
@@ -2007,7 +2004,7 @@
   padding: 40px;
   position: relative;
   transition: all 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -2026,7 +2023,7 @@
 }
 
 .home-page .testimonial-quote {
-  color: #FFFFFF;
+  color: var(--text-primary);
   font-size: 1.3rem;
   line-height: 1.6;
   margin: 0;
@@ -2076,7 +2073,7 @@
   align-items: center;
   gap: 16px;
   padding-top: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid var(--border);
 }
 
 .home-page .author-avatar {
@@ -2099,14 +2096,14 @@
 }
 
 .home-page .author-name {
-  color: #FFFFFF;
+  color: var(--text-primary);
   font-size: 1.1rem;
   font-weight: 600;
   margin: 0 0 4px 0;
 }
 
 .home-page .author-title {
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--text-secondary);
   font-size: 0.95rem;
   margin: 0;
   line-height: 1.4;

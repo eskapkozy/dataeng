@@ -713,7 +713,7 @@ const Home = () => {
           {/* Subtitle section with text blocks */}
           <div className="subtitle-section">
             <div className="subtitle-item">
-              <p>Connectez-vous avec les data scientists, ingénieurs et développeurs passionnés par l'innovation data au Congo.</p>
+              <p><strong>Connectez-vous avec les data scientists, ingénieurs et développeurs passionnés par l'innovation data au Congo.</strong></p>
               <a href="#" className="text-link">
                 <span className="link-text">Rejoindre le réseau</span>
                 <span className="view-count">250+ Membres</span>
@@ -721,7 +721,7 @@ const Home = () => {
             </div>
             
             <div className="subtitle-item">
-              <p>Explorez les sujets data autour du Congo et développez vos compétences grâce à notre communauté autodidacte.</p>
+              <p><strong>Explorez les sujets data autour du Congo et développez vos compétences grâce à notre communauté autodidacte.</strong></p>
               <a href="#" className="text-link">
                 <span className="link-text">Découvrir les articles</span>
                 <span className="view-count">45 Articles</span>
@@ -729,7 +729,7 @@ const Home = () => {
             </div>
             
             <div className="subtitle-item">
-              <p>Participez à nos événements data et accélérez votre réussite professionnelle dans le domaine de la data.</p>
+              <p><strong>Participez à nos événements data et accélérez votre réussite professionnelle dans le domaine de la data.</strong></p>
               <a href="#" className="text-link">
                 <span className="link-text">Voir les événements</span>
                 <span className="view-count">12 Événements</span>
@@ -737,7 +737,7 @@ const Home = () => {
             </div>
             
             <div className="subtitle-item">
-              <p>Sensibilisons les entreprises et les jeunes aux opportunités data pour construire l'écosystème du Congo.</p>
+              <p><strong>Sensibilisons les entreprises et les jeunes aux opportunités data pour construire l'écosystème du Congo.</strong></p>
               <a href="#" className="text-link">
                 <span className="link-text">S'inscrire au club</span>
                 <span className="view-count">Point d'enrôlement</span>
