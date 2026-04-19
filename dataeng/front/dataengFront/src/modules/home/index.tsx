@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './styles.css'
 import '../common.css'
+import TestimonialSection from './TestimonialSection'
 
 const Home = () => {
 
@@ -836,48 +837,7 @@ const Home = () => {
               </div>
             </section>
 
-      <section className="testimonials">
-        <h2 className="testimonials-title">Leurs retours d'expérience</h2>
-        <div className="testimonials-container">
-          <div className="testimonial-card">
-            <div className="testimonial-content">
-              <p className="testimonial-quote">
-                "Bondlayer made our process so simple! We can design and test in use immediatly."
-              </p>
-            </div>
-            <div className="testimonial-author">
-              <div className="author-avatar">
-                <img src="/src/assets/hero.png" alt="Lisa Cosme" />
-              </div>
-              <div className="author-info">
-                <h4 className="author-name">Lisa Cosme</h4>
-                <p className="author-title">Designer at Significa</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="testimonial-card">
-            <div className="testimonial-content">
-              <p className="testimonial-quote">
-                "We created all the Rock in Rio website in 14 days without the single line of code!"
-              </p>
-              <div className="zero-code-badge">
-                <span className="zero-code-text">ZERO CODE</span>
-                <span className="hashtag">#nocode</span>
-              </div>
-            </div>
-            <div className="testimonial-author">
-              <div className="author-avatar">
-                <img src="/src/assets/hero.png" alt="Gioseppe Prancetino" />
-              </div>
-              <div className="author-info">
-                <h4 className="author-name">Gioseppe Prancetino</h4>
-                <p className="author-title">Marketing VP at Rockin Rio</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <TestimonialSection />
 
       
     </div>
