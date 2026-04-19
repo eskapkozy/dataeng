@@ -696,20 +696,20 @@
   margin-bottom: 12px;
 }
 
-.home-page .badge-dot {
+.home-page .trending-badge .badge-dot {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: #F5A623;
+  background: #ffffff !important;
   margin-right: 6px;
   animation: pulse 1.4s ease-in-out infinite;
 }
 
-.home-page .badge-text {
+.home-page .trending-badge .badge-text {
   font-family: 'Martian Mono', monospace;
   font-size: 9px;
   letter-spacing: 0.1em;
-  color: #F5A623;
+  color: #ffffff !important;
 }
 
 .home-page .category-tag {
