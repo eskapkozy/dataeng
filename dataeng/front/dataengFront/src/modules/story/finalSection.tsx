@@ -58,11 +58,12 @@ export function FuturSection() {
   const { ref, isVisible } = useScrollReveal({ threshold: 0.2 });
   
   const milestones = [
-    { year: 'Q2 2025', label: 'Première conférence Data Eng Congo', done: false },
-    { year: 'Q3 2025', label: 'Lancement programme mentoring', done: false },
-    { year: 'Q4 2025', label: 'Partenariat universités locales', done: false },
-    { year: 'Q1 2026', label: 'Expansion à Kinshasa', done: false },
-    { year: 'Q2 2026', label: 'Premier hackathon data national', done: false },
+    { year: '2023', label: 'Fondation', done: true },
+    { year: '2024', label: 'Premiers meetups', done: true },
+    { year: '2024', label: 'Communauté en ligne', done: true },
+    { year: '2025', label: 'Conférence Data Congo', done: false },
+    { year: '2025', label: 'Programme de mentoring', done: false },
+    { year: '2026', label: 'Expansion régionale', done: false },
   ];
 
   return (

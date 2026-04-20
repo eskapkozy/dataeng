@@ -1376,9 +1376,11 @@ p {
   font-size: 0.6rem;
   color: var(--active-green);
   background: rgba(62, 207, 142, 0.12);
-  padding: 2px 8px;
-  border-radius: var(--radius-full);
-  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border: 1px solid rgba(62, 207, 142, 0.2);
 }
 
 /* CTA */
@@ -1469,6 +1471,74 @@ p {
   border-color: var(--accent-blue);
   color: var(--accent-blue);
   transform: translateY(-2px);
+}
+
+/* CTA Buttons */
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 2rem 0;
+}
+
+.cta-button {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: all var(--transition-base);
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid;
+}
+
+.cta-button--primary {
+  background: var(--accent-blue);
+  color: white;
+  border-color: var(--accent-blue);
+}
+
+.cta-button--primary:hover {
+  background: var(--accent-blue);
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+.cta-button--secondary {
+  background: transparent;
+  color: var(--text-primary);
+  border-color: var(--border);
+}
+
+.cta-button--secondary:hover {
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+  transform: translateY(-2px);
+}
+
+.cta-statement {
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.cta-footer {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.cta-subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.04em;
 }
 
 /* RESPONSIVE */
