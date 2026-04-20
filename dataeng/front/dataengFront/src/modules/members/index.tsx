@@ -10,8 +10,8 @@ const Members = () => {
   return (
     <div className="page members-page">
       <section className="hero">
-        <h1>Les Membres</h1>
-        <p>Découvrez les membres de notre communauté data</p>
+        <h1>Membres Data Eng</h1>
+        <p>Découvrez les professionnels de la communauté data du Congo</p>
       </section>
       
       <section className="members-search">
@@ -40,6 +40,8 @@ const Members = () => {
             onChange={(e) => setSelectedCountry(e.target.value)}
           >
             <option value="">Tous les pays</option>
+            <option value="congo">Congo</option>
+            <option value="rdc">RDC</option>
             <option value="senegal">Sénégal</option>
             <option value="cote-ivoire">Côte d'Ivoire</option>
             <option value="cameroun">Cameroun</option>
@@ -57,8 +59,8 @@ const Members = () => {
             </div>
             <div className="member-info">
               <h3>Membre {i}</h3>
-              <p className="member-title">Data Scientist</p>
-              <p className="member-location">Dakar, Sénégal</p>
+              <p className="member-title">Data Professional</p>
+              <p className="member-location">Brazzaville, Congo</p>
               <div className="member-skills">
                 <span className="skill-tag">Python</span>
                 <span className="skill-tag">Machine Learning</span>

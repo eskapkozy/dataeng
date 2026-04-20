@@ -5,8 +5,8 @@ const GetStarted = () => {
   return (
     <div className="page get-started-page">
       <section className="hero">
-        <h1>Commencer avec la Communauté</h1>
-        <p>Rejoignez-nous et faites partie de l'aventure data</p>
+        <h1>Commencer avec Data Eng</h1>
+        <p>Rejoignez la communauté data du Congo et faites partie de l'aventure</p>
       </section>
       
       <section className="steps">
@@ -36,8 +36,8 @@ const GetStarted = () => {
       </section>
       
       <section className="cta">
-        <h2>Prêt à commencer ?</h2>
-        <p>Rejoignez des centaines de professionnels et passionnés du data</p>
+        <h2>Prêt à commencer votre parcours data ?</h2>
+        <p>Rejoignez des centaines de professionnels et passionnés du data au Congo</p>
         <div className="cta-buttons">
           <button className="btn-primary btn-large">S'inscrire maintenant</button>
           <button className="btn-secondary btn-large">En savoir plus</button>

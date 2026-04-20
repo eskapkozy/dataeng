@@ -14,11 +14,10 @@ export const useTheme = () => {
   
   useEffect(() => {
     console.log('useTheme hook initializing...')
-    // Récupérer le thème sauvegardé ou utiliser la préférence système
+    // Récupérer le thème sauvegardé, sinon utiliser dark comme défaut
     const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null
-    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
     
-    const initialTheme = savedTheme || systemTheme
+    const initialTheme = savedTheme || 'dark'
     console.log('Initial theme determined:', initialTheme)
     setTheme(initialTheme)
     document.documentElement.setAttribute('data-theme', initialTheme)

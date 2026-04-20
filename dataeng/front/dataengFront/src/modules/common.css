@@ -5,7 +5,7 @@
   max-width: none;
   margin: 0;
   padding: 0;
-  background: var(--color-cream);
+  background: var(--bg-page);
 }
 
 .hero {
@@ -16,14 +16,14 @@
 .hero h1 {
   font-size: 3rem;
   font-weight: bold;
-  color: var(--color-black);
+  color: var(--text-primary);
   margin-bottom: 20px;
   line-height: 1.2;
 }
 
 .hero p {
   font-size: 1.2rem;
-  color: var(--color-black-light);
+  color: var(--text-secondary);
   max-width: 600px;
   margin: 0 auto;
   line-height: 1.6;
@@ -31,7 +31,7 @@
 
 /* Boutons standards */
 .btn-primary {
-  background: var(--gradient-primary);
+  background: var(--accent-blue);
   color: var(--color-white);
   border: none;
   padding: 12px 24px;
@@ -50,9 +50,9 @@
 }
 
 .btn-secondary {
-  background: var(--color-white);
-  color: var(--color-black);
-  border: var(--border-light);
+  background: var(--card-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
   padding: 12px 24px;
   border-radius: var(--radius-sm);
   font-weight: 600;
@@ -63,17 +63,17 @@
 }
 
 .btn-secondary:hover {
-  background: var(--color-cream);
-  border-color: var(--color-blue);
-  color: var(--color-blue);
+  background: var(--bg-surface);
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
 }
 
 /* Cartes standards */
 .card {
-  background: var(--color-white);
+  background: var(--card-bg);
   padding: var(--spacing-lg);
   border-radius: var(--radius-md);
-  border: var(--border-light);
+  border: 1px solid var(--border);
   box-shadow: var(--shadow-sm);
   transition: var(--transition-normal);
 }
@@ -81,7 +81,7 @@
 .card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-md);
-  border-color: rgba(66, 103, 255, 0.2);
+  border-color: var(--accent-blue);
 }
 
 /* Responsive */

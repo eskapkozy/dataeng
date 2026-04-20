@@ -17,6 +17,16 @@
   }
 }
 
+/* Prevent white background during transitions */
+body {
+  background-color: var(--bg-primary);
+}
+
+#root {
+  background-color: var(--bg-primary);
+  min-height: 100vh;
+}
+
 .hero {
   position: relative;
 

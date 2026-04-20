@@ -14,7 +14,9 @@
   --text-secondary: #888888;
   --accent-blue: #4F6EF7;
   --accent-purple: #7B5CF5;
+  --accent-cyan: #22d3ee;
   --active-green: #3ecf8e;
+  --warning-orange: #F5A623;
   --card-bg: #ffffff;
   --nav-link-color: #FDFCF9;
   
@@ -77,30 +79,32 @@
 }
 
 [data-theme="dark"] {
-  /* Variables dark mode */
-  --bg-surface: #0e0e0e;
-  --bg-page: #0a0a0a;
-  --border: #151515;
-  --text-primary: #ffffff;
-  --text-secondary: #444444;
+  /* Variables dark mode - palette gris/café */
+  --bg-surface: #2a2a2a;
+  --bg-page: #1f1f1f;
+  --border: #404040;
+  --text-primary: #f5f5f0;
+  --text-secondary: #a0a090;
   --accent-blue: #4F6EF7;
   --accent-purple: #7B5CF5;
+  --accent-cyan: #22d3ee;
   --active-green: #3ecf8e;
-  --card-bg: #0e0e0e;
-  --nav-link-color: #ffffff;
+  --warning-orange: #F5A623;
+  --card-bg: #2a2a2a;
+  --nav-link-color: #f5f5f0;
   
   /* Variables existantes en mode dark */
   --text: var(--text-primary);
   --text-h: var(--text-primary);
   --bg: var(--bg-page);
   --border: var(--border);
-  --code-bg: #1f2028;
+  --code-bg: #353535;
   --accent: #c084fc;
   --accent-bg: rgba(192, 132, 252, 0.15);
   --accent-border: rgba(192, 132, 252, 0.5);
-  --social-bg: rgba(47, 48, 58, 0.5);
+  --social-bg: rgba(58, 58, 58, 0.5);
   --shadow:
-    rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+    rgba(0, 0, 0, 0.3) 0 10px 15px -3px, rgba(0, 0, 0, 0.2) 0 4px 6px -2px;
 }
 
 /* Le @media (prefers-color-scheme: dark) a été supprimé pour éviter les conflits

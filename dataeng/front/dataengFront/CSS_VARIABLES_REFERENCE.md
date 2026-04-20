@@ -9,36 +9,38 @@ Ce document référence toutes les variables CSS utilisées dans le système de 
 ## Variables de Thème Principales
 
 ### Fond et Surface
-| Variable | Mode Light | Mode Dark | Usage |
-|----------|------------|-----------|-------|
-| `--bg-page` | `#F5F4F0` | `#0a0a0a` | Fond principal des pages |
-| `--bg-surface` | `#FDFCF9` | `#0e0e0e` | Fond des surfaces, cartes |
-| `--card-bg` | `#ffffff` | `#0e0e0e` | Fond spécifique des cartes |
+| Variable | Mode Light | Mode Dark | Type d'éléments |
+|----------|------------|-----------|------------------|
+| `--bg-page` | `#F5F4F0` | `#1f1f1f` | Fond principal des pages, sections complètes |
+| `--bg-surface` | `#FDFCF9` | `#2a2a2a` | Fond des surfaces, cartes, zones de recherche, formulaires |
+| `--card-bg` | `#ffffff` | `#2a2a2a` | Fond spécifique des cartes, conteneurs |
 
 ### Texte
-| Variable | Mode Light | Mode Dark | Usage |
-|----------|------------|-----------|-------|
-| `--text-primary` | `#1a1a1a` | `#ffffff` | Textes principaux, titres |
-| `--text-secondary` | `#888888` | `#444444` | Textes secondaires, descriptions |
-| `--text-h` | `var(--text-primary)` | `var(--text-primary)` | Héritage pour titres |
+| Variable | Mode Light | Mode Dark | Type d'éléments |
+|----------|------------|-----------|------------------|
+| `--text-primary` | `#1a1a1a` | `#f5f5f0` | Titres principaux, textes importants, labels primaires |
+| `--text-secondary` | `#888888` | `#a0a090` | Descriptions, sous-titres, textes secondaires, métadonnées |
+| `--text-h` | `var(--text-primary)` | `var(--text-primary)` | Héritage pour titres (heading) |
 
 ### Bordures
-| Variable | Mode Light | Mode Dark | Usage |
-|----------|------------|-----------|-------|
-| `--border` | `#E8E6E0` | `#151515` | Bordures principales |
-| `--code-bg` | `var(--bg-surface)` | `#1f2028` | Fond des éléments code |
+| Variable | Mode Light | Mode Dark | Type d'éléments |
+|----------|------------|-----------|------------------|
+| `--border` | `#E8E6E0` | `#404040` | Bordures principales, séparateurs, contours |
+| `--code-bg` | `var(--bg-surface)` | `#353535` | Fond des éléments code, blocks de code |
 
 ### Accents
-| Variable | Mode Light | Mode Dark | Usage |
-|----------|------------|-----------|-------|
-| `--accent-blue` | `#4F6EF7` | `#4F6EF7` | Actions principales, liens |
-| `--accent-purple` | `#7B5CF5` | `#c084fc` | Accents secondaires |
-| `--active-green` | `#3ecf8e` | `#3ecf8e` | États actifs, succès |
+| Variable | Mode Light | Mode Dark | Type d'éléments |
+|----------|------------|-----------|------------------|
+| `--accent-blue` | `#4F6EF7` | `#4F6EF7` | Actions principales, liens, boutons primaires, éléments interactifs |
+| `--accent-purple` | `#7B5CF5` | `#c084fc` | Accents secondaires, badges, éléments décoratifs |
+| `--accent-cyan` | `#22d3ee` | `#22d3ee` | Éléments spéciaux, accents visuels |
+| `--active-green` | `#3ecf8e` | `#3ecf8e` | États actifs, succès, indicateurs positifs |
+| `--warning-orange` | `#F5A623` | `#F5A623` | Avertissements, alertes, indicateurs d'attention |
 
 ### Navigation
-| Variable | Mode Light | Mode Dark | Usage |
-|----------|------------|-----------|-------|
-| `--nav-link-color` | `#FDFCF9` | `#ffffff` | Couleur des liens de navigation |
+| Variable | Mode Light | Mode Dark | Type d'éléments |
+|----------|------------|-----------|------------------|
+| `--nav-link-color` | `#FDFCF9` | `#f5f5f0` | Couleur des liens de navigation |
 
 ---
 
@@ -236,25 +238,54 @@ Ce document référence toutes les variables CSS utilisées dans le système de 
 
 ## Variables par Catégorie d'Usage
 
-### Navigation
-- `--nav-link-color` : Liens de navigation
-- `--bg-surface` : Fond de la navbar
+### Pages et Sections
+- `--bg-page` : Fond principal des pages, arrière-plan des sections
+- `--text-primary` : Titres de pages, en-têtes principaux
+- `--text-secondary` : Sous-titres de pages, descriptions de sections
 
-### Contenu
-- `--bg-page` : Fond principal
-- `--card-bg` : Fond des cartes
-- `--text-primary` : Textes principaux
-- `--text-secondary` : Textes secondaires
+### Cartes et Conteneurs
+- `--card-bg` : Fond des cartes, conteneurs de contenu
+- `--bg-surface` : Zones de recherche, panneaux, formulaires
+- `--border` : Contours des cartes, séparateurs
 
-### Interactions
-- `--accent-blue` : Actions principales
-- `--accent-purple` : Actions secondaires
-- `--active-green` : États actifs
+### Navigation et Header
+- `--nav-link-color` : Liens de navigation principale
+- `--accent-blue` : Logo et éléments de branding
+- `--text-primary` : Titres de navigation
 
-### Structure
-- `--border` : Bordures
-- `--shadow` : Ombres
-- `--code-bg` : Fond code
+### Boutons et Actions
+- `--accent-blue` : Boutons primaires, actions principales
+- `--accent-purple` : Boutons secondaires, actions alternatives
+- `--text-primary` : Texte des boutons sur fond coloré
+- `--text-secondary` : Boutons secondaires sans fond
+
+### Formulaires et Inputs
+- `--bg-surface` : Fond des champs de formulaire
+- `--card-bg` : Fond des selecteurs et dropdowns
+- `--text-primary` : Labels des formulaires
+- `--border` : Contours des inputs
+- `--accent-blue` : États focus, bordures actives
+
+### Contenu Textuel
+- `--text-primary` : Titres d'articles, noms, textes importants
+- `--text-secondary` : Descriptions, métadonnées, textes secondaires
+- `--accent-blue` : Liens, mots-clés en surbrillance
+
+### Éléments Interactifs
+- `--accent-blue` : Liens cliquables, éléments hover
+- `--accent-purple` : Badges, tags, éléments décoratifs
+- `--active-green` : Indicateurs de succès, états actifs
+- `--warning-orange` : Alertes, warnings, indicateurs d'attention
+
+### Structure et Layout
+- `--border` : Lignes de séparation, contours
+- `--shadow` : Ombres des cartes et éléments surélevés
+- `--code-bg` : Fond des blocks de code
+
+### Données et Statistiques
+- `--text-primary` : Valeurs numériques, chiffres importants
+- `--text-secondary` : Libellés, unités, descriptions de données
+- `--accent-blue` : Éléments de graphiques, visualisations
 
 ---
 
@@ -331,6 +362,200 @@ Array.from(getComputedStyle(document.documentElement)).filter(prop => prop.start
 
 ---
 
+## Pattern Structure + Variables (Extrait de la page Home)
+
+### 🏗️ **Pattern de Structure Cohérente**
+
+#### **1. Organisation des Composants**
+```css
+/* Structure de base */
+.page {
+  background: var(--bg-page);
+  color: var(--text-primary);
+  transition: var(--theme-transition);
+}
+
+/* Conteneurs principaux */
+.main-container {
+  background: var(--bg-page);
+  padding: var(--spacing-xl);
+}
+
+/* Cartes et conteneurs */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition: var(--transition-normal);
+}
+```
+
+#### **2. Hiérarchie Typographique**
+```css
+/* Titres principaux */
+.main-title {
+  color: var(--text-primary);
+  font-size: 3.5rem;
+  font-weight: 700;
+}
+
+/* Sous-titres */
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+/* Texte secondaire */
+.description {
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+```
+
+#### **3. Éléments Interactifs**
+```css
+/* Boutons primaires */
+.btn-primary {
+  background: var(--accent-blue);
+  color: var(--text-primary);
+  border: none;
+  transition: var(--transition-fast);
+}
+
+/* Boutons secondaires */
+.btn-secondary {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+
+/* États hover */
+.btn-secondary:hover {
+  color: var(--text-primary);
+  border-color: var(--text-primary);
+}
+```
+
+#### **4. Badges et Tags**
+```css
+/* Tags de catégorie */
+.tag {
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+}
+
+/* Badges colorés */
+.tag-blue {
+  background: rgba(79, 110, 247, 0.1);
+  color: var(--accent-blue);
+}
+
+.tag-green {
+  background: rgba(62, 207, 142, 0.1);
+  color: var(--active-green);
+}
+```
+
+#### **5. Formulaires et Inputs**
+```css
+/* Champs de saisie */
+.form-input {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+
+/* Labels */
+.form-label {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+/* États focus */
+.form-input:focus {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 3px rgba(79, 110, 247, 0.1);
+}
+```
+
+### 🎨 **Pattern de Variables Réutilisables**
+
+#### **Variables Fondamentales**
+```css
+:root {
+  /* Système de transition universel */
+  --theme-transition-duration: 0.5s;
+  --theme-transition-easing: cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Application automatique à tous les éléments */
+  * {
+    transition-property: background-color, color, border-color;
+    transition-timing-function: var(--theme-transition-easing);
+    transition-duration: var(--theme-transition-duration);
+  }
+}
+```
+
+#### **Mapping Sémantique**
+| Type d'élément | Variable principale | Variable secondaire | Usage |
+|----------------|------------------|-------------------|-------|
+| **Fonds** | `--bg-page` | `--bg-surface` | Pages, cartes, formulaires |
+| **Textes** | `--text-primary` | `--text-secondary` | Titres, descriptions |
+| **Bordures** | `--border` | - | Séparateurs, contours |
+| **Actions** | `--accent-blue` | `--accent-purple` | Boutons, liens |
+| **États** | `--active-green` | `--warning-orange` | Succès, alertes |
+
+#### **Pattern de Transitions**
+```css
+/* Transitions cohérentes */
+.element {
+  transition: background-color var(--theme-transition) var(--theme-transition-easing),
+              color var(--theme-transition) var(--theme-transition-easing),
+              border-color var(--theme-transition) var(--theme-transition-easing);
+}
+
+/* Transitions rapides */
+.fast-transition {
+  transition: var(--transition-fast);
+}
+
+/* Transitions normales */
+.normal-transition {
+  transition: var(--transition-normal);
+}
+```
+
+### 📋 **Checklist d'Implémentation**
+
+#### **Pour chaque nouveau composant :**
+- [ ] Utiliser `var(--bg-page)` pour le fond principal
+- [ ] Utiliser `var(--card-bg)` pour les conteneurs
+- [ ] Utiliser `var(--text-primary)` pour les titres
+- [ ] Utiliser `var(--text-secondary)` pour les descriptions
+- [ ] Utiliser `var(--border)` pour les séparateurs
+- [ ] Utiliser `var(--accent-blue)` pour les actions principales
+- [ ] Appliquer les transitions du thème
+
+#### **Pour chaque nouvelle page :**
+- [ ] Importer les variables du thème
+- [ ] Structurer avec les conteneurs standards
+- [ ] Appliquer la hiérarchie typographique
+- [ ] Tester en mode light et dark
+
+### 🎯 **Bénéfices du Pattern**
+
+✅ **Cohérence visuelle** : Tous les éléments suivent les mêmes règles
+✅ **Thématisation automatique** : Light/Dark mode sans effort
+✅ **Maintenance simplifiée** : Modifier une variable = impact global
+✅ **Accessibilité** : Contrastes optimisés pour tous les thèmes
+✅ **Scalabilité** : Nouveaux composants intègrent parfaitement
+✅ **Performance** : Variables CSS natives = rapidité
+
+---
+
 ## Conclusion
 
 L'utilisation cohérente de ces variables CSS garantit :
@@ -345,6 +570,7 @@ Tous les nouveaux composants doivent utiliser ces variables pour bénéficier du
 
 ---
 
-**Version** : 1.0  
-**Date** : 19 Avril 2026  
-**Auteur** : Cascade AI Assistant
+**Version** : 1.2  
+**Date** : 20 Avril 2026  
+**Auteur** : Cascade AI Assistant  
+**Mise à jour** : Ajout du pattern Structure + Variables

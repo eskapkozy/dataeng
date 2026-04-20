@@ -368,7 +368,7 @@ const Home = () => {
               </p>
               
               <div className="article-author">
-                <div className="author-avatar" style={{background: 'rgba(79,110,247,0.2)', color: '#4F6EF7'}}>JM</div>
+                <div className="author-avatar" style={{background: 'rgba(79,110,247,0.2)', color: 'var(--accent-blue)'}}>JM</div>
                 <div className="author-info">
                   <div className="author-name">Junior M.</div>
                   <div className="author-meta">il y a 2 jours</div>
@@ -430,7 +430,7 @@ const Home = () => {
               </p>
               
               <div className="article-author">
-                <div className="author-avatar" style={{background: 'rgba(123,92,245,0.2)', color: '#7B5CF5'}}>GK</div>
+                <div className="author-avatar" style={{background: 'rgba(123,92,245,0.2)', color: 'var(--accent-purple)'}}>GK</div>
                 <div className="author-info">
                   <div className="author-name">Grâce K.</div>
                   <div className="author-meta">il y a 3 jours</div>
@@ -480,7 +480,7 @@ const Home = () => {
               </p>
               
               <div className="article-author">
-                <div className="author-avatar" style={{background: 'rgba(34,211,238,0.2)', color: '#22d3ee'}}>KL</div>
+                <div className="author-avatar" style={{background: 'rgba(34,211,238,0.2)', color: 'var(--accent-cyan)'}}>KL</div>
                 <div className="author-info">
                   <div className="author-name">Kevin L.</div>
                   <div className="author-meta">il y a 4 jours</div>
@@ -530,7 +530,7 @@ const Home = () => {
               </p>
               
               <div className="article-author">
-                <div className="author-avatar" style={{background: 'rgba(245,166,35,0.2)', color: '#F5A623'}}>CB</div>
+                <div className="author-avatar" style={{background: 'rgba(245,166,35,0.2)', color: 'var(--warning-orange)'}}>CB</div>
                 <div className="author-info">
                   <div className="author-name">Chancelvie B.</div>
                   <div className="author-meta">il y a 5 jours</div>
@@ -580,7 +580,7 @@ const Home = () => {
               </p>
               
               <div className="article-author">
-                <div className="author-avatar" style={{background: 'rgba(79,110,247,0.2)', color: '#4F6EF7'}}>LP</div>
+                <div className="author-avatar" style={{background: 'rgba(79,110,247,0.2)', color: 'var(--accent-blue)'}}>LP</div>
                 <div className="author-info">
                   <div className="author-name">Landry P.</div>
                   <div className="author-meta">il y a 1 semaine</div>
@@ -630,7 +630,7 @@ const Home = () => {
               </p>
               
               <div className="article-author">
-                <div className="author-avatar" style={{background: 'rgba(62,207,142,0.2)', color: '#3ecf8e'}}>OT</div>
+                <div className="author-avatar" style={{background: 'rgba(62,207,142,0.2)', color: 'var(--active-green)'}}>OT</div>
                 <div className="author-info">
                   <div className="author-name">Ornella T.</div>
                   <div className="author-meta">il y a 1 semaine</div>

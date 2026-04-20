@@ -26,68 +26,65 @@ Le système utilise des variables CSS dynamiques qui s'adaptent automatiquement 
   --text-primary: #1a1a1a;
   --text-secondary: #888888;
   --card-bg: #ffffff;
+  --accent-blue: #4F6EF7;
+  --accent-purple: #7B5CF5;
+  --active-green: #3ecf8e;
+  --warning-orange: #F5A623;
+  --accent-cyan: #22d3ee;
 }
 
 [data-theme="dark"] {
   /* Mode Dark */
-  --bg-surface: #0e0e0e;
-  --bg-page: #0a0a0a;
-  --border: #151515;
-  --text-primary: #ffffff;
-  --text-secondary: #444444;
-  --card-bg: #0e0e0e;
+  --bg-surface: #2a2a2a;
+  --bg-page: #1f1f1f;
+  --border: #404040;
+  --text-primary: #f5f5f0;
+  --text-secondary: #a0a090;
+  --card-bg: #2a2a2a;
+  --accent-blue: #4F6EF7;
+  --accent-purple: #c084fc;
+  --active-green: #3ecf8e;
+  --warning-orange: #F5A623;
+  --accent-cyan: #22d3ee;
 }
 ```
 
 #### Couleurs Principales (Thème-agnostiques)
 | Variable | Light | Dark | Usage |
 |----------|-------|------|-------|
-| `--bg-surface` | `#FDFCF9` | `#0e0e0e` | Fond surfaces, cartes |
-| `--bg-page` | `#F5F4F0` | `#0a0a0a` | Fond principal des pages |
-| `--border` | `#E8E6E0` | `#151515` | Bordures, séparations |
-| `--text-primary` | `#1a1a1a` | `#ffffff` | Textes principaux, titres |
-| `--text-secondary` | `#888888` | `#444444` | Textes secondaires, descriptions |
-| `--card-bg` | `#ffffff` | `#0e0e0e` | Fond des cartes |
-| `--accent-blue` | `#4F6EF7` | `#4F6EF7` | Actions principales, liens |
-| `--accent-purple` | `#7B5CF5` | `#7B5CF5` | Accents secondaires |
-| `--active-green` | `#3ecf8e` | `#3ecf8e` | États actifs, succès |
+| `--bg-surface` | `#FDFCF9` | `#2a2a2a` | Fond surfaces, cartes, formulaires |
+| `--bg-page` | `#F5F4F0` | `#1f1f1f` | Fond principal des pages, sections complètes |
+| `--border` | `#E8E6E0` | `#404040` | Bordures principales, séparateurs, contours |
+| `--text-primary` | `#1a1a1a` | `#f5f5f0` | Titres principaux, textes importants, labels primaires |
+| `--text-secondary` | `#888888` | `#a0a090` | Descriptions, sous-titres, textes secondaires, métadonnées |
+| `--card-bg` | `#ffffff` | `#2a2a2a` | Fond spécifique des cartes, conteneurs |
+| `--accent-blue` | `#4F6EF7` | `#4F6EF7` | Actions principales, liens, boutons primaires, éléments interactifs |
+| `--accent-purple` | `#7B5CF5` | `#c084fc` | Accents secondaires, badges, éléments décoratifs |
+| `--active-green` | `#3ecf8e` | `#3ecf8e` | États actifs, succès, indicateurs positifs |
+| `--warning-orange` | `#F5A623` | `#F5A623` | Avertissements, alertes, indicateurs d'attention |
+| `--accent-cyan` | `#22d3ee` | `#22d3ee` | Éléments spéciaux, accents visuels |
 
 ### Couleurs Spécifiques au Thème
 | Thème | Couleur | Hex | Usage |
 |-------|---------|-----|-------|
-| **Light** | Noir profond | `#000000` | Éléments de contraste max |
-| **Light** | Gris moyen | `#333333` | Textes secondaires |
-| **Dark** | Gris clair | `#252525` | Hover states |
-| **Dark** | Gris border hover | `#333333` | Bordures au hover |
+| **Light** | Noir profond | `#1a1a1a` | Éléments de contraste max, textes primaires |
+| **Light** | Gris moyen | `#888888` | Textes secondaires |
+| **Dark** | Gris clair | `#f5f5f0` | Textes principaux en mode dark |
+| **Dark** | Gris moyen | `#a0a090` | Textes secondaires en mode dark |
 
 ### Couleurs de Catégories (Thème-agnostiques)
-| Catégorie | Hex | RGBA Background | Usage |
-|----------|-----|----------------|-------|
-| **Data Engineering/Big Data** | `#4F6EF7` | `rgba(79,110,247,0.2)` | Tags, badges, avatars |
-| **Machine Learning** | `#9B5CFA` | `rgba(155,92,250,0.2)` | Tags, badges, avatars |
-| **Data Visualisation** | `#22d3ee` | `rgba(34,211,238,0.2)` | Tags, badges, avatars |
-| **Python** | `#F5A623` | `rgba(245,166,35,0.2)` | Tags, badges, avatars |
-| **Congo Use Case** | `#3ecf8e` | `rgba(62,207,142,0.2)` | Tags, badges, avatars |
-
-### Couleurs de Catégories (Articles)
-| Catégorie | Hex | RGBA Background | Usage |
-|----------|-----|----------------|-------|
-| **Data Engineering/Big Data** | `#4F6EF7` | `rgba(79,110,247,0.2)` | Tags, badges, avatars |
-| **Machine Learning** | `#9B5CFA` | `rgba(155,92,250,0.2)` | Tags, badges, avatars |
-| **Data Visualisation** | `#22d3ee` | `rgba(34,211,238,0.2)` | Tags, badges, avatars |
-| **Python** | `#F5A623` | `rgba(245,166,35,0.2)` | Tags, badges, avatars |
-| **Congo Use Case** | `#3ecf8e` | `rgba(62,207,142,0.2)` | Tags, badges, avatars |
-
-### Couleurs Spéciales
-| Couleur | Hex | Usage |
-|---------|-----|-------|
-| **Orange trending** | `#F5A623` | Badge "TRENDING", points d'animation |
-| **Gris hover** | `#252525` | Hover states sur éléments sombres |
-| **Gris border hover** | `#333333` | Hover states sur bordures |
+| Catégorie | Hex | RGBA Background | Variable CSS | Usage |
+|----------|-----|----------------|-------------|-------|
+| **Data Engineering/Big Data** | `#4F6EF7` | `rgba(79,110,247,0.1)` | `--accent-blue` | Tags, badges, avatars |
+| **Machine Learning** | `#9B5CFA` | `rgba(155,92,250,0.1)` | `--accent-purple` | Tags, badges, avatars |
+| **Data Visualisation** | `#22d3ee` | `rgba(34,211,238,0.1)` | `--accent-cyan` | Tags, badges, avatars |
+| **Python** | `#F5A623` | `rgba(245,166,35,0.1)` | `--warning-orange` | Tags, badges, avatars |
+| **Congo Use Case** | `#3ecf8e` | `rgba(62,207,142,0.1)` | `--active-green` | Tags, badges, avatars |
 
 ### Dégradés
-- **Hero gradient** : `linear-gradient(90deg, #4F6EF7 0%, #1a1a1a 100%)`
+- **Hero gradient** : `linear-gradient(90deg, var(--accent-blue) 0%, var(--text-primary) 100%)`
 - **Card gradient** : `linear-gradient(135deg, rgba(79,110,247,0.07) 0%, transparent 70%)`
+- **Surface gradient** : `linear-gradient(90deg, var(--accent-blue) 0%, var(--accent-purple) 100%)`
 
 ---
 
@@ -286,9 +283,24 @@ index.html           # Import des polices
 ### Variables CSS Utilisées
 ```css
 :root {
-  --color-dark-bg: #1A1A1A;
-  --color-white: #FFFFFF;
-  --color-blue: #4F6EF7;
+  /* Variables de thème principales */
+  --bg-page: #F5F4F0;
+  --bg-surface: #FDFCF9;
+  --card-bg: #ffffff;
+  --text-primary: #1a1a1a;
+  --text-secondary: #888888;
+  --border: #E8E6E0;
+  
+  /* Variables d'accents */
+  --accent-blue: #4F6EF7;
+  --accent-purple: #7B5CF5;
+  --active-green: #3ecf8e;
+  --warning-orange: #F5A623;
+  --accent-cyan: #22d3ee;
+  
+  /* Variables de transition */
+  --theme-transition-duration: 0.5s;
+  --theme-transition-easing: cubic-bezier(0.4, 0, 0.2, 1);
 }
 ```
 
