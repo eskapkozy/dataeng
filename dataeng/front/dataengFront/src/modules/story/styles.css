@@ -1541,7 +1541,181 @@ p {
   letter-spacing: 0.04em;
 }
 
-/* RESPONSIVE */
+/* PERFORMANCE OPTIMIZATIONS */
+
+/* Optimisation des animations avec will-change */
+.hero-orb {
+  will-change: transform, opacity;
+}
+
+.timeline-item {
+  will-change: opacity, transform;
+}
+
+.code-line {
+  will-change: opacity, transform;
+}
+
+.origin-dot {
+  will-change: opacity, transform;
+}
+
+.profile-card {
+  will-change: transform;
+}
+
+.constat-card {
+  will-change: transform;
+}
+
+.pillar-card {
+  will-change: transform;
+}
+
+/* Optimisation des transitions avec transform3d */
+.story-section {
+  transform: translateZ(0);
+}
+
+/* Réduction du motion pour les utilisateurs qui préfèrent moins d'animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .hero-orb {
+    animation: none !important;
+  }
+  
+  .timeline-item {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  
+  .code-line {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  
+  .origin-dot {
+    opacity: 0.6 !important;
+    transform: scale(1) !important;
+  }
+}
+
+/* Optimisation pour les écrans haut DPI */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .hero-grid,
+  section {
+    background-size: 80px 80px;
+  }
+}
+
+/* Containment pour optimiser le rendu */
+.story-container {
+  contain: layout style paint;
+}
+
+.section-inner {
+  contain: layout style paint;
+}
+
+/* Optimisation des images et SVG */
+.hero-scroll-arrow svg {
+  shape-rendering: geometricPrecision;
+}
+
+/* Optimisation du défilement */
+.story-section {
+  scroll-behavior: smooth;
+}
+
+/* GPU acceleration pour les éléments animés */
+.hero-title,
+.chapter-title,
+.timeline-badge {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* RESPONSIVE - TABLETS */
+@media (max-width: 1024px) {
+  .story-section {
+    padding: 6rem 2rem;
+  }
+
+  .pillars-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  .constat-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  .chiffres-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .profiles-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+  }
+
+  .vision-code-block {
+    transform: scale(0.9);
+  }
+}
+
+/* RESPONSIVE - GRANDS MOBILES */
+@media (max-width: 768px) {
+  .story-section {
+    padding: 5rem 1.5rem;
+  }
+
+  .pillars-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .constat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .chiffres-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .profiles-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 10vw, 3.5rem);
+  }
+
+  .vision-code-block {
+    transform: scale(0.8);
+  }
+
+  .timeline {
+    max-width: 400px;
+  }
+
+  .nav-dots {
+    opacity: 0.7;
+  }
+}
+
+/* RESPONSIVE - PETITS MOBILES */
 @media (max-width: 640px) {
   .story-section {
     padding: 4.5rem 1rem;
@@ -1553,11 +1727,6 @@ p {
 
   .nav-dots {
     display: none;
-  }
-
-  .pillars-grid,
-  .constat-grid {
-    grid-template-columns: 1fr;
   }
 
   .data-points {
@@ -1575,6 +1744,87 @@ p {
 
   .chiffres-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .profiles-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-title {
+    font-size: clamp(1.8rem, 12vw, 3rem);
+  }
+
+  .hero-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .chapter-title {
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
+  }
+
+  .narrative-body {
+    font-size: 0.95rem;
+  }
+
+  .timeline {
+    max-width: 300px;
+  }
+
+  .timeline-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cta-button {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+/* RESPONSIVE - TRÈS PETITS ÉCRANS */
+@media (max-width: 480px) {
+  .story-section {
+    padding: 3.5rem 0.75rem;
+  }
+
+  .section-inner {
+    max-width: 100%;
+  }
+
+  .hero-title {
+    font-size: clamp(1.5rem, 14vw, 2.5rem);
+  }
+
+  .chapter-title {
+    font-size: clamp(1.3rem, 7vw, 2rem);
+  }
+
+  .narrative-body {
+    font-size: 0.9rem;
+  }
+
+  .origin-dots {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .chiffres-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .timeline {
+    max-width: 280px;
+  }
+
+  .timeline-badge {
+    font-size: 0.55rem;
+    padding: 2px 6px;
   }
 }
 

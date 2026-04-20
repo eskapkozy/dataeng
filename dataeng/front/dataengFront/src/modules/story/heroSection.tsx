@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useScrollProgress } from '../../hooks/useScrollreveal';
 import { useScrollReveal } from '../../hooks/useScrollreveal';
 
@@ -16,7 +16,7 @@ export function HeroSection() {
   }, []);
 
   return (
-    <section className="hero-section" id="hero">
+    <section className="hero-section" id="hero" aria-labelledby="hero-title">
       <div className="hero-background">
         <div 
           className="hero-orb"
@@ -24,13 +24,14 @@ export function HeroSection() {
             transform: `translateY(${scrollYProgress * 100}px) scale(${1 + scrollYProgress * 0.5})`,
             opacity: 1 - scrollYProgress * 0.3
           }}
+          aria-hidden="true"
         />
-        <div className="hero-grid" />
+        <div className="hero-grid" aria-hidden="true" />
       </div>
 
       <div className="hero-content">
         <div className="hero-text">
-          <h1 className="hero-title">
+          <h1 className="hero-title" id="hero-title">
             <span className="hero-static">Data Eng Congo</span>
             <br />
             <span className="hero-dynamic">
@@ -42,6 +43,8 @@ export function HeroSection() {
                          wordIndex === 4 ? 'var(--active-green)' : 
                          'var(--text-primary)'
                 }}
+                aria-live="polite"
+                aria-atomic="true"
               >
                 {WORDS[wordIndex]}
               </span>
@@ -59,7 +62,7 @@ export function HeroSection() {
       </div>
 
       <div className="hero-scroll-container">
-        <div 
+        <button
           className="hero-scroll-indicator"
           onClick={() => {
             const origineSection = document.getElementById('origine');
@@ -67,26 +70,28 @@ export function HeroSection() {
               origineSection.scrollIntoView({ behavior: 'smooth' });
             }
           }}
+          aria-label="Découvrir l'histoire de Data Eng Congo"
         >
-          <div className="scroll-mouse">
+          <div className="scroll-mouse" aria-hidden="true">
             <div className="scroll-wheel"></div>
           </div>
           <div className="scroll-content">
             <span className="scroll-text">Découvrir l'histoire</span>
-            <div className="scroll-arrow">
+            <div className="scroll-arrow" aria-hidden="true">
               <svg width="20" height="12" viewBox="0 0 20 12" fill="none">
                 <path d="M1 1L10 10L19 1" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
               </svg>
             </div>
           </div>
-        </div>
+        </button>
       </div>
     </section>
   );
 }
 
 function HeroCode() {
-  const { ref, isVisible } = useScrollReveal({ threshold: 0.3 });
+  const codeRef = useRef<HTMLDivElement>(null);
+  const { isVisible } = useScrollReveal({ threshold: 0.3 });
   const lines = [
     { text: 'const community = {', indent: 0, type: 'key' },
     { text: '  mission: "Connecter. Construire. Grandir.",', indent: 1, type: 'string' },
@@ -95,7 +100,12 @@ function HeroCode() {
   ];
 
   return (
-    <div ref={ref as any} className="code-block">
+    <div 
+      ref={codeRef}
+      className="code-block"
+      role="img"
+      aria-label="Code JavaScript représentant la mission Data Eng Congo"
+    >
       {lines.map((line, i) => (
         <div
           key={i}
@@ -105,6 +115,7 @@ function HeroCode() {
             transform: isVisible ? 'none' : 'translateX(-16px)',
             transition: `opacity 0.5s ease ${i * 80 + 200}ms, transform 0.5s ease ${i * 80 + 200}ms`,
           }}
+          aria-hidden="true"
         >
           {line.text}
         </div>
