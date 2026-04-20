@@ -6,19 +6,19 @@
 @import './styles/typography.css';
 
 :root {
-  /* Variables light mode par défaut */
-  --bg-surface: #FDFCF9;
-  --bg-page: #F5F4F0;
-  --border: #E8E6E0;
-  --text-primary: #1a1a1a;
-  --text-secondary: #888888;
+  /* Variables light mode - version ultra-douce et minimale */
+  --bg-surface: #f0ede9;
+  --bg-page: #edeae6;
+  --border: #d6d2cc;
+  --text-primary: #4a4a4a;
+  --text-secondary: #8a8a8a;
   --accent-blue: #4F6EF7;
   --accent-purple: #7B5CF5;
   --accent-cyan: #22d3ee;
   --active-green: #3ecf8e;
   --warning-orange: #F5A623;
-  --card-bg: #ffffff;
-  --nav-link-color: #FDFCF9;
+  --card-bg: #f2f0ec;
+  --nav-link-color: #4a4a4a;
   
   /* Animation de transition de thème */
   --theme-transition-duration: 0.5s;
@@ -53,11 +53,11 @@
   --border: var(--border);
   --code-bg: var(--bg-surface);
   --accent: var(--accent-purple);
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
+  --accent-bg: rgba(123, 92, 245, 0.04);
+  --accent-border: rgba(123, 92, 255, 0.2);
+  --social-bg: rgba(237, 234, 230, 0.5);
   --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+    rgba(74, 74, 74, 0.02) 0 10px 15px -3px, rgba(74, 74, 74, 0.01) 0 4px 6px -2px;
 
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
   --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
