@@ -175,49 +175,49 @@ function VisionCode() {
           <div className="code-section">
             <div className="code-comment">// Community Configuration</div>
             <div className="code-line">
-              <span className="code-keyword">const</span> community = {'{'}
+              <span className="code-keyword">const</span> community = <span className="code-brace">{'{'}</span>
             </div>
             <div className="code-line">
-              <span className="code-property">name</span>:{' '}
-              <span className="code-string">"Data Eng Congo"</span>,
+              <span className="code-property">name</span><span className="code-punctuation">:</span>{' '}
+              <span className="code-string">"Data Eng Congo"</span><span className="code-punctuation">,</span>
             </div>
             <div className="code-line">
-              <span className="code-property">location</span>:{' '}
-              <span className="code-string">"Brazzaville, Congo"</span>,
+              <span className="code-property">location</span><span className="code-punctuation">:</span>{' '}
+              <span className="code-string">"Brazzaville, Congo"</span><span className="code-punctuation">,</span>
             </div>
             <div className="code-line">
-              <span className="code-property">mission</span>:{' '}
-              <span className="code-string">"Connecter. Construire. Grandir."</span>,
+              <span className="code-property">mission</span><span className="code-punctuation">:</span>{' '}
+              <span className="code-string">"Connecter. Construire. Grandir."</span><span className="code-punctuation">,</span>
             </div>
             <div className="code-line">
-              <span className="code-property">members</span>:{' '}
-              <span className="code-type">Array&lt;Talent&gt;</span>,
+              <span className="code-property">members</span><span className="code-punctuation">:</span>{' '}
+              <span className="code-type">Array&lt;Talent&gt;</span><span className="code-punctuation">,</span>
             </div>
             <div className="code-line">
-              <span className="code-property">open</span>:{' '}
-              <span className="code-boolean">true</span>,
+              <span className="code-property">open</span><span className="code-punctuation">:</span>{' '}
+              <span className="code-boolean">true</span><span className="code-punctuation">,</span>
             </div>
-            <div className="code-line">{'};'}</div>
+            <div className="code-line"><span className="code-brace">{'}'}</span><span className="code-punctuation">;</span></div>
           </div>
 
           <div className="code-section">
             <div className="code-comment">// Key Features</div>
             <div className="code-line">
-              <span className="code-keyword">const</span> features = {'{'}
+              <span className="code-keyword">const</span> features = <span className="code-brace">{'{'}</span>
             </div>
             <div className="code-line">
-              <span className="code-property">networking</span>:{' '}
-              <span className="code-string">"Professional connections"</span>,
+              <span className="code-property">networking</span><span className="code-punctuation">:</span>{' '}
+              <span className="code-string">"Professional connections"</span><span className="code-punctuation">,</span>
             </div>
             <div className="code-line">
-              <span className="code-property">knowledge</span>:{' '}
-              <span className="code-string">"Skill sharing & mentoring"</span>,
+              <span className="code-property">knowledge</span><span className="code-punctuation">:</span>{' '}
+              <span className="code-string">"Skill sharing & mentoring"</span><span className="code-punctuation">,</span>
             </div>
             <div className="code-line">
-              <span className="code-property">innovation</span>:{' '}
-              <span className="code-string">"Local data projects"</span>,
+              <span className="code-property">innovation</span><span className="code-punctuation">:</span>{' '}
+              <span className="code-string">"Local data projects"</span><span className="code-punctuation">,</span>
             </div>
-            <div className="code-line">{'};'}</div>
+            <div className="code-line"><span className="code-brace">{'}'}</span><span className="code-punctuation">;</span></div>
           </div>
 
           <div className="code-section">

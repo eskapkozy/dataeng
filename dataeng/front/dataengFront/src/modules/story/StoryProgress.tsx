@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
 import { useScrollProgress } from '../../hooks/useScrollreveal';
+import { useChapterNavigation } from '../../hooks/useChapterNavigation';
 
 const SECTIONS = [
   { id: 'origine', label: '01' },
@@ -13,38 +13,10 @@ const SECTIONS = [
 
 export function StoryProgress() {
   const scrollYProgress = useScrollProgress();
-  const [activeSection, setActiveSection] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = document.querySelectorAll('section[id]');
-      const scrollPosition = window.scrollY + window.innerHeight / 2;
-
-      sections.forEach((section, index) => {
-        const element = section as HTMLElement;
-        const { offsetTop, offsetHeight } = element;
-        
-        if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-          setActiveSection(index);
-        }
-      });
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Initial call
-    
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  const { showNavigation, activeSection, scrollToSection } = useChapterNavigation();
 
   return (
-    <div className="story-progress">
+    <div className={`story-progress ${showNavigation ? 'story-progress--visible' : 'story-progress--hidden'}`}>
       <div className="progress-dots">
         {SECTIONS.map((section, index) => (
           <button

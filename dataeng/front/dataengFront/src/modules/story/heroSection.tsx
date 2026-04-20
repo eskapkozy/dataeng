@@ -16,7 +16,7 @@ export function HeroSection() {
   }, []);
 
   return (
-    <section className="hero-section">
+    <section className="hero-section" id="hero">
       <div className="hero-background">
         <div 
           className="hero-orb"
@@ -59,7 +59,15 @@ export function HeroSection() {
       </div>
 
       <div className="hero-scroll-container">
-        <div className="hero-scroll-indicator">
+        <div 
+          className="hero-scroll-indicator"
+          onClick={() => {
+            const origineSection = document.getElementById('origine');
+            if (origineSection) {
+              origineSection.scrollIntoView({ behavior: 'smooth' });
+            }
+          }}
+        >
           <div className="scroll-mouse">
             <div className="scroll-wheel"></div>
           </div>

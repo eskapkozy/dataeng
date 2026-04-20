@@ -104,6 +104,16 @@
   --text-muted: #666666;
   --text-inverse: #1a1a1a;
   
+  /* Couleurs de code optimisées pour mode dark */
+  --code-keyword-dark: #79C0FF;  /* Bleu clair pour mots-clés */
+  --code-property-dark: #58A6FF; /* Bleu vif pour propriétés (plus visible) */
+  --code-string-dark: #A5D6FF;  /* Bleu très clair pour strings */
+  --code-type-dark: #D2A8FF;    /* Purple clair pour types */
+  --code-boolean-dark: #FFAB70; /* Orange clair pour booléens */
+  --code-brace-dark: #FF7B72;   /* Rouge clair pour accolades */
+  --code-punctuation-dark: #8B949E; /* Gris pour ponctuation */
+  --code-comment-dark: #8B949E; /* Gris pour commentaires */
+  
   --shadow-xs: 0 1px 2px rgba(0,0,0,0.3);
   --shadow-sm: 0 2px 4px rgba(0,0,0,0.4);
   --shadow-md: 0 4px 6px rgba(0,0,0,0.5);
@@ -236,11 +246,23 @@
   right: var(--space-lg);
   top: 50%;
   transform: translateY(-50%);
-  z-index: 1000;
+  z-index: 100;
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: var(--space-md);
+  transition: all var(--transition-base);
+}
+
+.story-progress--hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-50%) translateX(20px);
+}
+
+.story-progress--visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(0);
 }
 
 .progress-dots {
@@ -253,14 +275,12 @@
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: var(--text-muted);
-  border: 2px solid var(--bg-surface);
+  background: transparent;
+  border: 2px solid var(--text-secondary);
   cursor: pointer;
-  transition: all var(--transition-base);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  transition: all var(--transition-fast);
   position: relative;
+  opacity: 0.8;
 }
 
 .progress-dot:hover {
@@ -279,18 +299,22 @@
   position: absolute;
   right: 20px;
   font-family: var(--font-mono);
-  font-size: 0.625rem;
-  font-weight: 600;
+  font-size: 10px;
   color: var(--text-secondary);
-  opacity: 0;
-  transition: opacity var(--transition-base);
-  white-space: nowrap;
+  opacity: 0.6;
+  transition: all var(--transition-fast);
   pointer-events: none;
+  background: var(--bg-surface);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
 }
 
 .progress-dot:hover .progress-dot-label,
 .progress-dot--active .progress-dot-label {
   opacity: 1;
+  color: var(--accent-blue);
+  border-color: var(--accent-blue);
 }
 
 .progress-bar {
@@ -488,7 +512,8 @@
 }
 
 .code-property {
-  color: var(--accent-purple);
+  color: var(--accent-cyan);
+  font-weight: 600;
 }
 
 .code-string {
@@ -502,6 +527,48 @@
 .code-boolean {
   color: var(--warning-orange);
   font-weight: 600;
+}
+
+.code-brace {
+  color: var(--accent-purple);
+  font-weight: 600;
+}
+
+.code-punctuation {
+  color: var(--text-secondary);
+}
+
+/* Mode dark - couleurs optimisées pour le code */
+[data-theme="dark"] .code-keyword {
+  color: var(--code-keyword-dark);
+}
+
+[data-theme="dark"] .code-property {
+  color: var(--code-property-dark);
+}
+
+[data-theme="dark"] .code-string {
+  color: var(--code-string-dark);
+}
+
+[data-theme="dark"] .code-type {
+  color: var(--code-type-dark);
+}
+
+[data-theme="dark"] .code-boolean {
+  color: var(--code-boolean-dark);
+}
+
+[data-theme="dark"] .code-brace {
+  color: var(--code-brace-dark);
+}
+
+[data-theme="dark"] .code-punctuation {
+  color: var(--code-punctuation-dark);
+}
+
+[data-theme="dark"] .code-comment {
+  color: var(--code-comment-dark);
 }
 
 /* --- Hero Scroll Indicator Styles --- */
@@ -529,10 +596,10 @@
 .scroll-mouse {
   width: 32px;
   height: 52px;
-  border: 2px solid var(--white-60);
+  border: 2px solid var(--text-secondary);
   border-radius: var(--radius-full);
   position: relative;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.05);
   backdrop-filter: blur(10px);
   animation: mouseFloat 3s ease-in-out infinite;
 }
@@ -540,7 +607,7 @@
 .scroll-wheel {
   width: 6px;
   height: 10px;
-  background: var(--white-80);
+  background: var(--text-primary);
   border-radius: 3px;
   position: absolute;
   top: 12px;
@@ -559,14 +626,14 @@
 .scroll-text {
   font-family: var(--font-mono);
   font-size: 9px;
-  color: var(--white-80);
+  color: var(--text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-weight: 700;
 }
 
 .scroll-arrow {
-  color: var(--white-60);
+  color: var(--text-secondary);
   animation: arrowBounce 2s ease-in-out infinite;
 }
 
