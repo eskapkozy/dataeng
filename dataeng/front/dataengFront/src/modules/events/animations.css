@@ -1,0 +1,549 @@
+/* Animations avancées pour la page Events */
+
+/* Design system complet inspiré de la page Story */
+:root {
+  /* Espacements */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 48px;
+  --spacing-xxxl: 64px;
+  --spacing-4xl: 96px;
+  --spacing-5xl: 128px;
+  
+  /* Couleurs Data Eng */
+  --bg-page: #F5F4F0;
+  --bg-surface: #FDFCF9;
+  --bg-accent: #FFFFFF;
+  --border: #E8E6E0;
+  --border-light: #F0EDE6;
+  
+  /* Textes */
+  --text-primary: #1a1a1a;
+  --text-secondary: #888888;
+  --text-muted: #B0B0B0;
+  --text-inverse: #FFFFFF;
+  
+  /* Couleurs accent */
+  --accent-blue: #4F6EF7;
+  --accent-purple: #7B5CF5;
+  --accent-cyan: #22d3ee;
+  --accent-orange: #F5A623;
+  --active-green: #3ecf8e;
+  --warning-orange: #F5A623;
+  --error-red: #EF4444;
+  
+  /* Rayons */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+  
+  /* Ombres */
+  --shadow-xs: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.07);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+  --shadow-xl: 0 20px 25px rgba(0,0,0,0.1);
+  
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.4s ease;
+  --transition-theme: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Espacement entre sections - Respiration visuelle inspirée de l'exemple */
+.events-page section {
+  padding: var(--spacing-4xl) var(--spacing-2xl);
+  margin-bottom: var(--spacing-5xl);
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  background: var(--bg-page);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Espacement vertical encore plus généreux */
+.events-page > section:not(:first-child) {
+  margin-top: var(--spacing-5xl);
+}
+
+/* Hero section avec respiration maximale */
+.hero-section {
+  padding: var(--spacing-5xl) var(--spacing-2xl);
+  min-height: 100vh;
+  background: var(--bg-page);
+  max-width: 1300px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* Navigation et filtres avec respiration */
+.nav-filters {
+  padding: var(--spacing-3xl) var(--spacing-2xl);
+  margin-bottom: var(--spacing-4xl);
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  background: var(--bg-surface);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-light);
+}
+
+/* Grille d'événements avec respiration */
+.events-grid {
+  padding: var(--spacing-4xl) var(--spacing-2xl);
+  margin-bottom: var(--spacing-5xl);
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  background: var(--bg-surface);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-light);
+}
+
+/* Ticker section avec respiration subtile */
+.ticker-section {
+  padding: var(--spacing-xl) var(--spacing-2xl);
+  margin-bottom: var(--spacing-4xl);
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  background: var(--bg-surface);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-light);
+}
+
+/* Archives section avec respiration généreuse */
+.archives-section {
+  padding: var(--spacing-4xl) var(--spacing-2xl);
+  margin-bottom: var(--spacing-5xl);
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  background: var(--bg-surface);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-light);
+}
+
+/* CTA section avec respiration finale */
+.cta-section {
+  padding: var(--spacing-4xl) var(--spacing-2xl);
+  margin-bottom: var(--spacing-4xl);
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  background: var(--bg-surface);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-light);
+}
+
+/* Espacement supplémentaire pour la respiration */
+.events-page {
+  background: var(--bg-page);
+  padding: var(--spacing-2xl) 0;
+}
+
+/* Espacement horizontal pour le contenu */
+.events-page .hero-grid,
+.events-page .cta-grid {
+  max-width: 1000px;
+  margin: 0 auto;
+  gap: var(--spacing-3xl);
+}
+
+/* Espacement vertical dans les sections */
+.section-header {
+  margin-bottom: var(--spacing-3xl);
+}
+
+.section-content {
+  margin-bottom: var(--spacing-2xl);
+}
+
+/* Espacement pour les éléments de liste */
+.event-card {
+  margin-bottom: var(--spacing-xl);
+}
+
+/* Espacement pour les éléments de navigation */
+.nav-filters .tabs,
+.nav-filters .filters {
+  margin-bottom: var(--spacing-xl);
+}
+
+/* Centrage des éléments de navigation */
+.nav-filters .tabs,
+.nav-filters .filters {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+/* Cartes événements selon le design de l'exemple */
+.event-card {
+  background: #0a0a0a;
+  border: none;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: var(--transition-normal);
+  border-bottom: none;
+}
+
+.event-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Header épuré selon l'exemple */
+.event-header-clean {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.event-type-badge {
+  font-family: 'Martian Mono', monospace;
+  font-size: 8px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.event-date-clean {
+  font-family: 'Martian Mono', monospace;
+  font-size: 10px;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Contenu principal */
+.event-content-clean {
+  margin-bottom: 12px;
+}
+
+.event-title-clean {
+  font-family: 'Martian Mono', monospace;
+  font-weight: 800;
+  font-size: 16px;
+  color: #fff;
+  line-height: 1.2;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.02em;
+}
+
+.event-desc-clean {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: #888;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Footer optimisé */
+.event-footer-clean {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid #1a1a1a;
+}
+
+.event-meta-clean {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.meta-item-clean {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Martian Mono', monospace;
+  font-size: 10px;
+  color: #666;
+}
+
+/* Bouton RSVP épuré */
+.rsvp-btn-clean {
+  font-family: 'Martian Mono', monospace;
+  font-weight: 700;
+  font-size: 10px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.rsvp-btn-clean:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Grille adaptative pour éviter les orphelines */
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  align-items: start;
+}
+
+/* Pour 4 événements : 1 card span 2 + 2 cards normales */
+.events-grid .event-card:nth-child(1) {
+  grid-column: span 2;
+}
+
+/* Responsive pour les petits écrans */
+@media (max-width: 768px) {
+  .events-grid .event-card:nth-child(1) {
+    grid-column: span 1;
+  }
+  
+  .event-header-clean {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  
+  .event-footer-clean {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  
+  .event-card {
+    padding: 16px;
+  }
+}
+
+/* Conteneurs centrés pour chaque section */
+.section-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.section-left {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+/* Effets de respiration subtile */
+.breathing {
+  animation: breathe 4s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.02);
+    opacity: 1;
+  }
+}
+
+/* Effets de vague fluide */
+.wave-fluid {
+  position: relative;
+  overflow: hidden;
+}
+
+.wave-fluid::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, transparent 30%, rgba(79, 110, 247, 0.1) 50%, transparent 70%);
+  border-radius: inherit;
+  animation: waveMove 3s linear infinite;
+}
+
+@keyframes waveMove {
+  0% {
+    transform: translateX(-100%) translateY(0);
+  }
+  50% {
+    transform: translateX(100%) translateY(-2px);
+  }
+  100% {
+    transform: translateX(-100%) translateY(0);
+  }
+}
+
+/* Effets de scintillement doux */
+.soft-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.soft-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  animation: softShimmer 2.5s ease-in-out infinite;
+}
+
+@keyframes softShimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Effets de flottement naturel */
+.natural-float {
+  animation: naturalFloat 6s ease-in-out infinite;
+}
+
+@keyframes naturalFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-3px) rotate(1deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-3px) rotate(-1deg);
+  }
+}
+
+/* Effets de pulsation cardiaque */
+.heartbeat {
+  animation: heartbeat 2s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  10% {
+    transform: scale(1.05);
+  }
+  20% {
+    transform: scale(1.1);
+  }
+  30% {
+    transform: scale(1.05);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
+
+/* Effets de zoom doux */
+.soft-zoom {
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.soft-zoom:hover {
+  transform: scale(1.05);
+}
+
+/* Effets de déformation organique */
+.organic-morph {
+  animation: organicMorph 4s ease-in-out infinite;
+}
+
+@keyframes organicMorph {
+  0%, 100% {
+    border-radius: 8px;
+    transform: scale(1) rotate(0deg);
+  }
+  33% {
+    border-radius: 12px;
+    transform: scale(1.02) rotate(1deg);
+  }
+  66% {
+    border-radius: 6px;
+    transform: scale(0.98) rotate(-1deg);
+  }
+}
+
+/* Effets de néon subtils sur les badges */
+.event-badge.neon {
+  animation: neonPulse 2s ease-in-out infinite;
+}
+
+@keyframes neonPulse {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(79, 110, 247, 0.8);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(79, 110, 247, 1), 0 0 30px rgba(79, 110, 247, 0.6);
+  }
+}
+
+/* Particules flottantes */
+.particles-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 999;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: particleFloat 3s ease-in-out infinite;
+}
+
+@keyframes particleFloat {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-20px) scale(1.2);
+    opacity: 0.8;
+  }
+}

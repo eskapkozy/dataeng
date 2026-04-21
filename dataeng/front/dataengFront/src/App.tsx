@@ -7,6 +7,7 @@ import Members from './modules/members'
 import Write from './modules/write'
 import Auth from './modules/auth'
 import GetStarted from './modules/get-started'
+import Events from './modules/events'
 import './App.css'
 
 function AppContent() {
@@ -20,6 +21,7 @@ function AppContent() {
           <Route path="/story" element={<Story />} />
           <Route path="/members" element={<Members />} />
           <Route path="/write" element={<Write />} />
+          <Route path="/events" element={<Events />} />
           <Route path="/login" element={<Auth />} />
           <Route path="/get-started" element={<GetStarted />} />
         </Routes>
