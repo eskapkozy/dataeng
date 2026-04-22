@@ -67,7 +67,7 @@ const Members = () => {
                 <span className="skill-tag">Data Visualization</span>
               </div>
             </div>
-            <button className="btn-secondary">Voir profil</button>
+            <button className="open-btn btn-secondary">Voir profil</button>
           </div>
         ))}
       </section>

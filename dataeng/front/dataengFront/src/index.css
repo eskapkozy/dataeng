@@ -4,6 +4,9 @@
 
 /* Import DataEng Design System */
 @import './styles/typography.css';
+@import './styles/callButton.css';
+@import './styles/openButton.css';
+@import './styles/filters.css';
 
 :root {
   /* Variables light mode - version ultra-douce et minimale */

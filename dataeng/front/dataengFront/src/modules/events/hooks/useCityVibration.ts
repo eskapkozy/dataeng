@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect } from 'react'
 
 // Configuration centralisée des villes
 export const CITY_MAPPING = {
@@ -19,64 +19,91 @@ export const CITY_MAPPING = {
     svgId: 'kinshasa-point',
     color: 'var(--accent-purple)',
     label: 'Kinshasa'
+  },
+  pointe_noire: {
+    x: 400, y: 410,
+    svgId: 'pointe-noire-point',
+    color: 'var(--warning-orange)',
+    label: 'Pointe-Noire'
   }
 } as const
 
 export type CityName = keyof typeof CITY_MAPPING
 
-// Hook pour détecter les villes dans un texte et gérer la vibration
-export const useCityVibration = (currentEventTitle: string = '') => {
-  const [vibratingCities, setVibratingCities] = useState<Set<CityName>>(new Set())
+// Hook pour gérer les vibrations basées sur la position du map-transition-indicator
+export const useCityVibration = (activeCity: CityName = 'brazzaville') => {
+  // Initialiser les états avec les valeurs par défaut pour vibration immédiate
+  const [massiveVibratingCity, setMassiveVibratingCity] = useState<CityName | null>(activeCity)
+  const [basicVibratingCities, setBasicVibratingCities] = useState<Set<CityName>>(
+    new Set(Object.keys(CITY_MAPPING).filter(city => city !== activeCity) as CityName[])
+  )
 
-  // Détecter les villes mentionnées dans le texte
-  const detectCitiesInText = useMemo(() => {
-    return (text: string): CityName[] => {
-      const cities: CityName[] = []
-      const lowerText = text.toLowerCase()
-      
-      Object.keys(CITY_MAPPING).forEach(city => {
-        const cityName = city as CityName
-        if (lowerText.includes(city.toLowerCase()) || 
-            lowerText.includes(CITY_MAPPING[cityName].label.toLowerCase())) {
-          cities.push(cityName)
-        }
-      })
-      
-      return cities
-    }
-  }, [])
-
-  // Mettre à jour les villes qui vibrent
+  // Mettre à jour les états de vibration quand la ville active change
   useEffect(() => {
-    const detectedCities = detectCitiesInText(currentEventTitle)
-    setVibratingCities(new Set(detectedCities))
-  }, [currentEventTitle, detectCitiesInText])
+    // Toujours activer la vibration massive sur la ville active et basique sur les autres
+    setMassiveVibratingCity(activeCity)
+    const otherCities = Object.keys(CITY_MAPPING).filter(city => city !== activeCity) as CityName[]
+    setBasicVibratingCities(new Set(otherCities))
+  }, [activeCity])
 
-  // Fonction pour activer manuellement la vibration d'une ville
-  const vibrateCity = (city: CityName) => {
-    setVibratingCities(prev => new Set([...prev, city]))
+  // Fonction pour activer manuellement la vibration massive sur une ville
+  const activateMassiveVibration = (city: CityName) => {
+    setMassiveVibratingCity(city)
+    const otherCities = Object.keys(CITY_MAPPING).filter(c => c !== city) as CityName[]
+    setBasicVibratingCities(new Set(otherCities))
   }
 
-  // Fonction pour arrêter la vibration d'une ville
-  const stopVibration = (city: CityName) => {
-    setVibratingCities(prev => {
+  // Fonction pour arrêter la vibration massive
+  const stopMassiveVibration = () => {
+    setMassiveVibratingCity(null)
+    setBasicVibratingCities(new Set(Object.keys(CITY_MAPPING) as CityName[]))
+  }
+
+  // Fonction pour activer/désactiver la vibration basique d'une ville
+  const toggleBasicVibration = (city: CityName) => {
+    setBasicVibratingCities(prev => {
       const newSet = new Set(prev)
-      newSet.delete(city)
+      if (newSet.has(city)) {
+        newSet.delete(city)
+      } else {
+        newSet.add(city)
+      }
       return newSet
     })
   }
 
-  // Fonction pour arrêter toutes les vibrations
-  const stopAllVibrations = () => {
-    setVibratingCities(new Set())
+  // Vérifier si une ville a une vibration massive
+  const hasMassiveVibration = (city: CityName): boolean => {
+    return massiveVibratingCity === city
+  }
+
+  // Vérifier si une ville a une vibration basique
+  const hasBasicVibration = (city: CityName): boolean => {
+    return basicVibratingCities.has(city)
+  }
+
+  // Obtenir la classe CSS pour le map-transition-indicator
+  const getIndicatorClass = (): string => {
+    return massiveVibratingCity ? 'massive-vibrating' : ''
+  }
+
+  // Obtenir la classe CSS pour un overlay de ville
+  const getOverlayClass = (city: CityName): string => {
+    if (hasMassiveVibration(city)) return 'massive-vibrating'
+    if (hasBasicVibration(city)) return 'basic-vibrating'
+    return ''
   }
 
   return {
-    vibratingCities,
-    vibrateCity,
-    stopVibration,
-    stopAllVibrations,
-    detectCitiesInText,
+    massiveVibratingCity,
+    basicVibratingCities,
+    hasMassiveVibration,
+    hasBasicVibration,
+    activateMassiveVibration,
+    stopMassiveVibration,
+    toggleBasicVibration,
+    getIndicatorClass,
+    getOverlayClass,
     CITY_MAPPING
   }
 }

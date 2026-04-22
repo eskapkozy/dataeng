@@ -802,6 +802,359 @@ Le système s'adapte automatiquement au thème via les variables CSS :
 
 ---
 
+## Variables de Open Buttons Unifiées
+
+### Vue d'ensemble
+Système de variables CSS pour tous les boutons d'ouverture/navigation du site Data Eng : "En savoir plus", "Voir profil", "Nous contacter", etc.
+
+### Fichier de référence
+`/src/styles/openButton.css` - Importé dans les pages utilisant des boutons d'ouverture
+
+### Variables Principales
+
+#### Couleurs et Fond
+| Variable | Valeur (Light) | Valeur (Dark) | Usage |
+|----------|---------------|---------------|------|
+| `--open-btn-bg` | `transparent` | `transparent` | Fond des boutons inactifs |
+| `--open-btn-bg-hover` | `transparent` | `transparent` | Fond au survol |
+| `--open-btn-color` | `var(--text-secondary)` | `var(--text-secondary)` | Texte des boutons inactifs |
+| `--open-btn-color-hover` | `var(--text-primary)` | `var(--text-primary)` | Texte au survol |
+| `--open-btn-border` | `none` | `none` | Bordure des boutons |
+| `--open-btn-border-hover` | `none` | `none` | Bordure au survol |
+
+#### Typographie
+| Variable | Valeur | Usage |
+|----------|--------|------|
+| `--open-btn-font-family` | `'DM Sans', sans-serif` | Police des boutons |
+| `--open-btn-font-weight` | `500` | Graisse de la police |
+| `--open-btn-font-size` | `16px` | Taille de police |
+| `--open-btn-letter-spacing` | `0.01em` | Espacement des lettres |
+| `--open-btn-line-height` | `1.4` | Hauteur de ligne |
+
+#### Dimensions et Espacement
+| Variable | Valeur | Usage |
+|----------|--------|------|
+| `--open-btn-padding-y` | `var(--spacing-sm, 8px)` | Padding vertical |
+| `--open-btn-padding-x` | `var(--spacing-lg, 24px)` | Padding horizontal |
+| `--open-btn-padding` | `var(--open-btn-padding-y) var(--open-btn-padding-x)` | Padding complet |
+| `--open-btn-border-radius` | `var(--radius-sm, 8px)` | Rayon des coins |
+| `--open-btn-min-height` | `44px` | Hauteur minimum (accessibilité) |
+
+#### Transitions et Animations
+| Variable | Valeur | Usage |
+|----------|--------|------|
+| `--open-btn-transition` | `all 0.3s cubic-bezier(0.4, 0, 0.2, 1)` | Transition principale |
+| `--open-btn-transition-fast` | `0.2s ease` | Transitions rapides |
+| `--open-btn-transition-smooth` | `0.3s cubic-bezier(0.4, 0, 0.2, 1)` | Transitions fluides |
+
+#### Transformations
+| Variable | Valeur | Usage |
+|----------|--------|------|
+| `--open-btn-hover-transform` | `translateY(-2px)` | Translation au survol |
+| `--open-btn-active-transform` | `translateY(0) scale(0.98)` | Transformation au clic |
+| `--open-btn-arrow-hover-transform` | `translateX(4px)` | Animation des flèches |
+
+#### Effets Visuels
+| Variable | Valeur | Usage |
+|----------|--------|------|
+| `--open-btn-shadow` | `none` | Ombre des boutons |
+| `--open-btn-shadow-hover` | `none` | Ombre au survol |
+| `--open-btn-shadow-active` | `none` | Ombre au clic |
+| `--open-btn-z-index` | `1` | Index de superposition |
+| `--open-btn-shine-overlay` | `linear-gradient(135deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0) 100%)` | Effet de brillance |
+
+### Classes CSS Unifiées
+
+#### Classes de Base
+```css
+.open-btn      /* Bouton d'ouverture principal */
+.btn-open      /* Alternative nommée */
+.open-button   /* Alternative descriptive */
+```
+
+#### Modificateurs de Style
+```css
+.open-btn--arrow     /* Avec flèche animée */
+.open-btn--float     /* Animation de flottement au survol */
+.open-btn--compact   /* Version compacte */
+.open-btn--large     /* Version large */
+```
+
+### Implémentation
+
+#### 1. Import dans les pages
+```tsx
+// Dans chaque page utilisant des boutons d'ouverture
+import '../../styles/openButton.css'
+```
+
+#### 2. Utilisation dans le JSX
+```tsx
+<button className="open-btn">
+  En savoir plus
+  <span className="btn-arrow">→</span>
+</button>
+
+<a href="#" className="open-btn open-btn--arrow">
+  Voir le profil
+</a>
+```
+
+#### 3. Styles personnalisés (si nécessaire)
+```css
+/* Override spécifique tout en gardant les variables */
+.page-specific .open-btn {
+  --open-btn-color: var(--accent-blue);
+  --open-btn-font-size: 14px;
+}
+```
+
+### États et Interactions
+
+#### État Normal
+```css
+.open-btn {
+  /* Fond transparent, texte secondaire, pas de bordure */
+  background: var(--open-btn-bg);
+  color: var(--open-btn-color);
+  border: var(--open-btn-border);
+}
+```
+
+#### État Hover
+```css
+.open-btn:hover {
+  /* Texte principal, légère translation vers le haut */
+  color: var(--open-btn-color-hover);
+  transform: var(--open-btn-hover-transform);
+}
+```
+
+#### État Actif
+```css
+.open-btn:active {
+  /* Légère réduction d'échelle au clic */
+  transform: var(--open-btn-active-transform);
+}
+```
+
+#### Focus (Accessibilité)
+```css
+.open-btn:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 4px rgba(79, 110, 247, 0.1);
+}
+```
+
+### Animations Spéciales
+
+#### Effet de Brillance (Shine)
+```css
+.open-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--open-btn-shine-overlay);
+  transform: translateX(-100%) rotate(45deg);
+  transition: transform 0.6s ease;
+  pointer-events: none;
+}
+
+.open-btn:hover::before {
+  transform: translateX(200%) rotate(45deg);
+  animation: openButtonShine 0.6s ease;
+}
+```
+
+#### Animation de Flotttement
+```css
+.open-btn--float:hover {
+  animation: openButtonFloat 2s ease-in-out infinite;
+}
+
+@keyframes openButtonFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+```
+
+### Support Dark Mode
+
+Le système s'adapte automatiquement au thème via les variables CSS :
+```css
+[data-theme="dark"] .open-btn {
+  --open-btn-color: var(--text-secondary, #a0a090);
+  --open-btn-color-hover: var(--text-primary, #f5f5f0);
+}
+```
+
+### Résolution des Conflits
+
+Priorité PLUS ÉLEVÉE pour open-btn dans les modules story :
+```css
+.story-section .cta-buttons .open-btn {
+  /* Forcer les styles open-btn par-dessus cta-button */
+  font-family: var(--open-btn-font-family) !important;
+  font-size: var(--open-btn-font-size) !important;
+  /* ... autres styles avec !important */
+}
+```
+
+### États Spéciaux
+
+#### Bouton Désactivé
+```css
+.open-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+  pointer-events: none;
+}
+```
+
+#### Bouton en Chargement
+```css
+.open-btn.loading {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.open-btn.loading::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+```
+
+### Responsive Design
+
+#### Mobile (≤768px)
+```css
+@media (max-width: 768px) {
+  .open-btn {
+    --open-btn-font-size: 14px;
+    --open-btn-padding-y: var(--spacing-sm, 8px);
+    --open-btn-padding-x: var(--spacing-md, 16px);
+  }
+}
+```
+
+#### Petit Mobile (≤480px)
+```css
+@media (max-width: 480px) {
+  .open-btn {
+    --open-btn-font-size: 13px;
+    --open-btn-padding-y: 6px;
+    --open-btn-padding-x: 14px;
+  }
+}
+```
+
+### Accessibilité
+
+#### Réduction des Motions
+```css
+@media (prefers-reduced-motion: reduce) {
+  .open-btn {
+    transition: none !important;
+    animation: none !important;
+  }
+  
+  .open-btn:hover {
+    transform: none !important;
+  }
+}
+```
+
+#### Impression
+```css
+@media print {
+  .open-btn {
+    background: transparent !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border) !important;
+    box-shadow: none !important;
+  }
+}
+```
+
+### Pages Actuellement Utilisatrices
+
+1. **Module Story** (`/src/modules/story/`)
+   - Boutons "En savoir plus", "Voir profil"
+   - Import : `import '../../styles/openButton.css'`
+
+2. **Pages avec CTA** 
+   - Boutons d'action secondaires
+   - Import : `import '../../styles/openButton.css'`
+
+### Bonnes Pratiques
+
+#### 1. Utiliser les classes standards
+```tsx
+/* Correct */
+<button className="open-btn open-btn--arrow">
+  En savoir plus
+</button>
+
+/* Éviter les styles inline */
+<button style={{color: 'blue'}}>
+  En savoir plus
+</button>
+```
+
+#### 2. Maintenir la cohérence
+```css
+/* Utiliser les variables pour les personnalisations */
+.custom-open-btn {
+  --open-btn-color: var(--accent-blue);  /* OK */
+  color: blue;                           /* Non recommandé */
+}
+```
+
+#### 3. Accessibilité
+```tsx
+// Ajouter les attributs ARIA
+<button 
+  className="open-btn"
+  aria-label="En savoir plus sur notre communauté"
+  aria-expanded={isExpanded}
+>
+  En savoir plus
+</button>
+```
+
+### Extensibilité
+
+#### Ajouter une nouvelle variante
+```css
+/* Dans openButton.css */
+.open-btn--custom {
+  --open-btn-color: var(--accent-blue);
+  --open-btn-bg: rgba(79, 110, 247, 0.1);
+  --open-btn-border: 1px solid var(--accent-blue);
+}
+```
+
+#### Créer des thèmes de boutons
+```css
+.open-theme-dark {
+  --open-btn-bg: rgba(0, 0, 0, 0.2);
+  --open-btn-color: rgba(255, 255, 255, 0.8);
+}
+```
+
+---
+
 ## Conclusion
 
 L'utilisation cohérente de ces variables CSS garantit :
@@ -816,7 +1169,7 @@ Tous les nouveaux composants doivent utiliser ces variables pour bénéficier du
 
 ---
 
-**Version** : 1.2  
-**Date** : 20 Avril 2026  
+**Version** : 1.3  
+**Date** : 22 Avril 2026  
 **Auteur** : Cascade AI Assistant  
-**Mise à jour** : Ajout du pattern Structure + Variables
+**Mise à jour** : Ajout du système Open Buttons

@@ -1,101 +1,408 @@
-/* Styles pour la vibration intense des points SVG */
-
-/* État de vibration intense pour les points SVG */
-.svg-point-vibrating {
-  animation: intenseVibration 0.8s ease-in-out infinite;
+/* Variables CSS pour les animations de vibration - Système hiérarchisé */
+:root {
+  /* Durées d'animation */
+  --massive-duration: 2s;
+  --massive-center-duration: 0.6s;
+  --basic-duration: 3s;
+  --basic-center-duration: 0.8s;
+  --vibration-easing: ease-in-out;
+  
+  /* Vibration MASSIVE (map-transition-indicator) - TRÈS INTENSE */
+  --massive-size-min: 24px;
+  --massive-size-max: 120px;
+  --massive-inner-min: 8px;
+  --massive-inner-max: 80px;
+  --massive-center-min: 4px;
+  --massive-center-max: 4px;
+  --massive-satellite-size: 4px;
+  
+  /* Vibration BASIQUE (divs overlay) */
+  --basic-size-min: 20px;
+  --basic-size-max: 35px;
+  --basic-inner-min: 6px;
+  --basic-inner-max: 25px;
+  --basic-center-min: 3px;
+  --basic-center-max: 3px;
+  
+  /* Opacités - Massive TRÈS INTENSE */
+  --massive-opacity-min: 1;
+  --massive-opacity-max: 0.2;
+  --massive-inner-opacity-min: 1;
+  --massive-inner-opacity-max: 0.3;
+  --massive-center-opacity-min: 1;
+  --massive-center-opacity-max: 0.4;
+  --massive-satellite-opacity-min: 1;
+  --massive-satellite-opacity-max: 0.1;
+  
+  /* Opacités - Basique */
+  --basic-opacity-min: 0.8;
+  --basic-opacity-max: 0.5;
+  --basic-inner-opacity-min: 0.8;
+  --basic-inner-opacity-max: 0.4;
+  --basic-center-opacity-min: 0.9;
+  --basic-center-opacity-max: 0.5;
+  
+  /* Effets de glow - Massive TRÈS INTENSE */
+  --massive-glow-spread: 15px;
+  --basic-glow-spread: 4px;
+  --massive-filter-glow: drop-shadow(0 0 var(--massive-glow-spread) currentColor);
+  --basic-filter-glow: drop-shadow(0 0 var(--basic-glow-spread) currentColor);
+  
+  /* Couleurs */
+  --massive-gradient-start: var(--accent-blue, #4F6EF7);
+  --massive-gradient-end: var(--active-green, #3ecf8e);
+  --massive-center-color: var(--accent-blue, #4F6EF7);
+  --massive-inner-color: white;
+  --basic-inner-color: white;
+  
+  /* Variables pour les divs overlay */
+  --overlay-base-size: 20px;
+  --overlay-border-width: 2px;
+  --overlay-border-color: white;
+  --overlay-cursor: pointer;
+  --overlay-transform: translate(-50%, -50%);
+  
+  /* Effets de glow pour overlay par ville */
+  --overlay-glow-blue: 0 0 15px rgba(79, 110, 247, 0.3);
+  --overlay-glow-orange: 0 0 15px rgba(245, 166, 35, 0.3);
+  --overlay-glow-cyan: 0 0 15px rgba(34, 211, 238, 0.3);
+  --overlay-glow-purple: 0 0 15px rgba(123, 92, 245, 0.3);
+  
+  /* Transitions */
+  --overlay-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.svg-point-vibrating circle {
-  animation-duration: 0.8s !important;
+/* Styles de base pour les divs overlay */
+.map-points-overlay {
+  position: absolute;
+  width: var(--overlay-base-size);
+  height: var(--overlay-base-size);
+  border-radius: 50%;
+  border: var(--overlay-border-width) solid var(--overlay-border-color);
+  cursor: var(--overlay-cursor);
+  transform: var(--overlay-transform);
+  transition: var(--overlay-transition);
 }
 
-.svg-point-vibrating circle:nth-child(1) {
-  animation: intensePulse 0.8s ease-in-out infinite;
+/* Vibration BASIQUE pour les divs overlay */
+.map-points-overlay.basic-vibrating {
+  animation: basicSpherePulse var(--basic-duration) var(--vibration-easing) infinite;
 }
 
-.svg-point-vibrating circle:nth-child(2) {
-  animation: intenseRing 0.8s ease-in-out infinite;
+.map-points-overlay.basic-vibrating::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--basic-inner-min);
+  height: var(--basic-inner-min);
+  background: var(--basic-inner-color);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: basicInnerPulse var(--basic-duration) var(--vibration-easing) infinite;
 }
 
-.svg-point-vibrating circle:nth-child(3) {
-  animation: intenseCenter 0.4s ease-in-out infinite;
+.map-points-overlay.basic-vibrating::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--basic-center-min);
+  height: var(--basic-center-min);
+  background: currentColor;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: basicCenterPulse var(--basic-center-duration) var(--vibration-easing) infinite;
 }
 
-/* Animations de vibration intense */
-@keyframes intenseVibration {
-  0%, 100% { transform: translate(0, 0); }
-  25% { transform: translate(-1px, 1px); }
-  50% { transform: translate(1px, -1px); }
-  75% { transform: translate(-1px, -1px); }
+/* Vibration MASSIVE pour le map-transition-indicator */
+.map-transition-indicator.massive-vibrating {
+  animation: massiveSpherePulse var(--massive-duration) var(--vibration-easing) infinite;
 }
 
-@keyframes intensePulse {
+.map-transition-indicator.massive-vibrating::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--massive-inner-min);
+  height: var(--massive-inner-min);
+  background: var(--massive-inner-color);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: massiveInnerPulse var(--massive-duration) var(--vibration-easing) infinite;
+}
+
+.map-transition-indicator.massive-vibrating::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--massive-center-min);
+  height: var(--massive-center-min);
+  background: var(--massive-center-color);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: massiveCenterPulse var(--massive-center-duration) var(--vibration-easing) infinite;
+}
+
+/* Satellites pour la vibration massive - TRÈS INTENSE */
+.map-transition-indicator.massive-vibrating .satellite {
+  position: absolute;
+  width: var(--massive-satellite-size);
+  height: var(--massive-satellite-size);
+  border-radius: 50%;
+  opacity: 0.9;
+}
+
+.map-transition-indicator.massive-vibrating .satellite-1 {
+  background: var(--accent-blue, #4F6EF7);
+  top: 50%;
+  left: -30px;
+  animation: massiveSatellite1 var(--massive-duration) var(--vibration-easing) infinite;
+}
+
+.map-transition-indicator.massive-vibrating .satellite-2 {
+  background: var(--active-green, #3ecf8e);
+  top: 50%;
+  right: -30px;
+  animation: massiveSatellite2 var(--massive-duration) var(--vibration-easing) infinite 0.3s;
+}
+
+.map-transition-indicator.massive-vibrating .satellite-3 {
+  background: var(--accent-purple, #7B5CF5);
+  top: -30px;
+  left: 50%;
+  animation: massiveSatellite3 var(--massive-duration) var(--vibration-easing) infinite 0.6s;
+}
+
+.map-transition-indicator.massive-vibrating .satellite-4 {
+  background: var(--warning-orange, #F5A623);
+  bottom: -30px;
+  left: 50%;
+  animation: massiveSatellite4 var(--massive-duration) var(--vibration-easing) infinite 0.9s;
+}
+
+/* Animations des satellites massifs - TRÈS INTENSE */
+@keyframes massiveSatellite1 {
   0%, 100% { 
-    r: 8; 
-    opacity: 0.9;
-    filter: drop-shadow(0 0 8px currentColor);
+    opacity: var(--massive-satellite-opacity-min);
+    left: -30px;
+    transform: translateY(-50%) scale(1);
   }
   50% { 
-    r: 20; 
-    opacity: 0.3;
-    filter: drop-shadow(0 0 20px currentColor);
+    opacity: var(--massive-satellite-opacity-max);
+    left: -45px;
+    transform: translateY(-50%) scale(1.5);
   }
 }
 
-@keyframes intenseRing {
+@keyframes massiveSatellite2 {
   0%, 100% { 
-    r: 12; 
-    opacity: 0.8;
-    stroke-width: 3;
-    filter: drop-shadow(0 0 12px currentColor);
+    opacity: var(--massive-satellite-opacity-min);
+    right: -30px;
+    transform: translateY(-50%) scale(1);
   }
   50% { 
-    r: 30; 
-    opacity: 0.1;
-    stroke-width: 1;
-    filter: drop-shadow(0 0 25px currentColor);
+    opacity: var(--massive-satellite-opacity-max);
+    right: -45px;
+    transform: translateY(-50%) scale(1.5);
   }
 }
 
-@keyframes intenseCenter {
+@keyframes massiveSatellite3 {
   0%, 100% { 
-    r: 4; 
-    opacity: 1;
-    filter: drop-shadow(0 0 6px white);
+    opacity: var(--massive-satellite-opacity-min);
+    top: -30px;
+    transform: translateX(-50%) scale(1);
   }
   50% { 
-    r: 8; 
-    opacity: 0.7;
-    filter: drop-shadow(0 0 15px white);
+    opacity: var(--massive-satellite-opacity-max);
+    top: -45px;
+    transform: translateX(-50%) scale(1.5);
   }
 }
 
-/* Effet de glow intense pour les labels */
-.svg-point-vibrating text {
-  animation: intenseGlow 0.8s ease-in-out infinite;
-  font-weight: 800 !important;
-}
-
-@keyframes intenseGlow {
+@keyframes massiveSatellite4 {
   0%, 100% { 
-    opacity: 1;
-    filter: drop-shadow(0 0 4px currentColor);
+    opacity: var(--massive-satellite-opacity-min);
+    bottom: -30px;
+    transform: translateX(-50%) scale(1);
   }
   50% { 
-    opacity: 0.6;
-    filter: drop-shadow(0 0 12px currentColor);
+    opacity: var(--massive-satellite-opacity-max);
+    bottom: -45px;
+    transform: translateX(-50%) scale(1.5);
   }
+}
+
+/* Animations BASIQUES */
+@keyframes basicSpherePulse {
+  0%, 100% { 
+    width: var(--basic-size-min);
+    height: var(--basic-size-min);
+    opacity: var(--basic-opacity-min);
+    filter: var(--basic-filter-glow);
+  }
+  50% { 
+    width: var(--basic-size-max);
+    height: var(--basic-size-max);
+    opacity: var(--basic-opacity-max);
+    filter: var(--basic-filter-glow);
+  }
+}
+
+@keyframes basicInnerPulse {
+  0%, 100% { 
+    width: var(--basic-inner-min);
+    height: var(--basic-inner-min);
+    opacity: var(--basic-inner-opacity-min);
+  }
+  50% { 
+    width: var(--basic-inner-max);
+    height: var(--basic-inner-max);
+    opacity: var(--basic-inner-opacity-max);
+  }
+}
+
+@keyframes basicCenterPulse {
+  0%, 100% { 
+    opacity: var(--basic-center-opacity-min);
+  }
+  50% { 
+    opacity: var(--basic-center-opacity-max);
+  }
+}
+
+/* Animations MASSIVES */
+@keyframes massiveSpherePulse {
+  0%, 100% { 
+    width: var(--massive-size-min);
+    height: var(--massive-size-min);
+    opacity: var(--massive-opacity-min);
+    filter: var(--massive-filter-glow);
+  }
+  50% { 
+    width: var(--massive-size-max);
+    height: var(--massive-size-max);
+    opacity: var(--massive-opacity-max);
+    filter: var(--massive-filter-glow);
+  }
+}
+
+@keyframes massiveInnerPulse {
+  0%, 100% { 
+    width: var(--massive-inner-min);
+    height: var(--massive-inner-min);
+    opacity: var(--massive-inner-opacity-min);
+  }
+  50% { 
+    width: var(--massive-inner-max);
+    height: var(--massive-inner-max);
+    opacity: var(--massive-inner-opacity-max);
+  }
+}
+
+@keyframes massiveCenterPulse {
+  0%, 100% { 
+    opacity: var(--massive-center-opacity-min);
+  }
+  50% { 
+    opacity: var(--massive-center-opacity-max);
+  }
+}
+
+/* Animations des satellites massifs */
+@keyframes massiveSatellite1 {
+  0%, 100% { 
+    opacity: var(--massive-satellite-opacity-min);
+    left: -20px;
+  }
+  50% { 
+    opacity: var(--massive-satellite-opacity-max);
+    left: -25px;
+  }
+}
+
+@keyframes massiveSatellite2 {
+  0%, 100% { 
+    opacity: var(--massive-satellite-opacity-min);
+    right: -20px;
+  }
+  50% { 
+    opacity: var(--massive-satellite-opacity-max);
+    right: -25px;
+  }
+}
+
+@keyframes massiveSatellite3 {
+  0%, 100% { 
+    opacity: var(--massive-satellite-opacity-min);
+    top: -20px;
+  }
+  50% { 
+    opacity: var(--massive-satellite-opacity-max);
+    top: -25px;
+  }
+}
+
+/* Styles spécifiques pour chaque ville */
+.map-points-overlay[data-dept="brazzaville"] {
+  background: var(--accent-blue, #4F6EF7);
+  box-shadow: var(--overlay-glow-blue);
+}
+
+.map-points-overlay[data-dept="pointe-noire"] {
+  background: var(--warning-orange, #F5A623);
+  box-shadow: var(--overlay-glow-orange);
+}
+
+.map-points-overlay[data-dept="oyo"] {
+  background: var(--accent-cyan, #22d3ee);
+  box-shadow: var(--overlay-glow-cyan);
+}
+
+.map-points-overlay[data-dept="kinshasa"] {
+  background: var(--accent-purple, #7B5CF5);
+  box-shadow: var(--overlay-glow-purple);
+}
+
+/* États hover pour les divs overlay */
+.map-points-overlay:hover {
+  transform: var(--overlay-transform) scale(1.2);
+  z-index: 10;
+}
+
+.map-points-overlay.basic-vibrating:hover {
+  animation-play-state: paused;
+}
+
+.map-points-overlay.basic-vibrating:hover::before,
+.map-points-overlay.basic-vibrating:hover::after {
+  animation-play-state: paused;
+}
+
+/* États hover pour le map-transition-indicator */
+.map-transition-indicator.massive-vibrating:hover {
+  animation-play-state: paused;
+}
+
+.map-transition-indicator.massive-vibrating:hover::before,
+.map-transition-indicator.massive-vibrating:hover::after,
+.map-transition-indicator.massive-vibrating:hover .satellite {
+  animation-play-state: paused;
 }
 
 /* Transition douce quand la vibration s'arrête */
-svg g {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+.map-points-overlay,
+.map-transition-indicator {
+  transition: var(--overlay-transition);
 }
 
-svg g circle {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-svg g text {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+.map-points-overlay::before,
+.map-points-overlay::after,
+.map-transition-indicator::before,
+.map-transition-indicator::after,
+.map-transition-indicator .satellite {
+  transition: var(--overlay-transition);
 }

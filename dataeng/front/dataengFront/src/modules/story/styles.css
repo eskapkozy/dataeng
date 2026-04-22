@@ -1520,6 +1520,27 @@ p {
   transform: translateY(-2px);
 }
 
+/* Forcer les styles open-btn dans le contexte story-section--accent */
+.story-section--accent .cta-buttons .open-btn {
+  background: var(--open-btn-bg, transparent) !important;
+  color: var(--open-btn-color, var(--text-secondary, #888888)) !important;
+  border: 1px solid var(--border, #E8E6E0) !important;
+  font-family: var(--open-btn-font-family, 'DM Sans', sans-serif) !important;
+  font-size: var(--open-btn-font-size, 16px) !important;
+  font-weight: var(--open-btn-font-weight, 500) !important;
+  padding: var(--open-btn-padding, 8px 24px) !important;
+  border-radius: var(--open-btn-border-radius, 8px) !important;
+  text-decoration: none !important;
+  transition: var(--open-btn-transition, all 0.3s cubic-bezier(0.4, 0, 0.2, 1)) !important;
+}
+
+.story-section--accent .cta-buttons .open-btn:hover {
+  background: white !important;
+  color: black !important;
+  border: 1px solid var(--accent-blue, #4F6EF7) !important;
+  transform: var(--open-btn-hover-transform, translateY(-2px)) !important;
+}
+
 .cta-statement {
   font-family: var(--font-sans);
   font-size: 1.1rem;

@@ -25,9 +25,11 @@
   --filter-active-color: var(--text-primary, #1a1a1a);
   
   /* Animations et transitions */
-  --filter-transition: all 0.2s ease;
-  --filter-hover-transform: translateY(-1px);
+  --filter-transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --filter-hover-transform: translateY(-3px) scale(1.03);
   --filter-active-transform: scale(1.05);
+  --filter-shadow-hover: 0 6px 20px rgba(79, 110, 247, 0.2);
+  --filter-glow-hover: rgba(79, 110, 247, 0.05);
 }
 
 /* Styles de base pour tous les filtres */
@@ -41,7 +43,13 @@
   font-size: var(--filter-font-size);
   padding: var(--filter-padding);
   cursor: pointer;
-  transition: var(--filter-transition);
+  transition: 
+    transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    border-color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    background-color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    filter 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   font-family: 'DM Sans', sans-serif;
   font-weight: 500;
   letter-spacing: 0.02em;
@@ -51,6 +59,7 @@
   justify-content: center;
   position: relative;
   overflow: hidden;
+  will-change: transform;
 }
 
 /* État hover */
@@ -60,6 +69,9 @@
   border-color: var(--filter-hover-border);
   color: var(--filter-hover-color);
   transform: var(--filter-hover-transform);
+  box-shadow: var(--filter-shadow-hover);
+  background: var(--filter-glow-hover);
+  filter: brightness(1.05);
 }
 
 /* État actif/sélectionné */

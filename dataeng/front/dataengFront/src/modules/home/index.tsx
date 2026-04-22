@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../../styles/filters.css'
 import '../common.css'
+import './styles.css'
 import TestimonialSection from './TestimonialSection'
 
 const Home = () => {
@@ -272,7 +273,7 @@ const Home = () => {
             {/* Buttons */}
             <div className="hero-buttons">
               <Link to="/get-started" className="btn-primary">Commencer maintenant</Link>
-              <button className="btn-secondary">
+              <button className="open-btn btn-secondary">
                 En savoir plus
                 <span className="btn-arrow">→</span>
               </button>

@@ -31,7 +31,7 @@ export function CtaSection() {
               Rejoindre la communauté
             </button>
             <button 
-              className="cta-button cta-button--secondary"
+              className="open-btn"
               onClick={() => {
                 // TODO: Implémenter la logique de contact
                 console.log('Nous contacter');

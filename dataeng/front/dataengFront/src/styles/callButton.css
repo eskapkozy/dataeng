@@ -1,0 +1,273 @@
+/* ===================================
+   SYSTÈME DE CALL-BUTTONS UNIFIÉ - DATA ENG
+   ===================================
+   Variables et animations partagées pour tous les call-buttons du site
+   Focus sur animations et survols tout en respectant les tailles/formes existantes
+*/
+
+/* Variables CSS pour les boutons - Basées sur les styles existants */
+:root {
+  /* Transitions et animations universelles - SYSTÈME UNIFIÉ */
+  --btn-transition-fast: 0.2s ease;
+  --btn-transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --btn-transition-bounce: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
+  /* Transformations au survol - SYSTÈME UNIFIÉ */
+  --btn-hover-transform: var(--unified-hover-transform);
+  --btn-hover-scale: scale(1.02);
+  --btn-active-transform: var(--unified-active-transform);
+  
+  /* Ombres et effets - SYSTÈME UNIFIÉ */
+  --btn-shadow-hover: var(--unified-hover-shadow);
+  --btn-shadow-active: var(--unified-active-shadow);
+  --btn-glow-hover: 0 0 20px rgba(79, 110, 247, 0.3);
+  
+  /* Effets de brillance */
+  --btn-shine-overlay: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0) 0%, 
+    rgba(255, 255, 255, 0.1) 50%, 
+    rgba(255, 255, 255, 0) 100%);
+  
+  /* Animation de pulse subtile */
+  --btn-pulse-animation: pulse 2s infinite;
+}
+
+/* Animation keyframes */
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(79, 110, 247, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(79, 110, 247, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(79, 110, 247, 0); }
+}
+
+@keyframes shine {
+  0% { transform: translateX(-100%) rotate(45deg); }
+  100% { transform: translateX(200%) rotate(45deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+/* Styles de base pour tous les boutons */
+.btn-primary,
+.btn-secondary,
+.cta-button {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 
+    transform var(--btn-transition-smooth),
+    box-shadow var(--btn-transition-smooth),
+    background-color var(--btn-transition-fast),
+    color var(--btn-transition-fast),
+    border-color var(--btn-transition-fast);
+  transform-origin: center;
+  backface-visibility: hidden;
+}
+
+/* Overlay de brillance au survol */
+.btn-primary::before,
+.btn-secondary::before,
+.cta-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--btn-shine-overlay);
+  transform: translateX(-100%) rotate(45deg);
+  transition: transform 0.6s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* État hover universel */
+.btn-primary:hover,
+.btn-secondary:hover,
+.cta-button:hover {
+  transform: var(--btn-hover-transform);
+}
+
+.btn-primary:hover::before,
+.btn-secondary:hover::before,
+.cta-button:hover::before {
+  transform: translateX(200%) rotate(45deg);
+  animation: shine 0.6s ease;
+}
+
+/* État actif/clic */
+.btn-primary:active,
+.btn-secondary:active,
+.cta-button:active {
+  transform: var(--btn-active-transform);
+  transition: transform 0.1s ease;
+}
+
+/* Focus visible pour accessibilité */
+.btn-primary:focus-visible,
+.btn-secondary:focus-visible,
+.cta-button:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 4px rgba(79, 110, 247, 0.1);
+}
+
+/* ===================================
+   STYLES SPÉCIFIQUES PAR TYPE DE BOUTON
+   =================================== */
+
+/* Boutons primaires (btn-primary) */
+.btn-primary {
+  background: var(--accent-blue);
+  color: white;
+  border: none;
+  border-radius: var(--md);
+  padding: var(--sm) var(--lg);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  z-index: 1;
+}
+
+.btn-primary:hover {
+  background: #3d5ce8;
+  box-shadow: var(--btn-shadow-hover);
+  color: white;
+}
+
+.btn-primary:active {
+  box-shadow: var(--btn-shadow-active);
+}
+
+/* Boutons secondaires (btn-secondary) */
+.btn-secondary {
+  background: transparent;
+  color: var(--text-secondary);
+  border: none;
+  padding: var(--sm) var(--lg);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 0.01em;
+  z-index: 1;
+}
+
+.btn-secondary:hover {
+  color: var(--text-primary);
+  transform: var(--btn-hover-transform);
+}
+
+.btn-secondary:hover .btn-arrow {
+  transform: translateX(4px);
+  transition: transform var(--btn-transition-fast);
+}
+
+/* Boutons CTA (cta-button) */
+.cta-button {
+  background: var(--accent-blue);
+  color: white;
+  border: none;
+  border-radius: var(--sm);
+  padding: var(--sm) var(--lg);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  z-index: 1;
+}
+
+.cta-button:hover {
+  background: #3d5ce8;
+  box-shadow: var(--btn-shadow-hover);
+  color: white;
+  transform: var(--btn-hover-scale);
+}
+
+.cta-button:active {
+  box-shadow: var(--btn-shadow-active);
+}
+
+/* ===================================
+   EFFETS SPÉCIAUX ET VARIANTES
+   =================================== */
+
+/* Effet de pulse pour les boutons importants */
+.btn-primary.pulse:hover {
+  animation: var(--btn-pulse-animation);
+}
+
+/* Effet de float subtil */
+.btn-secondary.float:hover {
+  animation: float 2s ease-in-out infinite;
+}
+
+/* Variante avec icône */
+.btn-with-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--xs);
+}
+
+.btn-with-icon svg {
+  transition: transform var(--btn-transition-fast);
+}
+
+.btn-with-icon:hover svg {
+  transform: translateX(2px);
+}
+
+/* Boutons désactivés */
+.btn-primary:disabled,
+.btn-secondary:disabled,
+.cta-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+  pointer-events: none;
+}
+
+/* ===================================
+   ADAPTATIONS DARK MODE
+   =================================== */
+
+[data-theme="dark"] .btn-primary:hover,
+[data-theme="dark"] .cta-button:hover {
+  box-shadow: 0 8px 25px rgba(79, 110, 247, 0.25);
+}
+
+
+/* ===================================
+   RESPONSIVE
+   =================================== */
+
+@media (max-width: 768px) {
+  .btn-primary,
+  .btn-secondary,
+  .cta-button {
+    font-size: 14px;
+    padding: var(--sm) var(--md);
+  }
+  
+}
+
+/* ===================================
+   RÉDUCTION DES MOTIONS
+   =================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-primary,
+  .btn-secondary,
+  .cta-button {
+    transition: none !important;
+    animation: none !important;
+  }
+  
+  .btn-primary:hover,
+  .btn-secondary:hover,
+  .cta-button:hover {
+    transform: none !important;
+  }
+}

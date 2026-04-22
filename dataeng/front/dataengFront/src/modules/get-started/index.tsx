@@ -40,7 +40,7 @@ const GetStarted = () => {
         <p>Rejoignez des centaines de professionnels et passionnés du data au Congo</p>
         <div className="cta-buttons">
           <button className="btn-primary btn-large">S'inscrire maintenant</button>
-          <button className="btn-secondary btn-large">En savoir plus</button>
+          <button className="open-btn btn-secondary btn-large">En savoir plus</button>
         </div>
       </section>
     </div>

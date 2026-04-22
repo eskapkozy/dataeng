@@ -475,22 +475,7 @@
   color: var(--text-primary);
 }
 
-.home-page .nav-cta .cta-button {
-  background: var(--accent-blue);
-  color: var(--text-primary);
-  border: none;
-  border-radius: 7px;
-  padding: 8px 16px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: opacity 0.2s ease;
-}
-
-.home-page .nav-cta .cta-button:hover {
-  opacity: 0.85;
-}
+/* Styles cta-button déplacés vers /styles/buttons.css pour unification */
 
 /* Hero Body */
 .home-page .hero-body {
@@ -612,50 +597,7 @@
   animation: slidein 0.6s ease 0.55s forwards;
 }
 
-.home-page .btn-primary {
-  background: var(--accent-blue);
-  color: var(--text-primary);
-  border: none;
-  border-radius: 8px;
-  padding: 13px 28px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: opacity 0.2s ease;
-}
-
-.home-page .btn-primary:hover {
-  opacity: 0.85;
-}
-
-.home-page .btn-secondary {
-  background: transparent;
-  color: var(--text-secondary);
-  border: none;
-  border-radius: 8px;
-  padding: 13px 20px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: all 0.2s ease;
-}
-
-.home-page .btn-secondary:hover {
-  color: var(--text-primary);
-}
-
-.home-page .btn-arrow {
-  transition: transform 0.2s ease;
-}
-
-.home-page .btn-secondary:hover .btn-arrow {
-  transform: translateX(3px);
-}
+/* Styles de boutons déplacés vers /styles/buttons.css pour unification */
 
 /* Stats Row */
 .home-page .stats-row {
@@ -1221,22 +1163,7 @@
   margin: 0;
 }
 
-.home-page .cta-button {
-  margin-left: auto;
-  background: var(--accent-blue);
-  border-radius: 7px;
-  padding: 9px 18px;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--text-primary);
-  border: none;
-  cursor: pointer;
-  transition: opacity 0.2s ease;
-}
-
-.home-page .cta-button:hover {
-  opacity: 0.85;
-}
+/* Styles cta-button finaux déplacés vers /styles/buttons.css pour unification */
 
 /* Cascade Animations */
 @keyframes fadein {

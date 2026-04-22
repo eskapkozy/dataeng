@@ -79,7 +79,7 @@ const Write = () => {
           </div>
           
           <div className="form-actions">
-            <button type="button" className="btn-secondary">Sauvegarder brouillon</button>
+            <button type="button" className="open-btn btn-secondary">Sauvegarder brouillon</button>
             <button type="submit" className="btn-primary">Publier l'article</button>
           </div>
         </form>

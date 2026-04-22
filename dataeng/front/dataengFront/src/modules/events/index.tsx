@@ -5,6 +5,7 @@ import './styles/map-transition.css'
 import '../../styles/filters.css'
 import { ConnectionLinesAnimation } from './animations'
 import { useCityVibration } from './hooks/useCityVibration'
+import type { CityName } from './hooks/useCityVibration'
 
 const Events: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'upcoming' | 'past'>('upcoming')
@@ -12,9 +13,15 @@ const Events: React.FC = () => {
   const [countdown, setCountdown] = useState({ days: 0, hours: 0, mins: 0, secs: 0 })
   
   // Variable dynamique pour la ville active
-  const [activeCity, setActiveCity] = useState('brazzaville')
-  const [previousCity, setPreviousCity] = useState('brazzaville')
-  const [isTransitioning, setIsTransitioning] = useState(false)
+  const [activeCity, setActiveCity] = useState<CityName>('brazzaville')
+  const [previousCity, setPreviousCity] = useState<CityName>('brazzaville')
+    
+  // Hook pour gérer les vibrations basées sur la position de l'indicateur
+  const { 
+    getIndicatorClass, 
+    getOverlayClass, 
+    massiveVibratingCity
+  } = useCityVibration(activeCity)
   
   // Positionnement exact des div overlay (copié depuis les points existants)
   const CITY_POSITIONS = {
@@ -36,57 +43,49 @@ const Events: React.FC = () => {
     }
   }
   
-  // Hook pour la gestion de vibration des villes
-  const { vibratingCities, detectCitiesInText, CITY_MAPPING } = useCityVibration(`Data Engineering #3 - Pipelines & Orchestration - ${activeCity.charAt(0).toUpperCase() + activeCity.slice(1)}`)
-  
+  // Initialisation au montage pour positionner l'indicateur sur Brazzaville
+  useEffect(() => {
+    const indicator = document.querySelector('.map-transition-indicator') as HTMLElement
+    if (indicator) {
+      // Positionner l'indicateur sur Brazzaville au chargement
+      const brazzavillePos = CITY_POSITIONS.brazzaville
+      indicator.style.left = brazzavillePos.left
+      indicator.style.top = brazzavillePos.top
+      indicator.classList.add('active', 'brazzaville')
+    }
+  }, [])
+
   // Effet de transition sur la carte
   useEffect(() => {
     if (activeCity !== previousCity) {
-      setIsTransitioning(true)
-      
-      // Calculer les coordonnées de transition
-      const startCity = CITY_MAPPING[previousCity as keyof typeof CITY_MAPPING]
-      const endCity = CITY_MAPPING[activeCity as keyof typeof CITY_MAPPING]
-      
-      if (startCity && endCity) {
-        const indicator = document.querySelector('.map-transition-indicator') as HTMLElement
-        if (indicator) {
-          // Positionner l'indicateur sur la ville de départ
-          const mapContainer = document.querySelector('.congo-map') as HTMLElement
-          if (mapContainer) {
-            const mapRect = mapContainer.getBoundingClientRect()
-            const svgWidth = 944
-            const svgHeight = 1139
-            
-            // Utiliser le positionnement exact des div overlay
-            const startPos = CITY_POSITIONS[previousCity as keyof typeof CITY_POSITIONS]
-            const endPos = CITY_POSITIONS[activeCity as keyof typeof CITY_POSITIONS]
-            
-            if (startPos && endPos) {
-              // Position de départ
-              indicator.style.left = startPos.left
-              indicator.style.top = startPos.top
-              indicator.classList.add('active', previousCity)
-              
-              // Animation vers la destination
-              setTimeout(() => {
-                indicator.style.left = endPos.left
-                indicator.style.top = endPos.top
-                indicator.classList.remove(previousCity)
-                indicator.classList.add(activeCity)
-              }, 100)
-            }
-          }
+      const indicator = document.querySelector('.map-transition-indicator') as HTMLElement
+      if (indicator) {
+        // Positionner l'indicateur sur la ville de départ
+        const startPos = CITY_POSITIONS[previousCity as keyof typeof CITY_POSITIONS]
+        const endPos = CITY_POSITIONS[activeCity as keyof typeof CITY_POSITIONS]
+        
+        if (startPos && endPos) {
+          // Position de départ
+          indicator.style.left = startPos.left
+          indicator.style.top = startPos.top
+          indicator.classList.add('active', previousCity)
+          
+          // Animation vers la destination
+          setTimeout(() => {
+            indicator.style.left = endPos.left
+            indicator.style.top = endPos.top
+            indicator.classList.remove(previousCity)
+            indicator.classList.add(activeCity)
+          }, 100)
         }
       }
       
       // Fin de la transition
       setTimeout(() => {
-        setIsTransitioning(false)
         setPreviousCity(activeCity)
       }, 1200)
     }
-  }, [activeCity, previousCity, CITY_MAPPING])
+  }, [activeCity, previousCity])
   const [visibleCount, setVisibleCount] = useState(0)
   const [isAnimationActive, setIsAnimationActive] = useState(false)
 
@@ -149,27 +148,9 @@ const Events: React.FC = () => {
     }
   }, [])
 
-  // Effet de vibration des points SVG selon les villes détectées
-  useEffect(() => {
-    // Nettoyer toutes les vibrations existantes
-    Object.values(CITY_MAPPING).forEach(city => {
-      const svgElement = document.getElementById(city.svgId)
-      if (svgElement) {
-        svgElement.classList.remove('svg-point-vibrating')
-      }
-    })
+  
 
-    // Appliquer la vibration aux villes détectées
-    vibratingCities.forEach(city => {
-      const cityConfig = CITY_MAPPING[city]
-      const svgElement = document.getElementById(cityConfig.svgId)
-      if (svgElement) {
-        svgElement.classList.add('svg-point-vibrating')
-      }
-    })
-  }, [vibratingCities, CITY_MAPPING])
-
-  // Données des événements
+  // Données des événements / todo changer tout ce qui est en dure permettre au dash de tout instaurer
   const upcomingEvents = [
     {
       id: 'e1', tab: 'upcoming', type: 'meetup', color: '#4F6EF7',
@@ -292,61 +273,43 @@ const Events: React.FC = () => {
             />
             
             {/* Indicateur de transition sur la carte */}
-            <div className="map-transition-indicator"></div>
+            <div className={`map-transition-indicator ${getIndicatorClass()}`}>
+              {massiveVibratingCity && (
+                <>
+                  <div className="satellite satellite-1"></div>
+                  <div className="satellite satellite-2"></div>
+                  <div className="satellite satellite-3"></div>
+                  <div className="satellite satellite-4"></div>
+                </>
+              )}
+            </div>
             
             {/* Points interactifs par-dessus l'image */}
             <div 
-              className="map-points-overlay"
+              className={`map-points-overlay ${getOverlayClass('brazzaville')}`}
               data-dept="brazzaville" 
               data-info="Capitale · 120+ membres · 8 meetups"
               style={{
-                position: 'absolute',
                 left: 'calc(53% - 18px)',
-                top: 'calc(78% - 5px)',
-                width: '20px',
-                height: '20px',
-                borderRadius: '50%',
-                background: 'var(--accent-blue, #4F6EF7)',
-                border: '2px solid white',
-                cursor: 'pointer',
-                transform: 'translate(-50%, -50%)',
-                boxShadow: '0 0 20px rgba(79, 110, 247, 0.4)'
+                top: 'calc(78% - 5px)'
               }}
             />
             <div 
-              className="map-points-overlay"
+              className={`map-points-overlay ${getOverlayClass('pointe_noire')}`}
               data-dept="pointe-noire" 
               data-info="Port maritime · 45 membres · 3 meetups"
               style={{
-                position: 'absolute',
                 left: '43%',
-                top: '36%',
-                width: '16px',
-                height: '16px',
-                borderRadius: '50%',
-                background: 'var(--warning-orange, #F5A623)',
-                border: '2px solid white',
-                cursor: 'pointer',
-                transform: 'translate(-50%, -50%)',
-                boxShadow: '0 0 20px rgba(245, 166, 35, 0.4)'
+                top: '36%'
               }}
             />
             <div 
-              className="map-points-overlay"
+              className={`map-points-overlay ${getOverlayClass('oyo')}`}
               data-dept="oyo" 
               data-info="Région nord · 25 membres · 2 meetups"
               style={{
-                position: 'absolute',
                 left: 'calc(67% - 99px)',
-                top: 'calc(48% + 1px)',
-                width: '16px',
-                height: '16px',
-                borderRadius: '50%',
-                background: 'var(--accent-cyan, #22d3ee)',
-                border: '2px solid white',
-                cursor: 'pointer',
-                transform: 'translate(-50%, -50%)',
-                boxShadow: '0 0 20px rgba(34, 211, 238, 0.4)'
+                top: 'calc(48% + 1px)'
               }}
             />
             

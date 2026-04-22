@@ -1,0 +1,434 @@
+/* ===================================
+   SYSTÈME D'OPEN-BUTTONS UNIFIÉ - DATA ENG
+   ===================================
+   Variables et styles pour tous les boutons d'ouverture :
+   - "En savoir plus"
+   - "Voir profil" 
+   - "Nous contacter"
+   - Actions similaires d'ouverture/navigation
+*/
+
+/* Variables CSS pour les Open Buttons */
+:root {
+  /* Couleurs et fond */
+  --open-btn-bg: transparent;
+  --open-btn-bg-hover: transparent;
+  --open-btn-color: var(--text-secondary, #888888);
+  --open-btn-color-hover: var(--text-primary, #1a1a1a);
+  --open-btn-border: none;
+  --open-btn-border-hover: none;
+  
+  /* Typographie */
+  --open-btn-font-family: 'DM Sans', sans-serif;
+  --open-btn-font-weight: 500;
+  --open-btn-font-size: 16px;
+  --open-btn-letter-spacing: 0.01em;
+  --open-btn-line-height: 1.4;
+  
+  /* Espacements et dimensions */
+  --open-btn-padding-y: var(--spacing-sm, 8px);
+  --open-btn-padding-x: var(--spacing-lg, 24px);
+  --open-btn-padding: var(--open-btn-padding-y) var(--open-btn-padding-x);
+  --open-btn-border-radius: var(--radius-sm, 8px);
+  --open-btn-min-height: 44px;
+  
+  /* Transitions et animations - SYSTÈME UNIFIÉ */
+  --open-btn-transition: var(--unified-hover-transition);
+  --open-btn-transition-fast: 0.2s ease;
+  --open-btn-transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Transformations - SYSTÈME UNIFIÉ */
+  --open-btn-hover-transform: var(--unified-hover-transform);
+  --open-btn-active-transform: var(--unified-active-transform);
+  --open-btn-arrow-hover-transform: translateX(4px);
+  
+  /* Ombres et effets - SYSTÈME UNIFIÉ */
+  --open-btn-shadow: none;
+  --open-btn-shadow-hover: var(--unified-hover-shadow);
+  --open-btn-shadow-active: var(--unified-active-shadow);
+  
+  /* Z-index */
+  --open-btn-z-index: 1;
+  
+  /* Effet de brillance (overlay) */
+  --open-btn-shine-overlay: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0) 0%, 
+    rgba(255, 255, 255, 0.1) 50%, 
+    rgba(255, 255, 255, 0) 100%);
+}
+
+/* Keyframes pour animations */
+@keyframes openButtonShine {
+  0% { transform: translateX(-100%) rotate(45deg); }
+  100% { transform: translateX(200%) rotate(45deg); }
+}
+
+@keyframes openButtonFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+/* ===================================
+   STYLE DE BASE DES OPEN BUTTONS
+   =================================== */
+
+.open-btn,
+.btn-open,
+.open-button {
+  /* Layout et positionnement */
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs, 6px);
+  
+  /* Apparence */
+  background: var(--open-btn-bg);
+  color: var(--open-btn-color);
+  border: var(--open-btn-border);
+  border-radius: var(--open-btn-border-radius);
+  
+  /* Dimensions */
+  padding: var(--open-btn-padding);
+  min-height: var(--open-btn-min-height);
+  width: auto;
+  
+  /* Typographie */
+  font-family: var(--open-btn-font-family);
+  font-weight: var(--open-btn-font-weight);
+  font-size: var(--open-btn-font-size);
+  letter-spacing: var(--open-btn-letter-spacing);
+  line-height: var(--open-btn-line-height);
+  text-decoration: none;
+  white-space: nowrap;
+  
+  /* Interactions */
+  cursor: pointer;
+  transition: var(--open-btn-transition);
+  transform-origin: center;
+  backface-visibility: hidden;
+  
+  /* Effets visuels */
+  overflow: hidden;
+  z-index: var(--open-btn-z-index);
+  box-shadow: var(--open-btn-shadow);
+}
+
+/* ===================================
+   ÉTATS DES OPEN BUTTONS
+   =================================== */
+
+/* État normal */
+.open-btn:link,
+.open-btn:visited {
+  color: var(--open-btn-color);
+  text-decoration: none;
+}
+
+/* État hover */
+.open-btn:hover,
+.btn-open:hover,
+.open-button:hover {
+  background: var(--open-btn-bg-hover);
+  color: var(--open-btn-color-hover);
+  border: var(--open-btn-border-hover);
+  transform: var(--open-btn-hover-transform);
+  box-shadow: var(--open-btn-shadow-hover);
+}
+
+/* Animation de brillance au survol */
+.open-btn::before,
+.btn-open::before,
+.open-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--open-btn-shine-overlay);
+  transform: translateX(-100%) rotate(45deg);
+  transition: transform 0.6s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.open-btn:hover::before,
+.btn-open:hover::before,
+.open-button:hover::before {
+  transform: translateX(200%) rotate(45deg);
+  animation: openButtonShine 0.6s ease;
+}
+
+/* État actif/clic */
+.open-btn:active,
+.btn-open:active,
+.open-button:active {
+  transform: var(--open-btn-active-transform);
+  transition: transform 0.1s ease;
+  box-shadow: var(--open-btn-shadow-active);
+}
+
+/* Focus visible pour accessibilité */
+.open-btn:focus-visible,
+.btn-open:focus-visible,
+.open-button:focus-visible {
+  outline: 2px solid var(--accent-blue, #4F6EF7);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 4px rgba(79, 110, 247, 0.1);
+}
+
+/* ===================================
+   COMPOSANTS INTERNES (ICÔNES, FLÈCHES)
+   =================================== */
+
+/* Flèche d'ouverture */
+.open-btn .btn-arrow,
+.btn-open .btn-arrow,
+.open-button .btn-arrow {
+  display: inline-block;
+  transition: transform var(--open-btn-transition-fast);
+  will-change: transform;
+}
+
+.open-btn:hover .btn-arrow,
+.btn-open:hover .btn-arrow,
+.open-button:hover .btn-arrow {
+  transform: var(--open-btn-arrow-hover-transform);
+}
+
+/* Icônes génériques */
+.open-btn svg,
+.btn-open svg,
+.open-button svg {
+  transition: transform var(--open-btn-transition-fast);
+  flex-shrink: 0;
+}
+
+.open-btn:hover svg,
+.btn-open:hover svg,
+.open-button:hover svg {
+  transform: translateX(2px);
+}
+
+/* ===================================
+   VARIANTES DES OPEN BUTTONS
+   =================================== */
+
+/* Variante avec flèche animée */
+.open-btn--arrow {
+  position: relative;
+}
+
+.open-btn--arrow::after {
+  content: '->';
+  margin-left: var(--spacing-xs, 6px);
+  transition: transform var(--open-btn-transition-fast);
+  display: inline-block;
+}
+
+.open-btn--arrow:hover::after {
+  transform: translateX(4px);
+}
+
+/* Variante float (légère animation au survol) */
+.open-btn--float:hover {
+  animation: openButtonFloat 2s ease-in-out infinite;
+}
+
+/* Variante compacte */
+.open-btn--compact {
+  --open-btn-padding-y: 6px;
+  --open-btn-padding-x: 16px;
+  --open-btn-font-size: 14px;
+}
+
+/* Variante large */
+.open-btn--large {
+  --open-btn-padding-y: 12px;
+  --open-btn-padding-x: 32px;
+  --open-btn-font-size: 18px;
+}
+
+/* ===================================
+   RÉSOLUTION DES CONFLITS AVEC CTAs
+   =================================== */
+
+/* Priorité PLUS ÉLEVÉE pour open-btn dans les modules story */
+.story-section .cta-buttons .open-btn,
+.story-section.story-section--accent .cta-buttons .open-btn,
+section.story-section .open-btn,
+div.cta-buttons .open-btn {
+  /* Forcer les styles open-btn par-dessus cta-button avec spécificité maximale */
+  font-family: var(--open-btn-font-family) !important;
+  font-size: var(--open-btn-font-size) !important;
+  font-weight: var(--open-btn-font-weight) !important;
+  letter-spacing: var(--open-btn-letter-spacing) !important;
+  background: var(--open-btn-bg) !important;
+  color: var(--open-btn-color) !important;
+  border: var(--open-btn-border) !important;
+  padding: var(--open-btn-padding) !important;
+  border-radius: var(--open-btn-border-radius) !important;
+  min-height: var(--open-btn-min-height) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: var(--spacing-xs, 6px) !important;
+  cursor: pointer !important;
+  transition: var(--open-btn-transition) !important;
+  transform-origin: center !important;
+  backface-visibility: hidden !important;
+  overflow: hidden !important;
+  position: relative !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+  line-height: var(--open-btn-line-height) !important;
+}
+
+.story-section .cta-buttons .open-btn:hover,
+.story-section.story-section--accent .cta-buttons .open-btn:hover,
+section.story-section .open-btn:hover,
+div.cta-buttons .open-btn:hover {
+  background: var(--open-btn-bg-hover) !important;
+  color: var(--open-btn-color-hover) !important;
+  border: var(--open-btn-border-hover) !important;
+  transform: var(--open-btn-hover-transform) !important;
+}
+
+/* État focus pour accessibilité */
+.story-section .cta-buttons .open-btn:focus-visible,
+.story-section.story-section--accent .cta-buttons .open-btn:focus-visible {
+  outline: 2px solid var(--accent-blue, #4F6EF7) !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 0 4px rgba(79, 110, 247, 0.1) !important;
+}
+
+/* ===================================
+   ADAPTATIONS DARK MODE
+   =================================== */
+
+[data-theme="dark"] .open-btn,
+[data-theme="dark"] .btn-open,
+[data-theme="dark"] .open-button {
+  --open-btn-color: var(--text-secondary, #a0a090);
+  --open-btn-color-hover: var(--text-primary, #f5f5f0);
+}
+
+/* ===================================
+   ÉTATS SPÉCIAUX
+   =================================== */
+
+/* Bouton désactivé */
+.open-btn:disabled,
+.btn-open:disabled,
+.open-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+  pointer-events: none;
+}
+
+/* Bouton en chargement */
+.open-btn.loading,
+.btn-open.loading,
+.open-button.loading {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.open-btn.loading::after,
+.btn-open.loading::after,
+.open-button.loading::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  right: var(--spacing-sm, 8px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@keyframes spin {
+  0% { transform: translateY(-50%) rotate(0deg); }
+  100% { transform: translateY(-50%) rotate(360deg); }
+}
+
+/* ===================================
+   RESPONSIVE
+   =================================== */
+
+@media (max-width: 768px) {
+  .open-btn,
+  .btn-open,
+  .open-button {
+    --open-btn-font-size: 14px;
+    --open-btn-padding-y: var(--spacing-sm, 8px);
+    --open-btn-padding-x: var(--spacing-md, 16px);
+  }
+  
+  .open-btn--compact {
+    --open-btn-font-size: 12px;
+    --open-btn-padding-y: 4px;
+    --open-btn-padding-x: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .open-btn,
+  .btn-open,
+  .open-button {
+    --open-btn-font-size: 13px;
+    --open-btn-padding-y: 6px;
+    --open-btn-padding-x: 14px;
+  }
+}
+
+/* ===================================
+   RÉDUCTION DES MOTIONS (ACCESSIBILITÉ)
+   =================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .open-btn,
+  .btn-open,
+  .open-button {
+    transition: none !important;
+    animation: none !important;
+  }
+  
+  .open-btn:hover,
+  .btn-open:hover,
+  .open-button:hover {
+    transform: none !important;
+  }
+  
+  .open-btn::before,
+  .btn-open::before,
+  .open-button::before {
+    display: none;
+  }
+}
+
+/* ===================================
+   IMPRESSION
+   =================================== */
+
+@media print {
+  .open-btn,
+  .btn-open,
+  .open-button {
+    background: transparent !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border) !important;
+    box-shadow: none !important;
+  }
+  
+  .open-btn::before,
+  .btn-open::before,
+  .open-button::before {
+    display: none !important;
+  }
+}
