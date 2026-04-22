@@ -1,0 +1,127 @@
+/* Animation de transition sur la carte entre les villes */
+
+/* Indicateur de transition mobile */
+.map-transition-indicator {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(79, 110, 247, 0.8) 0%, rgba(79, 110, 247, 0.2) 70%);
+  border: 3px solid white;
+  box-shadow: 0 0 20px rgba(79, 110, 247, 0.6), 0 0 40px rgba(79, 110, 247, 0.3);
+  pointer-events: none;
+  z-index: 1000;
+  transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translate(-50%, -50%) scale(0);
+}
+
+/* Animation d'apparition/disparition */
+.map-transition-indicator.active {
+  transform: translate(-50%, -50%) scale(1);
+  animation: pulseIndicator 2s ease-in-out infinite;
+}
+
+/* Animation de pulse pour l'indicateur */
+@keyframes pulseIndicator {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(79, 110, 247, 0.6), 0 0 40px rgba(79, 110, 247, 0.3);
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(79, 110, 247, 0.8), 0 0 60px rgba(79, 110, 247, 0.5);
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+/* Trajectoire de transition */
+.map-transition-path {
+  position: absolute;
+  pointer-events: none;
+  z-index: 999;
+  transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Ligne de trajectoire animée */
+.map-transition-line {
+  stroke: rgba(79, 110, 247, 0.4);
+  stroke-width: 2;
+  stroke-dasharray: 5, 5;
+  fill: none;
+  animation: dashMove 1s linear infinite;
+}
+
+@keyframes dashMove {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 10;
+  }
+}
+
+/* Effet de particules pendant la transition */
+.map-transition-particles {
+  position: absolute;
+  pointer-events: none;
+  z-index: 998;
+}
+
+.transition-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(79, 110, 247, 0.8);
+  border-radius: 50%;
+  animation: particleFloat 3s ease-in-out infinite;
+}
+
+@keyframes particleFloat {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(-20px) scale(0.8);
+    opacity: 0.4;
+  }
+}
+
+/* États selon la ville active */
+.map-transition-indicator.brazzaville {
+  background: radial-gradient(circle, rgba(79, 110, 247, 0.8) 0%, rgba(79, 110, 247, 0.2) 70%);
+  box-shadow: 0 0 20px rgba(79, 110, 247, 0.6), 0 0 40px rgba(79, 110, 247, 0.3);
+}
+
+.map-transition-indicator.oyo {
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.8) 0%, rgba(34, 211, 238, 0.2) 70%);
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.6), 0 0 40px rgba(34, 211, 238, 0.3);
+}
+
+.map-transition-indicator.kinshasa {
+  background: radial-gradient(circle, rgba(123, 92, 245, 0.8) 0%, rgba(123, 92, 245, 0.2) 70%);
+  box-shadow: 0 0 20px rgba(123, 92, 245, 0.6), 0 0 40px rgba(123, 92, 245, 0.3);
+}
+
+.map-transition-line.brazzaville {
+  stroke: rgba(79, 110, 247, 0.4);
+}
+
+.map-transition-line.oyo {
+  stroke: rgba(34, 211, 238, 0.4);
+}
+
+.map-transition-line.kinshasa {
+  stroke: rgba(123, 92, 245, 0.4);
+}
+
+.transition-particle.brazzaville {
+  background: rgba(79, 110, 247, 0.8);
+}
+
+.transition-particle.oyo {
+  background: rgba(34, 211, 238, 0.8);
+}
+
+.transition-particle.kinshasa {
+  background: rgba(123, 92, 245, 0.8);
+}

@@ -1,0 +1,153 @@
+/* ===================================
+   SYSTÈME DE FILTRES UNIFIÉ - DATA ENG
+   ===================================
+   Variables et styles partagés pour tous les filtres du site
+*/
+
+/* Variables CSS pour les filtres - Basées sur le style optimal de la page home */
+:root {
+  /* Dimensions et espacement */
+  --filter-padding-y: 6px;
+  --filter-padding-x: 14px;
+  --filter-padding: var(--filter-padding-y) var(--filter-padding-x);
+  --filter-border-radius: 100px;
+  --filter-font-size: 12px;
+  --filter-gap: 6px;
+  
+  /* Couleurs et états */
+  --filter-bg: transparent;
+  --filter-border: var(--border, #E8E6E0);
+  --filter-color: var(--text-secondary, #888888);
+  --filter-hover-color: var(--text-primary, #1a1a1a);
+  --filter-hover-border: var(--text-primary, #1a1a1a);
+  --filter-active-bg: var(--accent-blue, #4F6EF7);
+  --filter-active-border: var(--accent-blue, #4F6EF7);
+  --filter-active-color: var(--text-primary, #1a1a1a);
+  
+  /* Animations et transitions */
+  --filter-transition: all 0.2s ease;
+  --filter-hover-transform: translateY(-1px);
+  --filter-active-transform: scale(1.05);
+}
+
+/* Styles de base pour tous les filtres */
+.filter-btn,
+.filter-chip,
+.filter-tag {
+  border-radius: var(--filter-border-radius);
+  border: 1px solid var(--filter-border);
+  background: var(--filter-bg);
+  color: var(--filter-color);
+  font-size: var(--filter-font-size);
+  padding: var(--filter-padding);
+  cursor: pointer;
+  transition: var(--filter-transition);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* État hover */
+.filter-btn:hover,
+.filter-chip:hover,
+.filter-tag:hover {
+  border-color: var(--filter-hover-border);
+  color: var(--filter-hover-color);
+  transform: var(--filter-hover-transform);
+}
+
+/* État actif/sélectionné */
+.filter-btn.active,
+.filter-chip.active,
+.filter-tag.active,
+.filter-btn[aria-selected="true"],
+.filter-chip[aria-selected="true"],
+.filter-tag[aria-selected="true"] {
+  background: var(--filter-active-bg);
+  border-color: var(--filter-active-border);
+  color: var(--filter-active-color);
+  transform: var(--filter-active-transform);
+  box-shadow: 0 2px 8px rgba(79, 110, 247, 0.2);
+}
+
+/* Conteneur de filtres */
+.filter-bar,
+.filter-group,
+.filter-container {
+  display: flex;
+  gap: var(--filter-gap);
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* Variations de taille */
+.filter-btn--sm,
+.filter-chip--sm,
+.filter-tag--sm {
+  --filter-padding-y: 4px;
+  --filter-padding-x: 12px;
+  --filter-font-size: 11px;
+}
+
+.filter-btn--lg,
+.filter-chip--lg,
+.filter-tag--lg {
+  --filter-padding-y: 8px;
+  --filter-padding-x: 18px;
+  --filter-font-size: 14px;
+}
+
+/* Variations de style */
+.filter-btn--outline,
+.filter-chip--outline,
+.filter-tag--outline {
+  --filter-bg: transparent;
+  --filter-border: var(--accent-blue, #4F6EF7);
+  --filter-color: var(--accent-blue, #4F6EF7);
+}
+
+.filter-btn--outline:hover,
+.filter-chip--outline:hover,
+.filter-tag--outline:hover {
+  --filter-bg: rgba(79, 110, 247, 0.1);
+}
+
+/* Accessibilité */
+.filter-btn:focus,
+.filter-chip:focus,
+.filter-tag:focus {
+  outline: 2px solid var(--accent-blue, #4F6EF7);
+  outline-offset: 2px;
+}
+
+.filter-btn:disabled,
+.filter-chip:disabled,
+.filter-tag:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Dark mode adaptations */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --filter-border: var(--border, #404040);
+    --filter-color: var(--text-secondary, #a0a090);
+    --filter-hover-color: var(--text-primary, #f5f5f0);
+    --filter-hover-border: var(--text-primary, #f5f5f0);
+  }
+}
+
+[data-theme="dark"] {
+  --filter-border: var(--border, #404040);
+  --filter-color: var(--text-secondary, #a0a090);
+  --filter-hover-color: var(--text-primary, #f5f5f0);
+  --filter-hover-border: var(--text-primary, #f5f5f0);
+}

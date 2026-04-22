@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import './styles.css'
+import '../../styles/filters.css'
 import '../common.css'
 import TestimonialSection from './TestimonialSection'
 

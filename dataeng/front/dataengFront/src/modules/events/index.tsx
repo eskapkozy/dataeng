@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import './styles.css'
 import './styles/city-vibration.css'
+import './styles/map-transition.css'
+import '../../styles/filters.css'
 import { ConnectionLinesAnimation } from './animations'
 import { useCityVibration } from './hooks/useCityVibration'
 
@@ -9,8 +11,82 @@ const Events: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState('tous')
   const [countdown, setCountdown] = useState({ days: 0, hours: 0, mins: 0, secs: 0 })
   
+  // Variable dynamique pour la ville active
+  const [activeCity, setActiveCity] = useState('brazzaville')
+  const [previousCity, setPreviousCity] = useState('brazzaville')
+  const [isTransitioning, setIsTransitioning] = useState(false)
+  
+  // Positionnement exact des div overlay (copié depuis les points existants)
+  const CITY_POSITIONS = {
+    brazzaville: {
+      left: 'calc(53% - 18px)',
+      top: 'calc(78% - 5px)'
+    },
+    pointe_noire: {
+      left: '43%',
+      top: '36%'
+    },
+    oyo: {
+      left: 'calc(67% - 99px)',
+      top: 'calc(48% + 1px)'
+    },
+    kinshasa: {
+      left: 'calc(67% - 100px)',
+      top: '48%'
+    }
+  }
+  
   // Hook pour la gestion de vibration des villes
-  const { vibratingCities, detectCitiesInText, CITY_MAPPING } = useCityVibration('Data Engineering #3 - Pipelines & Orchestration')
+  const { vibratingCities, detectCitiesInText, CITY_MAPPING } = useCityVibration(`Data Engineering #3 - Pipelines & Orchestration - ${activeCity.charAt(0).toUpperCase() + activeCity.slice(1)}`)
+  
+  // Effet de transition sur la carte
+  useEffect(() => {
+    if (activeCity !== previousCity) {
+      setIsTransitioning(true)
+      
+      // Calculer les coordonnées de transition
+      const startCity = CITY_MAPPING[previousCity as keyof typeof CITY_MAPPING]
+      const endCity = CITY_MAPPING[activeCity as keyof typeof CITY_MAPPING]
+      
+      if (startCity && endCity) {
+        const indicator = document.querySelector('.map-transition-indicator') as HTMLElement
+        if (indicator) {
+          // Positionner l'indicateur sur la ville de départ
+          const mapContainer = document.querySelector('.congo-map') as HTMLElement
+          if (mapContainer) {
+            const mapRect = mapContainer.getBoundingClientRect()
+            const svgWidth = 944
+            const svgHeight = 1139
+            
+            // Utiliser le positionnement exact des div overlay
+            const startPos = CITY_POSITIONS[previousCity as keyof typeof CITY_POSITIONS]
+            const endPos = CITY_POSITIONS[activeCity as keyof typeof CITY_POSITIONS]
+            
+            if (startPos && endPos) {
+              // Position de départ
+              indicator.style.left = startPos.left
+              indicator.style.top = startPos.top
+              indicator.classList.add('active', previousCity)
+              
+              // Animation vers la destination
+              setTimeout(() => {
+                indicator.style.left = endPos.left
+                indicator.style.top = endPos.top
+                indicator.classList.remove(previousCity)
+                indicator.classList.add(activeCity)
+              }, 100)
+            }
+          }
+        }
+      }
+      
+      // Fin de la transition
+      setTimeout(() => {
+        setIsTransitioning(false)
+        setPreviousCity(activeCity)
+      }, 1200)
+    }
+  }, [activeCity, previousCity, CITY_MAPPING])
   const [visibleCount, setVisibleCount] = useState(0)
   const [isAnimationActive, setIsAnimationActive] = useState(false)
 
@@ -215,6 +291,9 @@ const Events: React.FC = () => {
               className="map-svg"
             />
             
+            {/* Indicateur de transition sur la carte */}
+            <div className="map-transition-indicator"></div>
+            
             {/* Points interactifs par-dessus l'image */}
             <div 
               className="map-points-overlay"
@@ -302,7 +381,56 @@ const Events: React.FC = () => {
           </h1>
           
           <div className="event-date">
-            Samedi 15 juin 2025 · Brazzaville
+            Samedi 15 juin 2025 · {activeCity.charAt(0).toUpperCase() + activeCity.slice(1)}
+          </div>
+
+          {/* Boutons de test pour changer la ville dynamiquement */}
+          <div style={{ marginTop: '20px', display: 'flex', gap: '10px' }}>
+            <button 
+              onClick={() => setActiveCity('brazzaville')}
+              style={{ 
+                padding: '8px 16px', 
+                background: activeCity === 'brazzaville' ? 'var(--accent-blue)' : 'transparent',
+                color: activeCity === 'brazzaville' ? 'white' : 'var(--text-primary)',
+                border: '1px solid var(--accent-blue)',
+                borderRadius: '6px',
+                cursor: 'pointer',
+                fontFamily: 'Martian Mono',
+                fontSize: '12px'
+              }}
+            >
+              Brazzaville
+            </button>
+            <button 
+              onClick={() => setActiveCity('oyo')}
+              style={{ 
+                padding: '8px 16px', 
+                background: activeCity === 'oyo' ? 'var(--accent-cyan)' : 'transparent',
+                color: activeCity === 'oyo' ? 'white' : 'var(--text-primary)',
+                border: '1px solid var(--accent-cyan)',
+                borderRadius: '6px',
+                cursor: 'pointer',
+                fontFamily: 'Martian Mono',
+                fontSize: '12px'
+              }}
+            >
+              Oyo
+            </button>
+            <button 
+              onClick={() => setActiveCity('kinshasa')}
+              style={{ 
+                padding: '8px 16px', 
+                background: activeCity === 'kinshasa' ? 'var(--accent-purple)' : 'transparent',
+                color: activeCity === 'kinshasa' ? 'white' : 'var(--text-primary)',
+                border: '1px solid var(--accent-purple)',
+                borderRadius: '6px',
+                cursor: 'pointer',
+                fontFamily: 'Martian Mono',
+                fontSize: '12px'
+              }}
+            >
+              Kinshasa
+            </button>
           </div>
 
           <div className="countdown">

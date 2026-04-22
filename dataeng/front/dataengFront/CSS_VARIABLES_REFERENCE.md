@@ -556,6 +556,252 @@ Array.from(getComputedStyle(document.documentElement)).filter(prop => prop.start
 
 ---
 
+## Variables de Filtres Unifiés
+
+### Vue d'ensemble
+Système de variables CSS partagées pour tous les filtres du site Data Eng, basé sur le style optimal de la page home.
+
+### Fichier de référence
+`/src/styles/filters.css` - Importé dans toutes les pages utilisant des filtres
+
+### Variables Principales
+
+#### Dimensions et Espacement
+| Variable | Valeur | Usage |
+|----------|--------|------|
+| `--filter-padding-y` | `6px` | Padding vertical des filtres |
+| `--filter-padding-x` | `14px` | Padding horizontal des filtres |
+| `--filter-padding` | `6px 14px` | Padding complet (composite) |
+| `--filter-border-radius` | `100px` | Style "pills" arrondi |
+| `--filter-font-size` | `12px` | Taille de police des filtres |
+| `--filter-gap` | `6px` | Espacement entre les filtres |
+
+#### Couleurs et États
+| Variable | Valeur (Light) | Valeur (Dark) | Usage |
+|----------|---------------|---------------|------|
+| `--filter-bg` | `transparent` | `transparent` | Fond des filtres inactifs |
+| `--filter-border` | `var(--border)` | `var(--border)` | Bordure des filtres |
+| `--filter-color` | `var(--text-secondary)` | `var(--text-secondary)` | Texte des filtres inactifs |
+| `--filter-hover-color` | `var(--text-primary)` | `var(--text-primary)` | Texte au survol |
+| `--filter-hover-border` | `var(--text-primary)` | `var(--text-primary)` | Bordure au survol |
+| `--filter-active-bg` | `var(--accent-blue)` | `var(--accent-blue)` | Fond du filtre actif |
+| `--filter-active-border` | `var(--accent-blue)` | `var(--accent-blue)` | Bordure du filtre actif |
+| `--filter-active-color` | `var(--text-primary)` | `var(--text-primary)` | Texte du filtre actif |
+
+#### Animations et Transitions
+| Variable | Valeur | Usage |
+|----------|--------|------|
+| `--filter-transition` | `all 0.2s ease` | Transition des filtres |
+| `--filter-hover-transform` | `translateY(-1px)` | Transformation au survol |
+| `--filter-active-transform` | `scale(1.05)` | Transformation à l'état actif |
+
+### Classes CSS Unifiées
+
+#### Classes de Base
+```css
+.filter-btn    /* Boutons de filtre principaux */
+.filter-chip   /* Chips de filtre (alternative) */
+.filter-tag    /* Tags de filtre (alternative) */
+```
+
+#### Classes de Conteneurs
+```css
+.filter-bar      /* Barre de filtres horizontale */
+.filter-group    /* Groupe de filtres */
+.filter-container /* Conteneur générique de filtres */
+```
+
+#### Modificateurs de Taille
+```css
+.filter-btn--sm   /* Petit : 4px 12px, 11px */
+.filter-btn--lg   /* Grand : 8px 18px, 14px */
+```
+
+#### Modificateurs de Style
+```css
+.filter-btn--outline  /* Style outline avec bordure bleue */
+```
+
+### Implémentation
+
+#### 1. Import dans les pages
+```tsx
+// Dans chaque page utilisant des filtres
+import '../../styles/filters.css'
+```
+
+#### 2. Utilisation dans le JSX
+```tsx
+<div className="filter-bar">
+  <button className="filter-btn active">Tous</button>
+  <button className="filter-btn">Data Engineering</button>
+  <button className="filter-btn">Machine Learning</button>
+</div>
+```
+
+#### 3. Styles personnalisés (si nécessaire)
+```css
+/* Override spécifique tout en gardant les variables */
+.page-specific .filter-btn {
+  --filter-padding-y: 8px;  /* Override du padding */
+  --filter-font-size: 14px;  /* Override de la taille */
+}
+```
+
+### États et Interactions
+
+#### État Normal
+```css
+.filter-btn {
+  /* Fond transparent, bordure grise, texte gris */
+  background: var(--filter-bg);
+  border: 1px solid var(--filter-border);
+  color: var(--filter-color);
+}
+```
+
+#### État Hover
+```css
+.filter-btn:hover {
+  /* Bordure et texte principal, légère translation */
+  border-color: var(--filter-hover-border);
+  color: var(--filter-hover-color);
+  transform: var(--filter-hover-transform);
+}
+```
+
+#### État Actif
+```css
+.filter-btn.active {
+  /* Fond bleu, texte blanc, légère mise à l'échelle */
+  background: var(--filter-active-bg);
+  border-color: var(--filter-active-border);
+  color: var(--filter-active-color);
+  transform: var(--filter-active-transform);
+  box-shadow: 0 2px 8px rgba(79, 110, 247, 0.2);
+}
+```
+
+### Accessibilité
+
+#### Focus
+```css
+.filter-btn:focus {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 2px;
+}
+```
+
+#### Disabled
+```css
+.filter-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+```
+
+### Support Dark Mode
+
+Le système s'adapte automatiquement au thème via les variables CSS :
+```css
+[data-theme="dark"] {
+  --filter-border: var(--border, #404040);
+  --filter-color: var(--text-secondary, #a0a090);
+  --filter-hover-color: var(--text-primary, #f5f5f0);
+  --filter-hover-border: var(--text-primary, #f5f5f0);
+}
+```
+
+### Pages Actuellement Utilisatrices
+
+1. **Page Home** (`/src/modules/home/`)
+   - Filtres du mur d'articles
+   - Import : `import '../../styles/filters.css'`
+
+2. **Page Events** (`/src/modules/events/`)
+   - Filtres d'événements (tous, meetup, workshop, etc.)
+   - Import : `import '../../styles/filters.css'`
+
+### Bonnes Pratiques
+
+#### 1. Utiliser les classes standards
+```css
+/* Correct */
+<button className="filter-btn active">Tous</button>
+
+/* Éviter les styles inline */
+<button style={{background: 'blue'}}>Tous</button>
+```
+
+#### 2. Maintenir la cohérence
+```css
+/* Utiliser les variables pour les personnalisations */
+.custom-filter {
+  --filter-padding: 8px 16px;  /* OK */
+  padding: 8px 16px;           /* Non recommandé */
+}
+```
+
+#### 3. Accessibilité
+```tsx
+// Ajouter les attributs ARIA
+<button 
+  className="filter-btn"
+  aria-pressed={isActive}
+  aria-label={`Filtrer par ${category}`}
+>
+  {category}
+</button>
+```
+
+### Extensibilité
+
+#### Ajouter un nouveau type de filtre
+```css
+/* Dans filters.css */
+.filter-btn--custom {
+  --filter-bg: rgba(79, 110, 247, 0.1);
+  --filter-border: var(--accent-blue);
+  --filter-color: var(--accent-blue);
+}
+```
+
+#### Créer des thèmes de filtres
+```css
+.filter-theme-dark {
+  --filter-bg: rgba(0, 0, 0, 0.2);
+  --filter-border: rgba(255, 255, 255, 0.2);
+  --filter-color: rgba(255, 255, 255, 0.8);
+}
+```
+
+### Migration depuis les anciens styles
+
+#### Avant
+```css
+.page-specific .filter-btn {
+  padding: 6px 16px;
+  border-radius: 6px;
+  background: transparent;
+  color: #666666;
+  /* ... styles personnalisés */
+}
+```
+
+#### Après
+```css
+/* Import du système unifié */
+@import '../../styles/filters.css';
+
+/* Plus besoin de styles personnalisés */
+.filter-btn {
+  /* Styles automatiques via les variables */
+}
+```
+
+---
+
 ## Conclusion
 
 L'utilisation cohérente de ces variables CSS garantit :

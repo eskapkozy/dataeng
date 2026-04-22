@@ -2,15 +2,16 @@
 
 /* Variables CSS pour events - utilisent les variables globales du brand */
 :root {
-  --events-bg-page: var(--bg-page);
-  --events-bg-surface: var(--bg-surface);
-  --events-card-bg: var(--card-bg);
-  --events-text-primary: var(--text-primary);
-  --events-text-secondary: var(--text-secondary);
-  --events-text-muted: var(--text-muted);
-  --events-text-very-muted: var(--text-very-muted);
-  --events-border: var(--border);
-  --events-border-light: var(--border-light);
+  --events-bg-page: var(--bg-page, #F5F4F0);
+  --events-bg-surface: var(--bg-surface, #FDFCF9);
+  --events-card-bg: var(--card-bg, #ffffff);
+  --events-text-primary: var(--text-primary, #1a1a1a);
+  --events-text-secondary: var(--text-secondary, #888888);
+  --events-text-muted: #666666;
+  --events-text-very-muted: #999999;
+  --events-border: var(--border, #E8E6E0);
+  --events-border-light: #E8E6E0;
+  --accent-blue: #4F6EF7;
 }
 
 /* Variables spécifiques events si besoin */
@@ -253,63 +254,18 @@
   width: 0;
 }
 
-/* Animations pour les filtres */
-.filter-btn {
-  padding: 6px 12px;
-  border-radius: 6px;
-  border: 1px solid var(--events-border-light);
-  background: transparent;
-  color: var(--events-text-muted);
-  font-family: 'Martian Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 0.08em;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
-}
-
-.filter-btn::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: var(--accent-blue);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition: width 0.4s, height 0.4s;
-  z-index: -1;
-}
-
-.filter-btn:hover::before {
-  width: 100px;
-  height: 100px;
-}
-
-.filter-btn:hover {
-  color: white;
-  border-color: var(--accent-blue);
-  transform: translateY(-2px);
-}
-
-.filter-btn.active {
-  background: var(--accent-blue);
-  color: white;
-  border-color: var(--accent-blue);
-  transform: scale(1.05);
-}
+/* Les styles des filtres utilisent maintenant le système unifié dans /src/styles/filters.css */
 
 /* Animations pour les tabs */
 .tab-btn {
-  padding: 8px 18px;
-  border-radius: 6px;
+  padding: 12px 24px;
+  border-radius: 8px;
   border: none;
   background: transparent;
-  color: var(--events-text-muted);
+  color: #666666;
   font-family: 'DM Sans', sans-serif;
-  font-size: 13px;
+  font-size: 16px;
+  font-weight: 500;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
@@ -334,6 +290,7 @@
 .tab-btn.active {
   background: var(--accent-blue);
   color: white;
+  box-shadow: 0 4px 12px rgba(79, 110, 247, 0.3);
 }
 
 .tab-btn.active::after {
@@ -1317,24 +1274,6 @@ body {
   gap: 6px;
 }
 
-.filter-btn {
-  padding: 6px 12px;
-  border-radius: 6px;
-  border: 1px solid var(--events-border-light);
-  background: transparent;
-  color: var(--events-text-muted);
-  font-family: 'Martian Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 0.08em;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.filter-btn.active {
-  background: var(--accent-blue);
-  color: white;
-  border-color: var(--accent-blue);
-}
 
 .results-count {
   font-family: 'Martian Mono', monospace;

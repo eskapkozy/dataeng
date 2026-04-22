@@ -8,6 +8,8 @@ import Write from './modules/write'
 import Auth from './modules/auth'
 import GetStarted from './modules/get-started'
 import Events from './modules/events'
+import Dashboard from './modules/dashboard'
+import ProtectedRoute from './components/ProtectedRoute'
 import './App.css'
 
 function AppContent() {
@@ -24,6 +26,11 @@ function AppContent() {
           <Route path="/events" element={<Events />} />
           <Route path="/login" element={<Auth />} />
           <Route path="/get-started" element={<GetStarted />} />
+          <Route path="/dashboard" element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          } />
         </Routes>
       </PageTransition>
     </Layout>

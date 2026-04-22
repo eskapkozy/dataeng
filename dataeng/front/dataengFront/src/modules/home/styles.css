@@ -821,37 +821,13 @@
   z-index: 1;
 }
 
-/* Filter Bar */
+/* Filter Bar - utilise maintenant le système unifié dans /src/styles/filters.css */
 .home-page .filter-bar {
   display: flex;
-  gap: 6px;
+  gap: var(--filter-gap, 6px);
   flex-wrap: wrap;
-  margin-bottom: 32px;
-  position: relative;
+  margin-bottom: 24px;
   z-index: 1;
-}
-
-.home-page .filter-btn {
-  border-radius: 100px;
-  border: 1px solid var(--border);
-  background: transparent;
-  color: var(--text-secondary);
-  font-size: 12px;
-  padding: 6px 14px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-family: 'DM Sans', sans-serif;
-}
-
-.home-page .filter-btn:hover {
-  border-color: var(--text-primary);
-  color: var(--text-primary);
-}
-
-.home-page .filter-btn.active {
-  background: var(--accent-blue);
-  border-color: var(--accent-blue);
-  color: var(--text-primary);
 }
 
 /* Articles Grid */
