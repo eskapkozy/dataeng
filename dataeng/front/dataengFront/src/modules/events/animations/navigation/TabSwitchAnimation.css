@@ -1,0 +1,25 @@
+/* Animation pour le changement de tabs */
+.tab-switch-animation {
+  position: relative;
+  overflow: hidden;
+}
+
+.tab-switch-animation .tab-content {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tab-switch-animation.upcoming .tab-content.past {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.tab-switch-animation.past .tab-content.upcoming {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.tab-switch-animation.upcoming .tab-content.upcoming,
+.tab-switch-animation.past .tab-content.past {
+  opacity: 1;
+  transform: translateX(0);
+}

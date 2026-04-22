@@ -39,7 +39,7 @@
   </g>
   
   <!-- Point pour Brazzaville avec design Data Eng -->
-  <g transform="translate(501, 893)">
+  <g id="brazzaville-point" transform="translate(501, 893)">
         
     <!-- Sphère de présence principale -->
     <circle cx="0" cy="0" r="10" fill="url(#brazzavilleGradient)" opacity="0.9" filter="url(#glowEffect)">
@@ -76,7 +76,7 @@
   </g>
   
   <!-- Point additionnel aux coordonnées 407, 407 -->
-  <g transform="translate(407, 407)">
+  <g id="point-additionnel" transform="translate(407, 407)">
     <!-- Point principal -->
     <circle cx="0" cy="0" r="8" fill="var(--warning-orange, #F5A623)" opacity="0.8">
       <animate attributeName="r" values="8;12;8" dur="2s" repeatCount="indefinite"/>
@@ -97,7 +97,7 @@
   </g>
   
   <!-- Point Oyo aux coordonnées 631, 550 -->
-  <g transform="translate(631, 550)">
+  <g id="oyo-point" transform="translate(631, 550)">
     <!-- Point principal -->
     <circle cx="0" cy="0" r="8" fill="var(--accent-cyan, #22d3ee)" opacity="0.8">
       <animate attributeName="r" values="8;12;8" dur="2.5s" repeatCount="indefinite"/>

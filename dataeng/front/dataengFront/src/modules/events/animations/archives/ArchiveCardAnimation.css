@@ -1,0 +1,32 @@
+/* Animation pour les cartes d'archives */
+.archive-card-animation {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.archive-card-animation.main:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+}
+
+.archive-card-animation.main:hover .past-cover {
+  transform: scale(1.02);
+}
+
+.archive-card-animation.mini:hover {
+  transform: translateX(8px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.archive-card-animation.mini:hover .mini-cover {
+  transform: scale(1.05);
+}
+
+.archive-card-animation .recap-btn {
+  transition: all 0.2s ease;
+}
+
+.archive-card-animation:hover .recap-btn {
+  background: var(--accent-blue);
+  color: white;
+  transform: translateX(4px);
+}

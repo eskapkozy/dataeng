@@ -1,0 +1,36 @@
+/* Animation pour le ticker défilant */
+.ticker-animation {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.ticker-content {
+  display: flex;
+  white-space: nowrap;
+  animation: tickerScroll 20s linear infinite;
+}
+
+.ticker-word {
+  font-family: 'Martian Mono', monospace;
+  font-size: 10px;
+  color: var(--text-secondary);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0 40px;
+  border-right: 1px solid var(--border);
+  line-height: 36px;
+  display: inline-block;
+}
+
+.ticker-word.accent {
+  color: var(--accent-blue);
+  font-weight: 500;
+}
+
+@keyframes tickerScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}

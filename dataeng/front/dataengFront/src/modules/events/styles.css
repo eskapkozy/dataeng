@@ -910,52 +910,7 @@ body {
 .connection-dot:nth-child(4) { top: 80%; left: 60%; animation-delay: 1.5s; }
 .connection-dot:nth-child(5) { top: 45%; left: 85%; animation-delay: 2s; }
 
-/* Lignes de connexion */
-.connection-lines {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow: hidden;
-}
-
-.connection-line {
-  position: absolute;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
-  animation: lineFlow 4s ease-in-out infinite;
-  box-shadow: 0 0 6px rgba(79, 110, 247, 0.3);
-}
-
-.connection-line:nth-child(1) {
-  top: 25%;
-  left: -20%;
-  width: 40%;
-  transform: rotate(25deg);
-  animation-delay: 0s;
-}
-
-.connection-line:nth-child(2) {
-  top: 55%;
-  left: 60%;
-  width: 35%;
-  transform: rotate(-15deg);
-  animation-delay: 1s;
-}
-
-.connection-line:nth-child(3) {
-  top: 70%;
-  left: 20%;
-  width: 45%;
-  transform: rotate(10deg);
-  animation-delay: 2s;
-}
-
-@keyframes lineFlow {
-  0%, 100% { opacity: 0; transform: translateX(-100%) rotate(var(--rotation, 0deg)); }
-  50% { opacity: 0.6; transform: translateX(0) rotate(var(--rotation, 0deg)); }
-}
+/* Les styles des connection-lines sont maintenant gérés dans le dossier animations */
 
 /* Carte du Congo stylisée */
 .congo-map {
@@ -1030,6 +985,82 @@ body {
 @keyframes locationExpand {
   0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
   50% { transform: translate(-50%, -50%) scale(2); opacity: 0; }
+}
+
+/* Styles pour le tooltip de la carte */
+.map-tooltip {
+  position: fixed;
+  background: var(--card-bg, #ffffff);
+  border: 1px solid var(--border, #E8E6E0);
+  border-radius: var(--radius-md, 8px);
+  padding: 12px 16px;
+  box-shadow: var(--shadow, rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  z-index: 1000;
+  pointer-events: none;
+  min-width: 180px;
+}
+
+.map-tooltip::before {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 20px;
+  width: 12px;
+  height: 12px;
+  background: var(--card-bg, #ffffff);
+  border-right: 1px solid var(--border, #E8E6E0);
+  border-bottom: 1px solid var(--border, #E8E6E0);
+  transform: rotate(45deg);
+}
+
+.tooltip-title {
+  font-family: 'Martian Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-primary, #1a1a1a);
+  margin-bottom: 4px;
+  text-transform: capitalize;
+}
+
+.tooltip-info {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  color: var(--text-secondary, #888888);
+  line-height: 1.4;
+}
+
+/* Styles pour les points interactifs sur la carte */
+.congo-map [data-dept] {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.congo-map [data-dept]:hover {
+  filter: brightness(1.2) saturate(1.3);
+}
+
+/* Dark mode pour le tooltip */
+[data-theme="dark"] .map-tooltip {
+  background: var(--card-bg, #2a2a2a);
+  border-color: var(--border, #404040);
+  box-shadow: rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+}
+
+[data-theme="dark"] .map-tooltip::before {
+  background: var(--card-bg, #2a2a2a);
+  border-right-color: var(--border, #404040);
+  border-bottom-color: var(--border, #404040);
+}
+
+[data-theme="dark"] .tooltip-title {
+  color: var(--text-primary, #f5f5f0);
+}
+
+[data-theme="dark"] .tooltip-info {
+  color: var(--text-secondary, #a0a090);
 }
 
 /* Particules flottantes */

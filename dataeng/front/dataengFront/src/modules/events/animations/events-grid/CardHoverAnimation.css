@@ -1,0 +1,30 @@
+/* Animation pour les cartes d'événements */
+.card-hover-animation {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0);
+}
+
+.card-hover-animation:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.card-hover-animation.meetup:hover {
+  border-color: var(--accent-blue);
+  box-shadow: 0 8px 24px rgba(79, 110, 247, 0.2);
+}
+
+.card-hover-animation.workshop:hover {
+  border-color: var(--active-green);
+  box-shadow: 0 8px 24px rgba(62, 207, 142, 0.2);
+}
+
+.card-hover-animation.hackathon:hover {
+  border-color: var(--accent-purple);
+  box-shadow: 0 8px 24px rgba(123, 92, 245, 0.2);
+}
+
+.card-hover-animation.online:hover {
+  border-color: var(--warning-orange);
+  box-shadow: 0 8px 24px rgba(245, 166, 35, 0.2);
+}

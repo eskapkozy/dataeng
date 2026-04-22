@@ -54,7 +54,7 @@
   --transition-fast: 0.2s ease;
   --transition-normal: 0.3s ease;
   --transition-slow: 0.4s ease;
-  --transition-theme: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-theme: var(--theme-transition-duration) var(--theme-transition-easing);
 }
 
 /* Espacement entre sections - Respiration visuelle inspirée de l'exemple */

@@ -1,11 +1,97 @@
 import React, { useEffect, useState } from 'react'
 import './styles.css'
+import './styles/city-vibration.css'
+import { ConnectionLinesAnimation } from './animations'
+import { useCityVibration } from './hooks/useCityVibration'
 
 const Events: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'upcoming' | 'past'>('upcoming')
   const [activeFilter, setActiveFilter] = useState('tous')
   const [countdown, setCountdown] = useState({ days: 0, hours: 0, mins: 0, secs: 0 })
+  
+  // Hook pour la gestion de vibration des villes
+  const { vibratingCities, detectCitiesInText, CITY_MAPPING } = useCityVibration('Data Engineering #3 - Pipelines & Orchestration')
   const [visibleCount, setVisibleCount] = useState(0)
+  const [isAnimationActive, setIsAnimationActive] = useState(false)
+
+  // Gestion du tooltip pour la carte
+  useEffect(() => {
+    const tooltip = document.getElementById('mapTooltip') as HTMLElement
+    const mapPoints = document.querySelectorAll('.map-points-overlay')
+
+    const handleMouseEnter = (e: Event) => {
+      const target = e.target as Element
+      const group = target.closest('[data-dept]') as Element
+      if (group) {
+        const dept = group.getAttribute('data-dept')
+        const info = group.getAttribute('data-info')
+        
+        if (tooltip && dept && info) {
+          const titleElement = tooltip.querySelector('.tooltip-title') as HTMLElement
+          const infoElement = tooltip.querySelector('.tooltip-info') as HTMLElement
+          
+          if (titleElement && infoElement) {
+            titleElement.textContent = dept.charAt(0).toUpperCase() + dept.slice(1).replace('-', ' ')
+            infoElement.textContent = info
+          }
+          
+          tooltip.style.opacity = '1'
+          tooltip.style.visibility = 'visible'
+        }
+      }
+    }
+
+    const handleMouseMove = (e: MouseEvent) => {
+      if (tooltip && tooltip.style.opacity === '1') {
+        tooltip.style.left = `${e.clientX + 15}px`
+        tooltip.style.top = `${e.clientY - 40}px`
+      }
+    }
+
+    const handleMouseLeave = () => {
+      if (tooltip) {
+        tooltip.style.opacity = '0'
+        tooltip.style.visibility = 'hidden'
+      }
+    }
+
+    // Ajouter les écouteurs d'événements
+    mapPoints.forEach(point => {
+      point.addEventListener('mouseenter', handleMouseEnter)
+      point.addEventListener('mouseleave', handleMouseLeave)
+    })
+
+    document.addEventListener('mousemove', handleMouseMove)
+
+    // Nettoyage
+    return () => {
+      mapPoints.forEach(point => {
+        point.removeEventListener('mouseenter', handleMouseEnter)
+        point.removeEventListener('mouseleave', handleMouseLeave)
+      })
+      document.removeEventListener('mousemove', handleMouseMove)
+    }
+  }, [])
+
+  // Effet de vibration des points SVG selon les villes détectées
+  useEffect(() => {
+    // Nettoyer toutes les vibrations existantes
+    Object.values(CITY_MAPPING).forEach(city => {
+      const svgElement = document.getElementById(city.svgId)
+      if (svgElement) {
+        svgElement.classList.remove('svg-point-vibrating')
+      }
+    })
+
+    // Appliquer la vibration aux villes détectées
+    vibratingCities.forEach(city => {
+      const cityConfig = CITY_MAPPING[city]
+      const svgElement = document.getElementById(cityConfig.svgId)
+      if (svgElement) {
+        svgElement.classList.add('svg-point-vibrating')
+      }
+    })
+  }, [vibratingCities, CITY_MAPPING])
 
   // Données des événements
   const upcomingEvents = [
@@ -118,12 +204,8 @@ const Events: React.FC = () => {
             <div className="connection-dot"></div>
           </div>
           
-          {/* Lignes de connexion */}
-          <div className="connection-lines">
-            <div className="connection-line"></div>
-            <div className="connection-line"></div>
-            <div className="connection-line"></div>
-          </div>
+          {/* Lignes de connexion animées */}
+          <ConnectionLinesAnimation isActive={isAnimationActive} />
           
           {/* Carte du Congo */}
           <div className="congo-map">
@@ -132,6 +214,68 @@ const Events: React.FC = () => {
               alt="Carte du Congo" 
               className="map-svg"
             />
+            
+            {/* Points interactifs par-dessus l'image */}
+            <div 
+              className="map-points-overlay"
+              data-dept="brazzaville" 
+              data-info="Capitale · 120+ membres · 8 meetups"
+              style={{
+                position: 'absolute',
+                left: 'calc(53% - 18px)',
+                top: 'calc(78% - 5px)',
+                width: '20px',
+                height: '20px',
+                borderRadius: '50%',
+                background: 'var(--accent-blue, #4F6EF7)',
+                border: '2px solid white',
+                cursor: 'pointer',
+                transform: 'translate(-50%, -50%)',
+                boxShadow: '0 0 20px rgba(79, 110, 247, 0.4)'
+              }}
+            />
+            <div 
+              className="map-points-overlay"
+              data-dept="pointe-noire" 
+              data-info="Port maritime · 45 membres · 3 meetups"
+              style={{
+                position: 'absolute',
+                left: '43%',
+                top: '36%',
+                width: '16px',
+                height: '16px',
+                borderRadius: '50%',
+                background: 'var(--warning-orange, #F5A623)',
+                border: '2px solid white',
+                cursor: 'pointer',
+                transform: 'translate(-50%, -50%)',
+                boxShadow: '0 0 20px rgba(245, 166, 35, 0.4)'
+              }}
+            />
+            <div 
+              className="map-points-overlay"
+              data-dept="oyo" 
+              data-info="Région nord · 25 membres · 2 meetups"
+              style={{
+                position: 'absolute',
+                left: 'calc(67% - 99px)',
+                top: 'calc(48% + 1px)',
+                width: '16px',
+                height: '16px',
+                borderRadius: '50%',
+                background: 'var(--accent-cyan, #22d3ee)',
+                border: '2px solid white',
+                cursor: 'pointer',
+                transform: 'translate(-50%, -50%)',
+                boxShadow: '0 0 20px rgba(34, 211, 238, 0.4)'
+              }}
+            />
+            
+            {/* Tooltip */}
+            <div className="map-tooltip" id="mapTooltip">
+              <div className="tooltip-title"></div>
+              <div className="tooltip-info"></div>
+            </div>
           </div>
           
           {/* Particules flottantes */}
@@ -181,11 +325,15 @@ const Events: React.FC = () => {
           </div>
 
           <div className="hero-cta">
-            <button className="cta-button">
+            <button 
+              className="cta-button"
+              onMouseEnter={() => setIsAnimationActive(true)}
+              onMouseLeave={() => setIsAnimationActive(false)}
+            >
               S'inscrire maintenant
             </button>
             <span className="cta-text">
-              Places limitées • 120 participants max
+              Places limitées · 120 participants max
             </span>
           </div>
         </div>

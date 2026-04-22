@@ -1,0 +1,101 @@
+/* Styles pour la vibration intense des points SVG */
+
+/* État de vibration intense pour les points SVG */
+.svg-point-vibrating {
+  animation: intenseVibration 0.8s ease-in-out infinite;
+}
+
+.svg-point-vibrating circle {
+  animation-duration: 0.8s !important;
+}
+
+.svg-point-vibrating circle:nth-child(1) {
+  animation: intensePulse 0.8s ease-in-out infinite;
+}
+
+.svg-point-vibrating circle:nth-child(2) {
+  animation: intenseRing 0.8s ease-in-out infinite;
+}
+
+.svg-point-vibrating circle:nth-child(3) {
+  animation: intenseCenter 0.4s ease-in-out infinite;
+}
+
+/* Animations de vibration intense */
+@keyframes intenseVibration {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(-1px, 1px); }
+  50% { transform: translate(1px, -1px); }
+  75% { transform: translate(-1px, -1px); }
+}
+
+@keyframes intensePulse {
+  0%, 100% { 
+    r: 8; 
+    opacity: 0.9;
+    filter: drop-shadow(0 0 8px currentColor);
+  }
+  50% { 
+    r: 20; 
+    opacity: 0.3;
+    filter: drop-shadow(0 0 20px currentColor);
+  }
+}
+
+@keyframes intenseRing {
+  0%, 100% { 
+    r: 12; 
+    opacity: 0.8;
+    stroke-width: 3;
+    filter: drop-shadow(0 0 12px currentColor);
+  }
+  50% { 
+    r: 30; 
+    opacity: 0.1;
+    stroke-width: 1;
+    filter: drop-shadow(0 0 25px currentColor);
+  }
+}
+
+@keyframes intenseCenter {
+  0%, 100% { 
+    r: 4; 
+    opacity: 1;
+    filter: drop-shadow(0 0 6px white);
+  }
+  50% { 
+    r: 8; 
+    opacity: 0.7;
+    filter: drop-shadow(0 0 15px white);
+  }
+}
+
+/* Effet de glow intense pour les labels */
+.svg-point-vibrating text {
+  animation: intenseGlow 0.8s ease-in-out infinite;
+  font-weight: 800 !important;
+}
+
+@keyframes intenseGlow {
+  0%, 100% { 
+    opacity: 1;
+    filter: drop-shadow(0 0 4px currentColor);
+  }
+  50% { 
+    opacity: 0.6;
+    filter: drop-shadow(0 0 12px currentColor);
+  }
+}
+
+/* Transition douce quand la vibration s'arrête */
+svg g {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+svg g circle {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+svg g text {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
