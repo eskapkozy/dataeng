@@ -1,46 +1,113 @@
-/* Variables CSS pour les animations de vibration - Système hiérarchisé */
+/* ===========================================
+   SYSTÈME DE VARIABLES GLOBALES RÉUTILISABLES
+   Data Eng - Architecture scalable à l'échelle du site
+   =========================================== */
+
 :root {
-  /* Durées d'animation */
-  --massive-duration: 2s;
-  --massive-center-duration: 0.6s;
-  --basic-duration: 3s;
-  --basic-center-duration: 0.8s;
-  --vibration-easing: ease-in-out;
+  /* ===========================================
+     VARIABLES D'ANIMATION GLOBALES
+     Réutilisables dans tout le site
+     =========================================== */
   
-  /* Vibration MASSIVE (map-transition-indicator) - TRÈS INTENSE */
-  --massive-size-min: 24px;
-  --massive-size-max: 120px;
-  --massive-inner-min: 8px;
-  --massive-inner-max: 80px;
-  --massive-center-min: 4px;
-  --massive-center-max: 4px;
-  --massive-satellite-size: 4px;
+  /* Durées d'animation - Présets réutilisables */
+  --global-duration-fast: 0.2s;
+  --global-duration-quick: 0.25s;
+  --global-duration-smooth: 0.3s;
+  --global-duration-standard: 0.4s;
+  --global-duration-slow: 0.6s;
+  --global-duration-slowest: 1s;
   
-  /* Vibration BASIQUE (divs overlay) */
-  --basic-size-min: 20px;
-  --basic-size-max: 35px;
-  --basic-inner-min: 6px;
-  --basic-inner-max: 25px;
-  --basic-center-min: 3px;
-  --basic-center-max: 3px;
+  /* Easing curves - Présets optimisés */
+  --global-easing-natural: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --global-easing-elegant: cubic-bezier(0.23, 1, 0.32, 1);
+  --global-easing-snappy: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --global-easing-soft: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  --global-easing-modern: cubic-bezier(0.19, 1, 0.22, 1);
+  --global-easing-linear: linear;
+  --global-easing-ease-out: ease-out;
+  --global-easing-ease-in-out: ease-in-out;
   
-  /* Opacités - Massive TRÈS INTENSE */
-  --massive-opacity-min: 1;
-  --massive-opacity-max: 0.2;
-  --massive-inner-opacity-min: 1;
-  --massive-inner-opacity-max: 0.3;
-  --massive-center-opacity-min: 1;
-  --massive-center-opacity-max: 0.4;
-  --massive-satellite-opacity-min: 1;
-  --massive-satellite-opacity-max: 0.1;
+  /* ===========================================
+     VARIABLES DE TRANSITION GLOBALES
+     Pour tous les éléments interactifs du site
+     =========================================== */
   
-  /* Opacités - Basique */
-  --basic-opacity-min: 0.8;
-  --basic-opacity-max: 0.5;
-  --basic-inner-opacity-min: 0.8;
-  --basic-inner-opacity-max: 0.4;
-  --basic-center-opacity-min: 0.9;
-  --basic-center-opacity-max: 0.5;
+  /* Transitions universelles */
+  --global-transition-fast: var(--global-duration-fast) var(--global-easing-ease-out);
+  --global-transition-quick: var(--global-duration-quick) var(--global-easing-ease-out);
+  --global-transition-smooth: var(--global-duration-smooth) var(--global-easing-ease-out);
+  --global-transition-standard: var(--global-duration-standard) var(--global-easing-elegant);
+  --global-transition-slow: var(--global-duration-slow) var(--global-easing-soft);
+  
+  /* Transitions spécifiques par propriété */
+  --global-transition-opacity: opacity var(--global-duration-smooth) var(--global-easing-ease-out);
+  --global-transition-transform: transform var(--global-duration-smooth) var(--global-easing-ease-out);
+  --global-transition-position: left 0.1s var(--global-easing-linear), top 0.1s var(--global-easing-linear);
+  
+  /* ===========================================
+     VARIABLES D'ÉCHELLE ET TRANSFORMATION
+     Pour animations et interactions
+     =========================================== */
+  
+  /* Échelles */
+  --global-scale-hidden: 0.85;
+  --global-scale-visible: 1;
+  --global-scale-hover: 1.2;
+  --global-scale-active: 0.95;
+  
+  /* Translations */
+  --global-translate-y-hidden: 15px;
+  --global-translate-y-visible: 0px;
+  --global-translate-x-hidden: 8px;
+  --global-translate-x-visible: 0px;
+  
+  /* Opacités */
+  --global-opacity-hidden: 0;
+  --global-opacity-visible: 1;
+  --global-opacity-subtle: 0.6;
+  --global-opacity-faint: 0.3;
+  
+  /* ===========================================
+     VARIABLES SPÉCIFIQUES VIBRATION CITY-MAP
+     Héritées du système existant mais réorganisées
+     =========================================== */
+  
+  /* Durées spécifiques vibration */
+  --vibration-massive-duration: 2s;
+  --vibration-massive-center-duration: 0.6s;
+  --vibration-basic-duration: 3s;
+  --vibration-basic-center-duration: 0.8s;
+  
+  /* Tailles vibration massive */
+  --vibration-massive-size-min: 24px;
+  --vibration-massive-size-max: 120px;
+  --vibration-massive-inner-min: 8px;
+  --vibration-massive-inner-max: 80px;
+  --vibration-massive-center-min: 4px;
+  --vibration-massive-center-max: 4px;
+  
+  /* Tailles vibration basique */
+  --vibration-basic-size-min: 20px;
+  --vibration-basic-size-max: 35px;
+  --vibration-basic-inner-min: 6px;
+  --vibration-basic-inner-max: 25px;
+  --vibration-basic-center-min: 3px;
+  --vibration-basic-center-max: 3px;
+  
+  /* Opacités vibration */
+  --vibration-massive-opacity-min: 1;
+  --vibration-massive-opacity-max: 0.2;
+  --vibration-massive-inner-opacity-min: 1;
+  --vibration-massive-inner-opacity-max: 0.3;
+  --vibration-massive-center-opacity-min: 1;
+  --vibration-massive-center-opacity-max: 0.4;
+  
+  --vibration-basic-opacity-min: 0.8;
+  --vibration-basic-opacity-max: 0.5;
+  --vibration-basic-inner-opacity-min: 0.8;
+  --vibration-basic-inner-opacity-max: 0.4;
+  --vibration-basic-center-opacity-min: 0.9;
+  --vibration-basic-center-opacity-max: 0.5;
   
   /* Effets de glow - Massive TRÈS INTENSE */
   --massive-glow-spread: 15px;
@@ -70,49 +137,202 @@
   
   /* Transitions */
   --overlay-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* SIGNAL 1 - Anneaux concentriques pour indicateur de location (INTENSE) */
+  --pin-ring-scale-start: 0.8;
+  --pin-ring-scale-end: 2.8;
+  --pin-ring-opacity-start: 0.6;
+  --pin-ring-opacity-end: 0;
+  --pin-ring-duration: 2s;
+  --pin-ring-delay: 0s;
+  --pin-ring-easing: ease-out;
+  
+  /* SIGNAL 2 - Labels retardés "Survoler →" */
+  --label-delay: 1.2s;
+  --label-fade-duration: 0.4s;
+  --label-translate-y: 8px;
+  --label-color: var(--text-primary);
+  --label-bg: var(--bg-surface);
+  --label-border: var(--border);
+  
+  /* ===========================================
+     VARIABLES MAP-TOOLTIP - SYSTÈME RÉUTILISABLE
+     Peut être importé dans d'autres modules
+     =========================================== */
+  
+  /* Dimensions et positionnement */
+  --map-tooltip-width: auto;
+  --map-tooltip-min-width: 200px;
+  --map-tooltip-max-width: 300px;
+  --map-tooltip-padding: 12px 16px;
+  --map-tooltip-border-radius: 8px;
+  --map-tooltip-z-index: 999999;
+  
+  /* Positionnement relatif au curseur */
+  --map-tooltip-offset-x: 15px;
+  --map-tooltip-offset-y: -50px;
+  
+  /* Apparence et thème */
+  --map-tooltip-bg: var(--bg-surface);
+  --map-tooltip-border: 1px solid var(--accent-blue);
+  --map-tooltip-text-color: var(--text-primary);
+  --map-tooltip-font-size: 13px;
+  --map-tooltip-font-family: 'Martian Mono', monospace;
+  --map-tooltip-backdrop-filter: blur(4px);
+  --map-tooltip-shadow: 0 6px 20px rgba(79, 110, 247, 0.6), 0 0 0 1px rgba(79, 110, 247, 0.2);
+  
+  /* Transitions et animations */
+  --map-tooltip-transition: var(--global-transition-opacity), var(--global-transition-transform), var(--global-transition-position);
+  --map-tooltip-entrance-duration: var(--global-duration-smooth);
+  --map-tooltip-entrance-stagger: 0.04s;
+  --map-tooltip-entrance-distance: 8px;
+  --map-tooltip-entrance-scale-hidden: 0.95;
+  --map-tooltip-entrance-opacity-hidden: 0;
+  --map-tooltip-entrance-easing: var(--global-easing-ease-out);
+  
+  /* Contenu structurel */
+  --map-tooltip-header-margin-bottom: 8px;
+  --map-tooltip-content-margin: 8px 0;
+  --map-tooltip-footer-margin-top: 8px;
+  --map-tooltip-footer-padding-top: 8px;
+  --map-tooltip-footer-border-top: 1px solid var(--border);
+  
+  /* Typographie du contenu */
+  --map-tooltip-title-weight: 600;
+  --map-tooltip-title-color: var(--accent-blue);
+  --map-tooltip-info-font-size: 11px;
+  --map-tooltip-info-color: var(--text-secondary);
+  
+  /* Indicateurs visuels (SIGNAL 3) */
+  --map-tooltip-indicator-color: var(--accent-blue);
+  --map-tooltip-indicator-font-size: 12px;
+  --map-tooltip-indicator-pulse-duration: 1.5s;
+  
+  /* Barres animées */
+  --map-tooltip-bar-width: 3px;
+  --map-tooltip-bar-height: 12px;
+  --map-tooltip-bar-gap: 2px;
+  --map-tooltip-bar-animation-duration: 1.2s;
+  --map-tooltip-bar-animation-easing: ease-in-out;
+  
+  /* Texte d'aide */
+  --map-tooltip-hint-font-size: 11px;
+  --map-tooltip-hint-color: var(--text-secondary);
+  --map-tooltip-hint-font-family: 'Martian Mono', monospace;
+  
+  /* ===========================================
+     VARIABLES DE SIGNALISATION (RÉUTILISABLES)
+     Pour indicateurs interactifs dans tout le site
+     =========================================== */
+  
+  /* Échelles et intensités */
+  --signal-scale-base: 1;
+  --signal-scale-hover: 1.2;
+  --signal-intensity-low: 0.3;
+  --signal-intensity-medium: 0.6;
+  --signal-intensity-high: 1;
+  
+  /* Animation de slide pour tooltip - PRESETS DE TRANSITIONS */
+  --tooltip-slide-distance: 15px;
+  --tooltip-slide-scale-hidden: 0.85;
+  --tooltip-slide-scale-visible: 1;
+  --tooltip-slide-duration: 0.4s;
+  --tooltip-slide-delay: 0s;
+  --tooltip-opacity-hidden: 0;
+  --tooltip-opacity-visible: 1;
+  
+  /* Option 1: Naturel et fluide (actuel) */
+  --tooltip-slide-easing-natural: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  
+  /* Option 2: Élégant et sophistiqué */
+  --tooltip-slide-easing-elegant: cubic-bezier(0.23, 1, 0.32, 1);
+  
+  /* Option 3: Vif et responsive */
+  --tooltip-slide-easing-snappy: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  
+  /* Option 4: Doux et amorti */
+  --tooltip-slide-easing-soft: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  
+  /* Option 5: Moderne et tech */
+  --tooltip-slide-easing-modern: cubic-bezier(0.19, 1, 0.22, 1);
+  
+  /* ===========================================
+     SYSTÈME DE TEST DES TRANSITIONS
+     ===========================================
+     Pour tester une transition, changer la ligne ci-dessous:
+     
+     OPTIONS DISPONIBLES:
+     1. --tooltip-slide-easing-natural : doux et naturel
+     2. --tooltip-slide-easing-elegant : sophistiqué (actuel)
+     3. --tooltip-slide-easing-snappy : vif et responsive
+     4. --tooltip-slide-easing-soft : très doux amorti
+     5. --tooltip-slide-easing-modern : tech et moderne
+     =========================================== */
+  --tooltip-slide-easing: var(--tooltip-slide-easing-elegant);
+  
+  /* Animation d'apparition optimisée */
+  --tooltip-entrance-duration: 0.3s;
+  --tooltip-entrance-stagger: 0.04s;
+  --tooltip-entrance-distance: 8px;
+  --tooltip-entrance-scale-hidden: 0.95;
+  --tooltip-entrance-opacity-hidden: 0;
+  --tooltip-entrance-easing: ease-out;
+  
+  /* Options de durée pour tester */
+  --tooltip-duration-quick: 0.25s;
+  --tooltip-duration-smooth: 0.4s;
+  --tooltip-duration-slow: 0.6s;
+  
+  /* ===========================================
+     TEST DES DURÉES
+     ===========================================
+     Options de durée disponibles:
+     1. --tooltip-duration-quick : 0.25s (rapide)
+     2. --tooltip-duration-smooth : 0.4s (équilibré, actuel)
+     3. --tooltip-duration-slow : 0.6s (lent et fluide)
+     =========================================== */
+  --tooltip-slide-duration: var(--tooltip-duration-smooth);
 }
 
-/* Styles de base pour les divs overlay */
+/* Styles de base pour les divs overlay - Points de couleur */
 .map-points-overlay {
   position: absolute;
-  width: var(--overlay-base-size);
-  height: var(--overlay-base-size);
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
-  border: var(--overlay-border-width) solid var(--overlay-border-color);
   cursor: var(--overlay-cursor);
   transform: var(--overlay-transform);
   transition: var(--overlay-transition);
+  z-index: 50;
+  pointer-events: auto;
+  border: none; /* Pas de bordure, juste fond coloré */
 }
 
-/* Vibration BASIQUE pour les divs overlay */
-.map-points-overlay.basic-vibrating {
-  animation: basicSpherePulse var(--basic-duration) var(--vibration-easing) infinite;
+/* S'assurer que les pseudo-éléments ne bloquent pas les événements */
+.map-points-overlay::before,
+.map-points-overlay::after {
+  pointer-events: none;
 }
 
-.map-points-overlay.basic-vibrating::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: var(--basic-inner-min);
-  height: var(--basic-inner-min);
-  background: var(--basic-inner-color);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  animation: basicInnerPulse var(--basic-duration) var(--vibration-easing) infinite;
+/* Styles spécifiques pour chaque ville - Variables de couleur Data Eng */
+.map-points-overlay[data-dept="brazzaville"] {
+  background: var(--accent-blue);
+  box-shadow: 0 0 15px rgba(79, 110, 247, 0.4);
 }
 
-.map-points-overlay.basic-vibrating::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: var(--basic-center-min);
-  height: var(--basic-center-min);
-  background: currentColor;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  animation: basicCenterPulse var(--basic-center-duration) var(--vibration-easing) infinite;
+.map-points-overlay[data-dept="pointe-noire"] {
+  background: var(--warning-orange);
+  box-shadow: 0 0 15px rgba(245, 166, 35, 0.4);
+}
+
+.map-points-overlay[data-dept="oyo"] {
+  background: var(--accent-cyan);
+  box-shadow: 0 0 15px rgba(34, 211, 238, 0.4);
+}
+
+.map-points-overlay[data-dept="kinshasa"] {
+  background: var(--active-green);
+  box-shadow: 0 0 15px rgba(62, 207, 142, 0.4);
 }
 
 /* Vibration MASSIVE pour le map-transition-indicator */
@@ -146,95 +366,7 @@
   animation: massiveCenterPulse var(--massive-center-duration) var(--vibration-easing) infinite;
 }
 
-/* Satellites pour la vibration massive - TRÈS INTENSE */
-.map-transition-indicator.massive-vibrating .satellite {
-  position: absolute;
-  width: var(--massive-satellite-size);
-  height: var(--massive-satellite-size);
-  border-radius: 50%;
-  opacity: 0.9;
-}
 
-.map-transition-indicator.massive-vibrating .satellite-1 {
-  background: var(--accent-blue, #4F6EF7);
-  top: 50%;
-  left: -30px;
-  animation: massiveSatellite1 var(--massive-duration) var(--vibration-easing) infinite;
-}
-
-.map-transition-indicator.massive-vibrating .satellite-2 {
-  background: var(--active-green, #3ecf8e);
-  top: 50%;
-  right: -30px;
-  animation: massiveSatellite2 var(--massive-duration) var(--vibration-easing) infinite 0.3s;
-}
-
-.map-transition-indicator.massive-vibrating .satellite-3 {
-  background: var(--accent-purple, #7B5CF5);
-  top: -30px;
-  left: 50%;
-  animation: massiveSatellite3 var(--massive-duration) var(--vibration-easing) infinite 0.6s;
-}
-
-.map-transition-indicator.massive-vibrating .satellite-4 {
-  background: var(--warning-orange, #F5A623);
-  bottom: -30px;
-  left: 50%;
-  animation: massiveSatellite4 var(--massive-duration) var(--vibration-easing) infinite 0.9s;
-}
-
-/* Animations des satellites massifs - TRÈS INTENSE */
-@keyframes massiveSatellite1 {
-  0%, 100% { 
-    opacity: var(--massive-satellite-opacity-min);
-    left: -30px;
-    transform: translateY(-50%) scale(1);
-  }
-  50% { 
-    opacity: var(--massive-satellite-opacity-max);
-    left: -45px;
-    transform: translateY(-50%) scale(1.5);
-  }
-}
-
-@keyframes massiveSatellite2 {
-  0%, 100% { 
-    opacity: var(--massive-satellite-opacity-min);
-    right: -30px;
-    transform: translateY(-50%) scale(1);
-  }
-  50% { 
-    opacity: var(--massive-satellite-opacity-max);
-    right: -45px;
-    transform: translateY(-50%) scale(1.5);
-  }
-}
-
-@keyframes massiveSatellite3 {
-  0%, 100% { 
-    opacity: var(--massive-satellite-opacity-min);
-    top: -30px;
-    transform: translateX(-50%) scale(1);
-  }
-  50% { 
-    opacity: var(--massive-satellite-opacity-max);
-    top: -45px;
-    transform: translateX(-50%) scale(1.5);
-  }
-}
-
-@keyframes massiveSatellite4 {
-  0%, 100% { 
-    opacity: var(--massive-satellite-opacity-min);
-    bottom: -30px;
-    transform: translateX(-50%) scale(1);
-  }
-  50% { 
-    opacity: var(--massive-satellite-opacity-max);
-    bottom: -45px;
-    transform: translateX(-50%) scale(1.5);
-  }
-}
 
 /* Animations BASIQUES */
 @keyframes basicSpherePulse {
@@ -312,74 +444,238 @@
   }
 }
 
-/* Animations des satellites massifs */
-@keyframes massiveSatellite1 {
-  0%, 100% { 
-    opacity: var(--massive-satellite-opacity-min);
-    left: -20px;
-  }
-  50% { 
-    opacity: var(--massive-satellite-opacity-max);
-    left: -25px;
-  }
-}
 
-@keyframes massiveSatellite2 {
-  0%, 100% { 
-    opacity: var(--massive-satellite-opacity-min);
-    right: -20px;
+/* Animations pour les 3 signaux d'affordance */
+
+/* SIGNAL 1 - Animation des anneaux concentriques */
+@keyframes pinRing {
+  0%   { 
+    transform: translate(-50%, -50%) scale(var(--pin-ring-scale-start)); 
+    opacity: var(--pin-ring-opacity-start);
   }
-  50% { 
-    opacity: var(--massive-satellite-opacity-max);
-    right: -25px;
+  100% { 
+    transform: translate(-50%, -50%) scale(var(--pin-ring-scale-end)); 
+    opacity: var(--pin-ring-opacity-end);
   }
 }
 
-@keyframes massiveSatellite3 {
-  0%, 100% { 
-    opacity: var(--massive-satellite-opacity-min);
-    top: -20px;
+/* SIGNAL 2 - Animation du label retardé */
+@keyframes labelFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(var(--label-translate-y));
   }
-  50% { 
-    opacity: var(--massive-satellite-opacity-max);
-    top: -25px;
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
   }
 }
 
-/* Styles spécifiques pour chaque ville */
-.map-points-overlay[data-dept="brazzaville"] {
-  background: var(--accent-blue, #4F6EF7);
-  box-shadow: var(--overlay-glow-blue);
+/* SIGNAL 3 - Animations tooltip */
+@keyframes tooltipPulse {
+  0%, 100% {
+    opacity: var(--signal-intensity-medium);
+  }
+  50% {
+    opacity: var(--signal-intensity-high);
+  }
 }
 
-.map-points-overlay[data-dept="pointe-noire"] {
-  background: var(--warning-orange, #F5A623);
-  box-shadow: var(--overlay-glow-orange);
+@keyframes barWave {
+  0%, 100% {
+    height: 30%;
+  }
+  50% {
+    height: 100%;
+  }
 }
 
-.map-points-overlay[data-dept="oyo"] {
-  background: var(--accent-cyan, #22d3ee);
-  box-shadow: var(--overlay-glow-cyan);
+
+/* SIGNAL 1 - Anneaux concentriques animés pour points colorés */
+.map-points-overlay.location-indicator::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: pinRing 2s ease-out infinite;
+  pointer-events: none;
 }
 
-.map-points-overlay[data-dept="kinshasa"] {
-  background: var(--accent-purple, #7B5CF5);
-  box-shadow: var(--overlay-glow-purple);
+.map-points-overlay.location-indicator::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: pinRing 2s ease-out infinite 0.6s;
+  pointer-events: none;
+}
+
+/* Couleurs des anneaux avec variables Data Eng pour contraste optimal */
+.map-points-overlay[data-dept="brazzaville"].location-indicator::before,
+.map-points-overlay[data-dept="brazzaville"].location-indicator::after {
+  border-color: var(--accent-blue);
+  opacity: 0.6;
+}
+
+.map-points-overlay[data-dept="pointe-noire"].location-indicator::before,
+.map-points-overlay[data-dept="pointe-noire"].location-indicator::after {
+  border-color: var(--warning-orange);
+  opacity: 0.6;
+}
+
+.map-points-overlay[data-dept="oyo"].location-indicator::before,
+.map-points-overlay[data-dept="oyo"].location-indicator::after {
+  border-color: var(--accent-cyan);
+  opacity: 0.6;
+}
+
+.map-points-overlay[data-dept="kinshasa"].location-indicator::before,
+.map-points-overlay[data-dept="kinshasa"].location-indicator::after {
+  border-color: var(--active-green);
+  opacity: 0.6;
+}
+
+/* SIGNAL 2 - Labels retardés "Survoler →" */
+.map-points-overlay .hover-label {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(var(--label-translate-y));
+  background: var(--label-bg);
+  border: 1px solid var(--label-border);
+  color: var(--label-color);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-family: 'Martian Mono', monospace;
+  white-space: nowrap;
+  opacity: 0;
+  animation: labelFadeIn var(--label-fade-duration) ease-out var(--label-delay) forwards;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.map-points-overlay .hover-label::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 4px solid transparent;
+  border-top-color: var(--label-border);
+}
+
+/* Cacher le label au survol du point */
+.map-points-overlay:hover .hover-label {
+  opacity: 0;
+  animation: none;
+}
+
+/* SIGNAL 3 - Indicateurs dans le tooltip - TRANSITION D'APPARITION */
+.events-tooltip .tooltip-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  opacity: var(--tooltip-entrance-opacity-hidden);
+  transform: translateY(var(--tooltip-entrance-distance)) scale(var(--tooltip-entrance-scale-hidden));
+  transition: all var(--tooltip-entrance-duration) var(--tooltip-entrance-easing);
+}
+
+.events-tooltip.visible .tooltip-header {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.events-tooltip .tooltip-indicator {
+  color: var(--tooltip-indicator-color);
+  font-size: 12px;
+  font-family: 'Martian Mono', monospace;
+  animation: tooltipPulse var(--tooltip-pulse-duration) ease-in-out infinite;
+}
+
+.events-tooltip .tooltip-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+  opacity: var(--tooltip-entrance-opacity-hidden);
+  transform: translateY(var(--tooltip-entrance-distance)) scale(var(--tooltip-entrance-scale-hidden));
+  transition: all var(--tooltip-entrance-duration) var(--tooltip-entrance-easing) calc(var(--tooltip-entrance-stagger) * 2);
+}
+
+.events-tooltip.visible .tooltip-footer {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.events-tooltip .tooltip-bars {
+  display: flex;
+  gap: var(--tooltip-bar-gap);
+  align-items: flex-end;
+  height: var(--tooltip-bar-height);
+}
+
+.events-tooltip .tooltip-bar {
+  width: var(--tooltip-bar-width);
+  background: var(--tooltip-indicator-color);
+  border-radius: 2px;
+  animation: barWave 1.2s ease-in-out infinite;
+}
+
+.events-tooltip .tooltip-bar:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.events-tooltip .tooltip-bar:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.events-tooltip .tooltip-hint {
+  font-size: var(--tooltip-text-size);
+  color: var(--text-secondary);
+  font-family: 'Martian Mono', monospace;
+}
+
+/* Contenu principal - TRANSITION D'APPARITION */
+.events-tooltip > div:nth-child(2) {
+  opacity: var(--tooltip-entrance-opacity-hidden);
+  transform: translateY(var(--tooltip-entrance-distance)) scale(var(--tooltip-entrance-scale-hidden));
+  transition: all var(--tooltip-entrance-duration) var(--tooltip-entrance-easing) var(--tooltip-entrance-stagger);
+}
+
+.events-tooltip.visible > div:nth-child(2) {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
 /* États hover pour les divs overlay */
 .map-points-overlay:hover {
-  transform: var(--overlay-transform) scale(1.2);
+  transform: var(--overlay-transform) scale(var(--signal-scale-hover));
   z-index: 10;
 }
 
+/* Désactiver les animations pendant le hover pour éviter les conflits */
 .map-points-overlay.basic-vibrating:hover {
-  animation-play-state: paused;
+  animation-play-state: paused !important;
 }
 
 .map-points-overlay.basic-vibrating:hover::before,
 .map-points-overlay.basic-vibrating:hover::after {
-  animation-play-state: paused;
+  animation-play-state: paused !important;
 }
 
 /* États hover pour le map-transition-indicator */
@@ -388,8 +684,7 @@
 }
 
 .map-transition-indicator.massive-vibrating:hover::before,
-.map-transition-indicator.massive-vibrating:hover::after,
-.map-transition-indicator.massive-vibrating:hover .satellite {
+.map-transition-indicator.massive-vibrating:hover::after {
   animation-play-state: paused;
 }
 
@@ -402,7 +697,6 @@
 .map-points-overlay::before,
 .map-points-overlay::after,
 .map-transition-indicator::before,
-.map-transition-indicator::after,
-.map-transition-indicator .satellite {
+.map-transition-indicator::after {
   transition: var(--overlay-transition);
 }

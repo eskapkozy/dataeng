@@ -8,6 +8,24 @@
 @import './styles/openButton.css';
 @import './styles/filters.css';
 
+/* Keyframe globale pour le curseur du tooltip */
+@keyframes tooltipBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* Empêcher la carte de bouger quand le tooltip apparaît */
+.map-container,
+[class*="map-"],
+[class*="MapSection"] {
+  isolation: isolate; /* crée un contexte de stacking indépendant */
+  contain: layout style; /* empêche les reflows de se propager */
+}
+
+/* S'assurer qu'aucun parent du tooltip ne crée de contexte fixed */
+/* Ne jamais mettre ces propriétés sur un parent du tooltip : */
+/* transform, filter, perspective, will-change, backdrop-filter */
+
 :root {
   /* Variables light mode - version ultra-douce et minimale */
   --bg-surface: #f0ede9;

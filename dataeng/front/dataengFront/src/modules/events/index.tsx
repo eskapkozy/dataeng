@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import './styles.css'
 import './styles/city-vibration.css'
 import './styles/map-transition.css'
 import '../../styles/filters.css'
-import { ConnectionLinesAnimation } from './animations'
 import { useCityVibration } from './hooks/useCityVibration'
 import type { CityName } from './hooks/useCityVibration'
+import { useTooltip } from '../../context/TooltipContext'
 
 const Events: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'upcoming' | 'past'>('upcoming')
@@ -19,8 +19,7 @@ const Events: React.FC = () => {
   // Hook pour gérer les vibrations basées sur la position de l'indicateur
   const { 
     getIndicatorClass, 
-    getOverlayClass, 
-    massiveVibratingCity
+    getOverlayClass
   } = useCityVibration(activeCity)
   
   // Positionnement exact des div overlay (copié depuis les points existants)
@@ -87,68 +86,49 @@ const Events: React.FC = () => {
     }
   }, [activeCity, previousCity])
   const [visibleCount, setVisibleCount] = useState(0)
-  const [isAnimationActive, setIsAnimationActive] = useState(false)
+  
+  // Hook pour le tooltip global
+  const { dispatch } = useTooltip()
 
-  // Gestion du tooltip pour la carte
+  // Timer partagé pour éviter les conflits entre overlay et tooltip
+  const hideTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  // Handlers pour les overlays
+  const handleOverlayMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+    const dept = e.currentTarget.getAttribute('data-dept')
+    if (hideTimerRef.current) clearTimeout(hideTimerRef.current)
+    if (dept) {
+      dispatch({ type: 'SHOW', x: e.clientX, y: e.clientY, deptKey: dept })
+    }
+    // Désactiver l'effet hover de la carte
+    const congoMap = document.querySelector('.congo-map')
+    if (congoMap) {
+      congoMap.classList.add('overlay-hover')
+    }
+  }
+
+  const handleOverlayMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    dispatch({ type: 'MOVE', x: e.clientX, y: e.clientY })
+  }
+
+  const handleOverlayMouseLeave = () => {
+    // Délai de 120ms - laisse le temps d'atteindre le tooltip
+    hideTimerRef.current = setTimeout(() => {
+      dispatch({ type: 'HIDE' })
+    }, 120)
+    // Réactiver l'effet hover de la carte
+    const congoMap = document.querySelector('.congo-map')
+    if (congoMap) {
+      congoMap.classList.remove('overlay-hover')
+    }
+  }
+
+  // Cleanup du timer au démontage
   useEffect(() => {
-    const tooltip = document.getElementById('mapTooltip') as HTMLElement
-    const mapPoints = document.querySelectorAll('.map-points-overlay')
-
-    const handleMouseEnter = (e: Event) => {
-      const target = e.target as Element
-      const group = target.closest('[data-dept]') as Element
-      if (group) {
-        const dept = group.getAttribute('data-dept')
-        const info = group.getAttribute('data-info')
-        
-        if (tooltip && dept && info) {
-          const titleElement = tooltip.querySelector('.tooltip-title') as HTMLElement
-          const infoElement = tooltip.querySelector('.tooltip-info') as HTMLElement
-          
-          if (titleElement && infoElement) {
-            titleElement.textContent = dept.charAt(0).toUpperCase() + dept.slice(1).replace('-', ' ')
-            infoElement.textContent = info
-          }
-          
-          tooltip.style.opacity = '1'
-          tooltip.style.visibility = 'visible'
-        }
-      }
-    }
-
-    const handleMouseMove = (e: MouseEvent) => {
-      if (tooltip && tooltip.style.opacity === '1') {
-        tooltip.style.left = `${e.clientX + 15}px`
-        tooltip.style.top = `${e.clientY - 40}px`
-      }
-    }
-
-    const handleMouseLeave = () => {
-      if (tooltip) {
-        tooltip.style.opacity = '0'
-        tooltip.style.visibility = 'hidden'
-      }
-    }
-
-    // Ajouter les écouteurs d'événements
-    mapPoints.forEach(point => {
-      point.addEventListener('mouseenter', handleMouseEnter)
-      point.addEventListener('mouseleave', handleMouseLeave)
-    })
-
-    document.addEventListener('mousemove', handleMouseMove)
-
-    // Nettoyage
     return () => {
-      mapPoints.forEach(point => {
-        point.removeEventListener('mouseenter', handleMouseEnter)
-        point.removeEventListener('mouseleave', handleMouseLeave)
-      })
-      document.removeEventListener('mousemove', handleMouseMove)
+      if (hideTimerRef.current) clearTimeout(hideTimerRef.current)
     }
   }, [])
-
-  
 
   // Données des événements / todo changer tout ce qui est en dure permettre au dash de tout instaurer
   const upcomingEvents = [
@@ -261,9 +241,7 @@ const Events: React.FC = () => {
             <div className="connection-dot"></div>
           </div>
           
-          {/* Lignes de connexion animées */}
-          <ConnectionLinesAnimation isActive={isAnimationActive} />
-          
+                    
           {/* Carte du Congo */}
           <div className="congo-map">
             <img 
@@ -274,49 +252,53 @@ const Events: React.FC = () => {
             
             {/* Indicateur de transition sur la carte */}
             <div className={`map-transition-indicator ${getIndicatorClass()}`}>
-              {massiveVibratingCity && (
-                <>
-                  <div className="satellite satellite-1"></div>
-                  <div className="satellite satellite-2"></div>
-                  <div className="satellite satellite-3"></div>
-                  <div className="satellite satellite-4"></div>
-                </>
-              )}
             </div>
             
             {/* Points interactifs par-dessus l'image */}
             <div 
-              className={`map-points-overlay ${getOverlayClass('brazzaville')}`}
+              className={`map-points-overlay ${getOverlayClass('brazzaville')} location-indicator`}
               data-dept="brazzaville" 
               data-info="Capitale · 120+ membres · 8 meetups"
+              onMouseEnter={handleOverlayMouseEnter}
+              onMouseMove={handleOverlayMouseMove}
+              onMouseLeave={handleOverlayMouseLeave}
               style={{
                 left: 'calc(53% - 18px)',
                 top: 'calc(78% - 5px)'
               }}
-            />
+            >
+              {/* SIGNAL 2 - Label retardé "Survoler →" */}
+              <span className="hover-label">Survoler →</span>
+            </div>
             <div 
-              className={`map-points-overlay ${getOverlayClass('pointe_noire')}`}
+              className={`map-points-overlay ${getOverlayClass('pointe_noire')} location-indicator`}
               data-dept="pointe-noire" 
               data-info="Port maritime · 45 membres · 3 meetups"
+              onMouseEnter={handleOverlayMouseEnter}
+              onMouseMove={handleOverlayMouseMove}
+              onMouseLeave={handleOverlayMouseLeave}
               style={{
-                left: '43%',
-                top: '36%'
+                left: 'calc(35% - 53px)',
+                top: 'calc(36% + 363px)'
               }}
-            />
+            >
+              {/* SIGNAL 2 - Label retardé "Survoler →" */}
+              <span className="hover-label">Survoler →</span>
+            </div>
             <div 
-              className={`map-points-overlay ${getOverlayClass('oyo')}`}
+              className={`map-points-overlay ${getOverlayClass('oyo')} location-indicator`}
               data-dept="oyo" 
               data-info="Région nord · 25 membres · 2 meetups"
+              onMouseEnter={handleOverlayMouseEnter}
+              onMouseMove={handleOverlayMouseMove}
+              onMouseLeave={handleOverlayMouseLeave}
               style={{
                 left: 'calc(67% - 99px)',
                 top: 'calc(48% + 1px)'
               }}
-            />
-            
-            {/* Tooltip */}
-            <div className="map-tooltip" id="mapTooltip">
-              <div className="tooltip-title"></div>
-              <div className="tooltip-info"></div>
+            >
+              {/* SIGNAL 2 - Label retardé "Survoler →" */}
+              <span className="hover-label">Survoler →</span>
             </div>
           </div>
           
@@ -418,8 +400,6 @@ const Events: React.FC = () => {
           <div className="hero-cta">
             <button 
               className="cta-button"
-              onMouseEnter={() => setIsAnimationActive(true)}
-              onMouseLeave={() => setIsAnimationActive(false)}
             >
               S'inscrire maintenant
             </button>

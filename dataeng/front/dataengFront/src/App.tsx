@@ -10,6 +10,8 @@ import GetStarted from './modules/get-started'
 import Events from './modules/events'
 import Dashboard from './modules/dashboard'
 import ProtectedRoute from './components/ProtectedRoute'
+import { TooltipProvider } from './context/TooltipContext'
+import { MapTooltip } from './components/MapTooltip'
 import './App.css'
 
 function AppContent() {
@@ -39,9 +41,13 @@ function AppContent() {
 
 function App() {
   return (
-    <Router>
-      <AppContent />
-    </Router>
+    <TooltipProvider>
+      <Router>
+        <AppContent />
+        {/* Tooltip global monté au niveau racine */}
+        <MapTooltip />
+      </Router>
+    </TooltipProvider>
   )
 }
 

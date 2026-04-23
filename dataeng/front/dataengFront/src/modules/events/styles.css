@@ -884,7 +884,7 @@ body {
   cursor: pointer;
 }
 
-.congo-map:hover {
+.congo-map:not(.overlay-hover):hover {
   transform: translateY(-50%) scale(1.02);
 }
 
